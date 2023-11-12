@@ -1,0 +1,14 @@
+<?php
+    namespace App\Components;
+
+    use App\Service\Interfaces\Component;
+
+    class %component% extends Component {
+        public function render ()
+        {
+            ?>
+                <div>Hello, %component% component !</div>
+            <?php
+        }
+    }
+?>

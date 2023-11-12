@@ -1,0 +1,29 @@
+:root {
+    --theme-color: #000;
+}
+
+::selection {
+    background: var(--cc-light);
+    color: var(--cc-dark);
+}
+
+html, body {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1;
+    min-height: 100vh;
+    font-family: sans-serif;
+    color: var(--);
+    background-color: var(--);
+}
+
+* {
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+    border: none;
+    background: none;
+    color: unset;
+    margin: 0;
+    padding: 0;
+}
