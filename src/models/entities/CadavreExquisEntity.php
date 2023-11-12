@@ -1,7 +1,7 @@
 <?php
     namespace App\Models\Entities;
 
-    use App\Models\Util\Periode;
+    use App\Helpers\Periode;
 
     class CadavreExquisEntity {
         public int $id_game;
