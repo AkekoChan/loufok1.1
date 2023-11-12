@@ -33,7 +33,7 @@
                 }
             }
 
-            header("X-Powered-By:Mosaic " . ENV->VERSION, true);
+            header("X-Powered-By:Mosaic ". ENV->VERSION ." (PHP)", true);
             return die($this->render());
         }
 

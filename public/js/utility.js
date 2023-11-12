@@ -4,6 +4,7 @@ const $get = async (url, type = 'json') => {
         const response = await context[type](); return response;
     } catch (e) {
         console.error(e);
+        return e;
     }
 }
 
@@ -13,6 +14,7 @@ const $post = async (url, body = [], type = 'json', headers = null) => {
         const response = await context[type](); return response;
     } catch (e) {
         console.error(e);
+        return e;
     }
 }
 
