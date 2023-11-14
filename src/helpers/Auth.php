@@ -9,18 +9,14 @@
     use App\Models\Entities\UserEntity;
 
     class Auth {
-        private static $cookie = "user_token";
+        private static $cookie_name = "user_token";
 
         public static function removeCookie () : bool {
-            return Store::removeCookie(self::$cookie);
-        }
-
-        public static function cookieExist () : bool {
-            return Store::getCookie(self::$cookie) !== null; 
+            return Store::removeCookie(self::$cookie_name);
         }
 
         public static function fromCookie () : UserEntity|bool {
-            $cookie = Store::getCookie(self::$cookie);
+            $cookie = Store::getCookie(self::$cookie_name);
             if($cookie === null) return false;
             $cookie = JWTHelper::decode_token($cookie, ENV->APP_KEY);
 
@@ -45,7 +41,7 @@
             if($user === false) return [ "error" => "mail" ];
 
             if(Hashor::hash($post["password"], ENV->APP_KEY) === $user->password) {
-                return Store::setCookie(self::$cookie, JWTHelper::encode_token([
+                return Store::setCookie(self::$cookie_name, JWTHelper::encode_token([
                     "mail" => $user->mail,
                     "password" => $user->password
                 ], ENV->APP_KEY), 0);
