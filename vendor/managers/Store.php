@@ -2,8 +2,8 @@
     namespace App\Service\Managers;
 
     class Store {
-        public static function setCookie (string $name, mixed $value, array $options = []) : bool {
-            return setcookie($name, $value, $options);
+        public static function setCookie (string $name, mixed $value, int $expire = 0) : bool {
+            return setcookie($name, $value, $expire, "/" . ENV->PATH_EXCLUDE);
         }
 
         public static function removeCookie (string $name) : bool {

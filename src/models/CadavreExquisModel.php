@@ -1,6 +1,7 @@
 <?php
     namespace App\Models;
 
+    use App\Helpers\Periode;
     use App\Models\Entities\CadavreExquisEntity;
     use App\Service\Database\Model;
 

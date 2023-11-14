@@ -6,11 +6,11 @@
     use App\Service\Database\Model;
 
     class UsersModel extends Model {
-        public string $table = "users";
+        public string $table = "user";
         public string $tableAdmin = "admin";
         public string $entity = UserEntity::class;
 
-        public function getUser (string $email, string $password) : UserEntity|bool {
+        public function retrieveUser (string $email) : UserEntity|bool {
             $sql = "SELECT 0 AS is_admin, id_user AS id, nom, mail, sexe, bdate, password
             FROM {$this->table}
             WHERE mail = ?

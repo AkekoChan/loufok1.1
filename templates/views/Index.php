@@ -13,7 +13,7 @@
                     <?php $this->component(Components\Head::class); ?>
                 </head>
                 <body>
-                    Hello, Index Template
+                    Index template !
                 </body>
             </html>
             <?php

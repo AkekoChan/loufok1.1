@@ -4,7 +4,7 @@
     use App\Helpers\Periode;
 
     class CadavreExquisEntity {
-        public int $id_game;
+        public int $id_cadavre_exquis;
         public string $title;
         public string $date_start;
         public string $date_end;

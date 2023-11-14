@@ -6,10 +6,14 @@
     use App\Service\Routing\Response;
     use App\Templates\Views;
 
+    use App\Helpers\Auth;
+
     class Index extends Controller {
         public function index () : Response {
+            $user = Auth::fromCookie();
+            if($user === false) $this->response->redirect("/login");
+
             return $this->response
-                ->dump(Models\ContributionModel::instance()->findAll())
                 ->template(Views\Index::class)
                 ->status(202);
         }

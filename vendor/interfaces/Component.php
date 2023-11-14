@@ -8,5 +8,16 @@
         {
             $this->variables = $variables;
         }
+
+        
+        public function __get(string $name) : mixed
+        {
+            if(isset($this->variables[$name])) {
+                return $this->variables[$name];
+            } 
+            else {
+                return null;
+            }
+        }
     }
 ?>
