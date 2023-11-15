@@ -27,13 +27,22 @@ class Index extends Controller
 
         if ($current_cadavre === null) {
             // TODO: REAL TEMPLATE
-            die(var_dump("YA PAS EN COURS OU DEJA COMPLET"));
+            die(var_dump("YA PAS EN COURS OU DEJA COMPLET TODO: REAL TEMPLATE"));
         }
 
+        // ContributionEntity
         $random_contrib = Models\RandContributionModel::instance()
             ->getRandomContribution($user->id, $current_cadavre->id_cadavre_exquis);
 
-        return $this->response->content([
+        // $this->response->dump([
+        //     "periode" => $current_cadavre->periode->getConvertedPeriode(),
+        //     "remaining_days" => $current_cadavre->periode->getRemainingDays(),
+        //     "cadavre" => $current_cadavre,
+        //     "random_contribution" => $random_contrib
+        // ]);
+
+        return $this->response->template(Views\Index::class, [
+            "user" => $user,
             "periode" => $current_cadavre->periode->getConvertedPeriode(),
             "remaining_days" => $current_cadavre->periode->getRemainingDays(),
             "cadavre" => $current_cadavre,
