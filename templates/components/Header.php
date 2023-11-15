@@ -26,7 +26,7 @@ class Header extends Component
                     </svg>
                 </div>
                 <div class="header__popup">
-                    <p class="header__popupSubtitle">Notifications</p>
+                    <!-- <p class="header__popupSubtitle">Notifications</p> -->
                     <ul>
                         <li>Un cadavre exquis vient d'être ajouté !</li>
                         <li>Le dernière cadavre exquis vient de se terminer</li>
