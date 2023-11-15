@@ -3,6 +3,7 @@
   display: flex;
   border-radius: 0rem 0rem 1.5rem 1.5rem;
   box-shadow: var(--box-shadow);
+  border-bottom: 1px solid var(--light-gray);
 }
 
 .header__profile {
@@ -28,7 +29,9 @@
 
 .header__bell {
   position: relative;
+  cursor: pointer;
 }
+
 .header__bell::after {
   content: "";
   position: absolute;
@@ -55,7 +58,7 @@
   background: var(--white);
   border: 2px solid var(--light-gray);
   border-radius: 1rem;
-  padding: 1.5rem 1rem;
+  padding: 0.875rem;
   transform: translateX(100%);
   opacity: 0;
   transition: all 0.5s ease;
@@ -69,9 +72,8 @@
 .header__popupSubtitle {
   color: var(--gray);
   font-family: "Bodoni Moda", sans-serif;
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
 }
 
 .header__popup ul {
@@ -84,7 +86,7 @@
 }
 .header__popup li {
   position: relative;
-  padding-left: 1rem;
+  padding-inline: 1.5rem 1rem;
 }
 
 .header__popup li::after {
