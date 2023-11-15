@@ -7,8 +7,6 @@
 @import "blocs/btn.css";
 @import "blocs/form.css";
 
-@import "pages/login.css";
-
 * {
   box-sizing: border-box;
   font-size: 100%;
@@ -52,6 +50,7 @@ textarea::placeholder,
 input,
 textarea {
   font-family: "Sen", sans-serif;
+  color: var(--black-1);
 }
 
 body {

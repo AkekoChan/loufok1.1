@@ -3,7 +3,6 @@
 namespace App\Templates\Views;
 
 use App\Components;
-use App\Service\Interfaces\Component;
 use App\Service\Interfaces\Template;
 
 class Login extends Template
@@ -16,7 +15,7 @@ class Login extends Template
 
         <head>
             <?php $this->component(Components\Head::class); ?>
-            <link rel="stylesheet" href="<?php $this->public("/css/login.css"); ?>">
+            <link rel="stylesheet" href="<?php $this->public("/css/pages/login.css"); ?>">
         </head>
 
         <body>
