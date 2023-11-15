@@ -17,7 +17,7 @@
 
         final public static function bind (string|array $route, array $methods = ["GET"], string $module = "index") {
             $routes = is_array($route) ? $route : [$route];
-            return Route::queue($routes, $methods, [static::class, $module]);
+            return Route::queue($routes, $methods, [get_called_class(), $module]);
         }
     }
 ?>
