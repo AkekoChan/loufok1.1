@@ -16,7 +16,7 @@
             $user = Auth::fromCookie();
             // ? Si l'utilisateur est authentifiable on redirige sur la page d'accueil
             if($user !== false) return $this->response->redirect("/");
-
+            // ? Sinon on affiche la vue de connexion
             return $this->response
                 ->template(Views\Login::class, [ "title" => "Loufok | Connexion", "error" => $error, "request" => $this->request->post ]);
         }

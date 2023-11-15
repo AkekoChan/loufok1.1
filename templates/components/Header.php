@@ -29,13 +29,13 @@ class Header extends Component
                 </path>
             </svg>
         </div>
-        <!-- <div class="header__popup">
+        <div class="header__popup">
             <p>Aujourd'hui</p>
             <ul>
                 <li>Un cadavre exquis vient d'être ajouté !</li>
                 <li>Le dernière cadavre exquis vient de se terminer</li>
             </ul>
-        </div> -->
+        </div>
     </div>
 </header>
 <?php
