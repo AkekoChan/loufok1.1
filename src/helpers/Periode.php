@@ -10,5 +10,12 @@
             $this->start = $date_start;
             $this->end = $date_end;
         }
+
+        public function getConvertedPeriode () : array {
+            return [
+                preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->start),
+                preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->end)
+            ];
+        }
     }
 ?>

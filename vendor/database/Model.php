@@ -5,11 +5,12 @@
         protected string $table;
         protected string $entity;
 
-        protected static $instance;
+        private static array $instances;
 
         final public static function instance () {
-            if(!isset(static::$instance)) static::$instance = new static;
-            return static::$instance;
+            $class = static::class;
+            if(!isset(self::$instances[$class])) self::$instances[$class] = new static;
+            return self::$instances[$class];
         }
 
         public function find(int $id): mixed
