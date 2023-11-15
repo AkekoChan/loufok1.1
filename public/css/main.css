@@ -6,6 +6,7 @@
 
 @import "blocs/btn.css";
 @import "blocs/form.css";
+@import "blocs/header.css";
 
 * {
   box-sizing: border-box;
@@ -48,7 +49,8 @@ button,
 input::placeholder,
 textarea::placeholder,
 input,
-textarea {
+textarea,
+p {
   font-family: "Sen", sans-serif;
   color: var(--black-1);
 }

@@ -7,16 +7,22 @@
     class Index extends Template {
         public function render () {
             ?>
-            <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <?php $this->component(Components\Head::class); ?>
-                </head>
-                <body>
-                    Index template !
-                </body>
-            </html>
-            <?php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php $this->component(Components\Head::class); ?>
+</head>
+
+<body>
+    <main>
+        <?php $this->component(Components\Header::class); ?>
+        Index template !
+    </main>
+</body>
+
+</html>
+<?php
         }
     }
 ?>

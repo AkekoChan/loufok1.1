@@ -7,6 +7,10 @@
   font-size: var(--font-24px-1_5rem);
 }
 
+.bolder {
+  font-weight: bold;
+}
+
 .center {
   text-align: center;
 }
