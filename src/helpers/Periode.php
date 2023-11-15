@@ -11,10 +11,16 @@
             $this->end = $date_end;
         }
 
+        public function getRemainingDays () : int {
+            $now = date_create("now");
+            $end = date_create($this->end);
+            return date_diff($now, $end)->days;
+        }
+
         public function getConvertedPeriode () : array {
             return [
-                preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->start),
-                preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->end)
+                "start" => preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->start),
+                "end" => preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->end)
             ];
         }
     }
