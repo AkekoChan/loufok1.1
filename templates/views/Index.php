@@ -18,7 +18,7 @@ class Index extends Template
     <link rel="stylesheet" href="<?php $this->public("/css/pages/currentCadavre.css"); ?>">
 </head>
 
-<body id="body">
+<body>
     <?php $this->component(Components\Header::class); ?>
     <main>
 
