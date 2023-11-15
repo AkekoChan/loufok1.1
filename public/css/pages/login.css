@@ -79,11 +79,6 @@
 /* Animation Css */
 
 @keyframes face_yes {
-  0%,
-  100% {
-    transform: translateX(0) translateY(0);
-  }
-
   3% {
     transform: translateX(auto) translateY(0);
   }
@@ -119,14 +114,13 @@
   80% {
     transform: translateX(0) translateY(0);
   }
+
+  100% {
+    transform: translateX(auto) translateY(0);
+  }
 }
 
 @keyframes mustache {
-  0%,
-  100% {
-    transform: translateX(0%);
-  }
-
   0% {
     transform: translateX(0);
   }
@@ -162,14 +156,13 @@
   80% {
     transform: translateX(0);
   }
+
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 @keyframes eye_wink {
-  0%,
-  100% {
-    clip-path: polygon(0% 15%, 100% 15%, 100% 100%, 0% 100%);
-  }
-
   0% {
     clip-path: polygon(0% 15%, 100% 15%, 100% 100%, 0% 100%);
   }
@@ -180,6 +173,10 @@
 
   60% {
     clip-path: polygon(0% 80%, 100% 80%, 100% 100%, 0% 100%);
+  }
+
+  80% {
+    clip-path: polygon(0% 15%, 100% 15%, 100% 100%, 0% 100%);
   }
 
   100% {
