@@ -7,6 +7,10 @@
 
         private static array $instances;
 
+        final public static function getTableName () : string|null {
+            return get_class_vars(static::class)["table"] ?? null;
+        }
+
         final public static function instance () : mixed {
             $class = static::class;
             if(!isset(self::$instances[$class])) self::$instances[$class] = new static;
