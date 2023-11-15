@@ -1,0 +1,37 @@
+.btn-primary {
+  padding: 1.25rem;
+  border-radius: 2.5rem;
+  background-color: var(--light-green-1);
+  box-shadow: var(--box-shadow);
+  border: none;
+  font-weight: bold;
+  width: 100%;
+  transition: all ease 0.4s;
+  cursor: pointer;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:focus-within {
+  background-color: var(--dark-green);
+}
+
+.btn-secondary {
+  padding: 1.25rem;
+  border-radius: 2.5rem;
+  background-color: var(--black-1);
+  box-shadow: var(--box-shadow);
+  border: none;
+  font-weight: bold;
+  width: 100%;
+  transition: all ease 0.4s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active,
+.btn-secondary:focus-within {
+  background-color: var(--black-2);
+}

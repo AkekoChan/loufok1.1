@@ -1,29 +1,75 @@
-:root {
-    --theme-color: #000;
-}
+@import "global/fonts.css";
+@import "vendors/reset.css";
 
-::selection {
-    background: var(--cc-light);
-    color: var(--cc-dark);
-}
+@import "global/fonts.css";
+@import "global/common.css";
 
-html, body {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1;
-    min-height: 100vh;
-    font-family: sans-serif;
-    color: var(--);
-    background-color: var(--);
-}
+@import "blocs/btn.css";
+@import "blocs/form.css";
 
 * {
-    box-sizing: border-box;
-    outline: none;
-    list-style: none;
-    border: none;
-    background: none;
-    color: unset;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --dark-green: #91b174;
+  --light-green-1: #caecab;
+  --light-green-2: rgba(202, 236, 171, 0.6);
+  --red: #d85125;
+  --gray: #808080;
+  --light-gray: #dedede;
+  --black-1: #28292d;
+  --black-2: #1a1b1c;
+  --white: #ffffff;
+
+  --box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.2);
+
+  --font-10px-0_625rem: 0.625rem;
+  --font-12px-0_75rem: 0.75rem;
+  --font-14px-0_875rem: 0.875rem;
+  --font-16px-1rem: 1rem;
+  --font-20px-1_25rem: 1.25rem;
+  --font-24px-1_5rem: 1.5rem;
+  --font-32px-2rem: 2rem;
+  --font-48px-3rem: 3rem;
+  --font-64px-4rem: 4rem;
+  --font-96px-6rem: 6rem;
+  --font-128px-8rem: 8rem;
+  --font-weight-regular: 400;
+  --font-weight-mediulm: 500;
+  --font-weight-semibod: 600;
+  --font-weight-bold: 700;
+}
+
+html,
+button,
+input::placeholder,
+textarea::placeholder,
+input,
+textarea {
+  font-family: "Sen", sans-serif;
+  color: var(--black-1);
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bodoni Moda", sans-serif;
+  font-weight: bold;
+  color: var(--black);
+}
+
+main {
+  max-width: 530px;
+  margin: 0 auto;
 }
