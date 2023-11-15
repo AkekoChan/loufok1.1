@@ -52,7 +52,7 @@ class Login extends Template
                     <form action='' method='POST' class="form">
                         <h3 class="smaller">Se connecter à son profil</h3>
                         <div class="form__box">
-                            <input class="form__input <?php echo $this->error === "mail" ? 'form__input-error' : ''; ?>" type='email' id="mail" name='mail' placeholder="Adresse Mail" value="<?php echo $this->request["mail"] ?? ''; ?>" />
+                            <input class="form__input <?php echo $this->error === "mail" ? 'form__input-error' : ''; ?>" type='email' id="mail" name='mail' placeholder="Adresse Mail" required value="<?php echo $this->request["mail"] ?? ''; ?>" />
                             <?php if ($this->error === "mail") $this->component(Components\FormError::class, ["error_text" => "Mail incrorrect, veuillez recommencer !"]); ?>
                         </div>
 

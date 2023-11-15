@@ -55,7 +55,7 @@ textarea {
 }
 
 body {
-  min-width: 320px;
+  width: 100%;
   overflow-x: hidden !important;
 }
 
@@ -68,4 +68,9 @@ h6 {
   font-family: "Bodoni Moda", sans-serif;
   font-weight: bold;
   color: var(--black);
+}
+
+main {
+  max-width: 530px;
+  margin: 0 auto;
 }
