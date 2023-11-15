@@ -12,6 +12,8 @@
         public int $nb_like;
         public int $id_admin;
 
+        public int $contributions;
+
         public Periode $periode;
 
         public function __construct()
