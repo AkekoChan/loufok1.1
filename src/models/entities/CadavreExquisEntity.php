@@ -13,12 +13,14 @@
         public int $id_admin;
 
         public int $contributions;
+        public int $remaining_contributions;
 
         public Periode $periode;
 
         public function __construct()
         {
             $this->periode = new Periode($this->date_start, $this->date_end);
+            $this->remaining_contributions = $this->nb_contribution - $this->contributions;
         }
     }
 ?>

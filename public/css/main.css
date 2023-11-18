@@ -7,6 +7,7 @@
 @import "blocs/btn.css";
 @import "blocs/form.css";
 @import "blocs/header.css";
+@import "blocs/footer.css";
 
 * {
   box-sizing: border-box;
@@ -58,6 +59,12 @@ p {
 body {
   width: 100%;
   overflow-x: hidden !important;
+  max-width: 530px;
+  max-height: 100dvh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr max-content;
 }
 
 h1,
@@ -68,10 +75,13 @@ h5,
 h6 {
   font-family: "Bodoni Moda", sans-serif;
   font-weight: bold;
-  color: var(--black);
+  color: var(--black-1);
+}
+
+a {
+  text-decoration: none;
 }
 
 main {
-  max-width: 530px;
-  margin: 0 auto;
+  overflow-y: scroll;
 }
