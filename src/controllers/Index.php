@@ -25,11 +25,30 @@ class Index extends Controller
 
     public function user(Entities\UserEntity $user, Entities\CadavreExquisEntity|bool $cadavre_exquis): Response
     {
-        // GET ALEATOIRE CONTIBUTION
-        return $this->response->content([
-            "periode" => $cadavre_exquis->periode->getConvertedPeriode(),
-            "remaining_days" => $cadavre_exquis->periode->getRemainingDays(),
-            "cadavre" => $cadavre_exquis
+        $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
+
+        if ($current_cadavre === null) {
+            // TODO: REAL TEMPLATE
+            die(var_dump("YA PAS EN COURS OU DEJA COMPLET TODO: REAL TEMPLATE"));
+        }
+
+        // ContributionEntity
+        $random_contrib = Models\RandContributionModel::instance()
+            ->getRandomContribution($user->id, $current_cadavre->id_cadavre_exquis);
+
+        // return $this->response->content([
+        //     "periode" => $current_cadavre->periode->getConvertedPeriode(),
+        //     "remaining_days" => $current_cadavre->periode->getRemainingDays(),
+        //     "cadavre" => $current_cadavre,
+        //     "random_contribution" => $random_contrib
+        // ]);
+
+        return $this->response->template(Views\Index::class, [
+            "user" => $user,
+            "periode" => $current_cadavre->periode->getConvertedPeriode(),
+            "remaining_days" => $current_cadavre->periode->getRemainingDays(),
+            "cadavre" => $current_cadavre,
+            "random_contribution" => $random_contrib
         ]);
     }
 
