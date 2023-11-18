@@ -59,7 +59,7 @@
   border: 2px solid var(--light-gray);
   border-radius: 1rem;
   padding: 0.875rem;
-  transform: scale(0.4);
+  transform: translateX(40%);
   transform-origin: right;
   opacity: 0;
 }
@@ -79,8 +79,7 @@
 }
 
 .toggle.header__popup {
-  transition: all 0.5s ease;
-  transform: scale(1);
+  transform: translateX(0%);
   opacity: 1;
   box-shadow: var(--box-shadow);
 }

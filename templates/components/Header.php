@@ -11,7 +11,7 @@ class Header extends Component
 ?>
         <header class="header">
             <div class="header__profile">
-                <img src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=<?php echo $this->user->is_admin ? strtok($this->user->mail, "@") : $this->user->nom ?>&scale=200&radius=8&glassesProbability=60" alt="Photo de profil">
+                <img width="100px" src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=<?php echo $this->user->is_admin ? strtok($this->user->mail, "@") : $this->user->nom ?>&scale=200&radius=8&glassesProbability=60" alt="Photo de profil">
                 <p>
                     Bienvenue, <br>
                     <span class="bolder"><?php echo $this->user->is_admin ? ucwords(strtok($this->user->mail, "@")) : $this->user->nom ?></span>

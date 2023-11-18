@@ -16,18 +16,7 @@
             $contribution_table = ContributionModel::getTableName();
             $contribution_entity = ContributionEntity::class;
 
-            $sql = "SELECT
-                c.*
-            FROM
-                {$this->table} rc
-            JOIN
-                {$contribution_table} c ON rc.num_contribution = c.id_contribution
-            WHERE
-                rc.id_user = :user_id
-                AND rc.id_cadavre_exquis = :cadavre_exquis_id
-            LIMIT 1;
-
-            INSERT INTO {$this->table} (id_user, id_cadavre_exquis, num_contribution)
+            $sql = "INSERT INTO {$this->table} (id_user, id_cadavre_exquis, num_contribution)
             SELECT
                 :user_id,
                 :cadavre_exquis_id,
@@ -40,6 +29,24 @@
                 ":user_id" => $user_id,
                 ":cadavre_exquis_id" => $current_cadavre_id
             ]);
+
+            $select = "SELECT
+                c.*
+            FROM
+                {$this->table} rc
+            JOIN
+                {$contribution_table} c ON rc.num_contribution = c.id_contribution
+            WHERE
+                rc.id_user = :user_id
+                AND rc.id_cadavre_exquis = :cadavre_exquis_id
+            LIMIT 1;";
+
+            $sth = DatabaseManager::query($select, [
+                ":user_id" => $user_id,
+                ":cadavre_exquis_id" => $current_cadavre_id
+            ]);
+
+            if (!$sth || $sth->rowCount() === 0) return false; // TODO HANDLE ERROR
 
             $sth->setFetchMode(DatabaseManager::getInstance()::FETCH_CLASS, $contribution_entity);
             return $sth->fetch();

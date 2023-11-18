@@ -34,7 +34,7 @@ class Index extends Controller
         $random_contrib = Models\RandContributionModel::instance()
             ->getRandomContribution($user->id, $current_cadavre->id_cadavre_exquis);
 
-        // $this->response->dump([
+        // return $this->response->content([
         //     "periode" => $current_cadavre->periode->getConvertedPeriode(),
         //     "remaining_days" => $current_cadavre->periode->getRemainingDays(),
         //     "cadavre" => $current_cadavre,

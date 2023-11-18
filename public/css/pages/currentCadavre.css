@@ -11,7 +11,7 @@
 
 .currentCadavre__info {
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .currentCadavre__details {
@@ -22,7 +22,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-block: 1.25rem 2rem;
+  margin-block: 1.25rem 4rem;
 }
 
 .contributions__item {
