@@ -11,10 +11,6 @@
   font-weight: bold;
 }
 
-.bolder-green {
-  font-weight: bold;
-  color: var(--dark-green);
-}
 .center {
   text-align: center;
 }
