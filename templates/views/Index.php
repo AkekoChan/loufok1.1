@@ -36,13 +36,16 @@ class Index extends Template
             <div class="currentCadavre__details">
                 <h3 class="smaller"><?php echo $this->cadavre->title; ?></h3>
                 <!-- Gérer le s si 0/1 ou plus -->
-                <p class="contributions-remaining">Nombre de contributions restantes : 
+                <p class="contributions-remaining">Nombre de contributions restantes :
                     <span class="bolder-green">
                         <?php echo $this->cadavre->remaining_contributions; ?>
                     </span>
                 </p>
-                <p class="periods">Vous pouvez participer du <span class="bolder"><?php echo $this->periode["start"]; ?></span> au <span
-                        class="bolder"><?php echo $this->periode["end"]; ?></span> (<span class="bolder-green"><?php echo $this->remaining_days; ?></span> <?php echo $this->remaining_days > 1 ? " jours restants" : " jour restant" ?>)</p>
+                <p class="periods">Vous pouvez participer du <span
+                        class="bolder"><?php echo $this->periode["start"]; ?></span> au <span
+                        class="bolder"><?php echo $this->periode["end"]; ?></span> (<span
+                        class="bolder-green"><?php echo $this->remaining_days; ?></span>
+                    <?php echo $this->remaining_days > 1 ? " jours restants" : " jour restant" ?>)</p>
             </div>
             <ul class="contributions__list">
                 <?php for ($i=1; $i < $this->cadavre->contributions + 1; $i++) { 

@@ -1,0 +1,81 @@
+.user-cadavers {
+  padding: 2rem;
+}
+
+.user-cadavers__info,
+.user-cadavers__list,
+.user-cadavers__info-bis {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.user-cadavers__info {
+  margin-bottom: 2rem;
+}
+
+.user-cadavers__info-bis {
+  margin-bottom: 3rem;
+}
+
+.user-cadavers__item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  background: var(--light-green-1);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+}
+.user-cadavers__item-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(40, 41, 45, 0.8);
+}
+
+.user-cadavers__item-svg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.user-cadavers__item-title {
+  font: bold var(--font-20px-1_25rem, 1.125rem) "Bodoni Moda", sans-serif;
+}
+
+.user-cadavers__item-link {
+  color: var(--white);
+  text-align: center;
+}
+
+.user-cadavers__thanks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.user-cadavers__tanks-list {
+  column-count: 2;
+}
+
+.user-cadavers__tanks-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-cadavers__tanks-item img {
+  width: 3rem;
+  height: 3rem;
+  border: 2px solid var(--light-gray);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.user-cadavers__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
