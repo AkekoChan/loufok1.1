@@ -62,9 +62,11 @@ body {
   max-width: 530px;
   max-height: 100dvh;
   margin: 0 auto;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  /* display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content 1fr max-content;
+  grid-template-rows: max-content 1fr max-content; */
 }
 
 h1,

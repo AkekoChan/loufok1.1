@@ -12,8 +12,9 @@
 
 .footer__list {
   display: flex;
-  gap: 6rem;
-  justify-content: center;
+  /* gap: 6rem; */
+  /* justify-content: center; */
+  justify-content: space-between;
   align-items: center;
 }
 
