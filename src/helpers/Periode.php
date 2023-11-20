@@ -14,7 +14,7 @@
         public function getRemainingDays () : int {
             $now = date_create("now");
             $end = date_create($this->end);
-            return date_diff($now, $end)->days;
+            return max(1, date_diff($now, $end)->days);
         }
 
         public function getConvertedPeriode () : array {

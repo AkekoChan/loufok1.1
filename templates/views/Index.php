@@ -12,7 +12,7 @@ class Index extends Template
     {
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <?php $this->component(Components\Head::class); ?>
@@ -58,9 +58,7 @@ class Index extends Template
 
             <form class="form" method="" action="">
                 <h3 class="smaller center">A votre tour de jouer !</h3>
-                <!-- A remplacer par le Component QUILL -->
-                <textarea class="form__textarea" name="new_contribution" required maxlength="280" minlength="50"
-                    placeholder="Ecriver la suite de ce cadavre exquis"></textarea>
+                <?php $this->component(Components\Quill::class); ?>
                 <button class="btn-primary" type="submit">Soumettre votre cadavre exquis</button>
             </form>
 

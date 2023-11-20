@@ -11,7 +11,7 @@ class Login extends Template
     {
 ?>
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="fr">
 
         <head>
             <?php $this->component(Components\Head::class); ?>
