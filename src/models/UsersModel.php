@@ -1,6 +1,7 @@
 <?php
     namespace App\Models;
 
+    use App\Models\Entities\ContributionEntity;
     use App\Models\Entities\UserEntity;
     use App\Service\Database\DatabaseManager;
     use App\Service\Database\Model;
@@ -27,6 +28,29 @@
             }
 
             return null;
+        }
+
+        public function getAllContributions (int $user_id) : array {
+            $contribution_table = ContributionModel::getTableName();
+            $cadavre_table = CadavreExquisModel::getTableName();
+
+            $sql = "SELECT
+                c.*,
+                ce.title AS cadavre_name
+            FROM
+                {$contribution_table} c
+            JOIN
+                {$cadavre_table} ce ON c.id_cadavre_exquis = ce.id_cadavre_exquis
+            WHERE
+                c.id_user = :id;";
+    
+            $sth = DatabaseManager::query($sql, [":id" => $user_id]);
+            if ($sth && $sth->rowCount()) {
+                // DatabaseManager::getInstance()::FETCH_CLASS, ContributionEntity::class
+                return $sth->fetchAll();
+            }
+    
+            return [];
         }
     }
 ?>

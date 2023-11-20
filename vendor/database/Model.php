@@ -2,6 +2,8 @@
 
 namespace App\Service\Database;
 
+use App\Models;
+
 class Model
 {
     protected string $table;
@@ -14,7 +16,7 @@ class Model
         return get_class_vars(static::class)["table"] ?? null;
     }
 
-    final public static function instance(): mixed
+    final public static function instance(): Models\UsersModel|Models\CadavreExquisModel|Models\ContributionModel|Models\RandContributionModel
     {
         $class = static::class;
         if (!isset(self::$instances[$class])) self::$instances[$class] = new static;

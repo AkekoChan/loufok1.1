@@ -60,6 +60,7 @@ body {
   width: 100%;
   overflow-x: hidden !important;
   max-width: 530px;
+  height: 100vh;
   max-height: 100dvh;
   margin: 0 auto;
   display: flex;
@@ -85,5 +86,6 @@ a {
 }
 
 main {
-  overflow-y: scroll;
+  overflow-y: auto;
+  flex-grow: 1;
 }

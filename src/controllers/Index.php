@@ -26,8 +26,10 @@ class Index extends Controller
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
         if ($current_cadavre === null) {
-            // TODO: REAL TEMPLATE
-            die(var_dump("YA PAS EN COURS OU DEJA COMPLET TODO: REAL TEMPLATE"));
+            return $this->response->template(Views\Index::class, [
+                "user" => $user,
+                "cadavre" => null
+            ]);
         }
 
         // ContributionEntity

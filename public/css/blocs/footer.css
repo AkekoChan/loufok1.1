@@ -33,16 +33,16 @@
   display: none;
 }
 
-.footer__item a.current {
+.footer__item.current a {
   border-radius: 0.5rem;
   background-color: var(--light-green-2);
 }
 
-.footer__item a.current path {
+.footer__item.current a path {
   fill: var(--dark-green);
 }
 
-.footer__item span.current {
+.footer__item.current span {
   color: var(--dark-green);
   display: block;
 }

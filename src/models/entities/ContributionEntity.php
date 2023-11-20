@@ -9,5 +9,7 @@
         public int $submission_order;
         public int $id_cadavre_exquis;
         public int $id_admin;
+
+        public string|null $cadavre_name;
     }
 ?>
