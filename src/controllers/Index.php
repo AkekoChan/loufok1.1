@@ -54,6 +54,8 @@ class Index extends Controller
 
     public function admin(Entities\UserEntity $user): Response
     {
-        return $this->response->content("admin");
+        return $this->response->template(Views\Admin::class, [
+            "user" => $user
+        ]);
     }
 }
