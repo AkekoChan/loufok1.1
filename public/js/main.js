@@ -12,7 +12,7 @@
       App.DOM.bell?.addEventListener("click", App.toggleNotifs);
     },
     toggleNotifs: () => {
-      App.DOM.popUpbell?.classList.toggle("toggle");
+      App.DOM.popUp?.classList.toggle("toggle");
     },
   };
 
