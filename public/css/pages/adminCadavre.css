@@ -19,6 +19,7 @@
   background: var(--light-green-1);
   box-shadow: var(--box-shadow);
   width: 100%;
+  margin-bottom: 2rem;
 }
 .admin-cadavers__item-content {
   display: flex;

@@ -9,10 +9,10 @@
       App.event();
     },
     event: () => {
-      App.DOM.bell.addEventListener("click", App.toggleNotifs);
+      App.DOM.bell?.addEventListener("click", App.toggleNotifs);
     },
     toggleNotifs: () => {
-      App.DOM.popUp.classList.toggle("toggle");
+      App.DOM.popUpbell?.classList.toggle("toggle");
     },
   };
 

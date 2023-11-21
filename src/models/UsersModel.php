@@ -46,8 +46,7 @@
     
             $sth = DatabaseManager::query($sql, [":id" => $user_id]);
             if ($sth && $sth->rowCount()) {
-                // DatabaseManager::getInstance()::FETCH_CLASS, ContributionEntity::class
-                return $sth->fetchAll();
+                return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, ContributionEntity::class);
             }
     
             return [];

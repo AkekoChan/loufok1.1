@@ -9,6 +9,7 @@ use App\Templates\Views;
 use App\Helpers\Auth;
 use App\Models\Entities;
 use App\Models;
+use App\Models\CadavreExquisModel;
 
 // Ce controlleur pointe sur /
 class Index extends Controller
@@ -24,6 +25,18 @@ class Index extends Controller
     public function user(Entities\UserEntity $user): Response
     {
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
+
+        $contribution_exist = array_filter(Models\UsersModel::instance()->getAllContributions($user->id),
+            fn($contribution) => $contribution->id_cadavre_exquis === $current_cadavre->id_cadavre_exquis)[0] ?? false;
+
+        // c'est une requete post omg
+        if(!empty($this->request->post)) {
+            if ($current_cadavre !== null && empty($contribution_exist)) {
+                // traitement contribution creation
+            }
+
+            $this->response->redirect("/");
+        }
 
         if ($current_cadavre === null) {
             return $this->response->template(Views\Index::class, [
@@ -48,14 +61,17 @@ class Index extends Controller
             "periode" => $current_cadavre->periode->getConvertedPeriode(),
             "remaining_days" => $current_cadavre->periode->getRemainingDays(),
             "cadavre" => $current_cadavre,
-            "random_contribution" => $random_contrib
+            "random_contribution" => $random_contrib,
+            "contribution" => $contribution_exist
         ]);
     }
 
     public function admin(Entities\UserEntity $user): Response
     {
-        return $this->response->template(Views\Admin::class, [
-            "user" => $user
+        $cadavres = CadavreExquisModel::instance()->getAllCadavre();
+        return $this->response->template(Views\Admin\Index::class, [
+            "user" => $user,
+            "cadavres" => $cadavres
         ]);
-    }
+    }   
 }

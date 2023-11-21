@@ -10,8 +10,13 @@
                 <link href="<?php $this->public("/css/blocs/__quill.css"); ?>" rel="stylesheet">
                 <script src="<?php $this->public("/js/__quill.js"); ?>"></script>
                 <span class="madewith">Made with <a target="_blank" href="https://quilljs.com">Quill</a></span>
-                <div id="editor" class="form__textarea"></div>
+                <div class="editor__container">
+                    <div id="editor"></div>
+                </div>
                 <style>
+                    .editor__container {
+                        filter: drop-shadow(0 2px 8px rgba(99, 99, 99, 0.2));
+                    }
                     .word-counter {
                         border: 2px solid #caecab;
                         padding: .3rem;
@@ -22,6 +27,31 @@
                         display: block;
                         width: fit-content;
                     }
+                    .ql-editor.ql-blank::before {
+                        color: var(--gray) !important;
+                        opacity: .54;
+                        font-style: normal;
+                    }
+                    #editor {
+                        background: var(--white);
+                        padding-bottom: 2rem;
+                        font-size: 1rem;
+                        border-radius: 0.375rem;
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                        max-height: 40vh;
+                        overflow-y: auto;
+                    }
+                    .ql-toolbar, #editor {
+                        border: 2px solid var(--light-gray) !important;
+                    }
+                    .ql-toolbar {
+                        border-bottom: none !important;
+                        background-color: var(--white);
+                        border-radius: 0.375rem;
+                        border-bottom-left-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
                     #editor.invalid ~ .word-counter {
                         border-color: #d85125;
                     }
@@ -30,6 +60,8 @@
                         padding: .2rem;
                         opacity: .6;
                         font-size: .9rem;
+                        margin-bottom: 4px;
+                        display: block;
                     }
                 </style>
                 <script>

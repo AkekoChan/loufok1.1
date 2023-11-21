@@ -14,6 +14,8 @@ class CadavreExquisEntity
     public int $nb_like;
     public int $id_admin;
 
+    public string|null $admin_mail;
+
     public int $contributions;
     public int $remaining_contributions;
 

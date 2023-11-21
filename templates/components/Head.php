@@ -12,7 +12,7 @@ class Head extends Component
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <link rel="preload" href="<?php $this->public("/assets/favicon.svg") ?>" as="image" type="image/svg+xml">
+        <!-- <link rel="preload" href="<?php $this->public("/assets/favicon.svg") ?>" as="image" type="image/svg+xml"> -->
         <link rel="icon" href="<?php $this->public("/assets/el-moustacho.svg") ?>" type="image/svg+xml">
         <link rel="icon" href="<?php $this->public("/assets/favicon.png") ?>" type="image/png">
         <link rel="shortcut icon" href="<?php $this->public("/assets/el-moustacho.svg") ?>" type="image/svg+xml">
