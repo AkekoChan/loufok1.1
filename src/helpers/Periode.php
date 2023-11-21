@@ -13,8 +13,8 @@
 
         public function getRemainingDays () : int {
             $now = date_create("now");
-            $end = date_create($this->end);
-            return max(1, date_diff($now, $end)->days);
+            $end = date_create($this->end . "23:59:59");
+            return max(1, date_diff($now, $end, true)->days);
         }
 
         public function getConvertedPeriode () : array {
