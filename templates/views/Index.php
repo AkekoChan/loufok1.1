@@ -64,7 +64,7 @@ class Index extends Template
                 } ?>
             </ul>
 
-            <?php if($this->contribution === false): ?>
+            <?php if($this->contribution === null): ?>
 
             <form class="form" method="POST" action="/loufok/contribute">
                 <h3 class="smaller center">A votre tour de jouer !</h3>

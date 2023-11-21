@@ -39,6 +39,27 @@ class CadavreExquisModel extends Model
         return [];
     }
 
+    public function selectAllContributors (int $cadavre_id) : array {
+        $contribution_table = ContributionModel::getTableName();
+        $user_table = UsersModel::getTableName();
+
+        $sql = "SELECT DISTINCT
+                u.*
+            FROM
+                {$user_table} u
+            JOIN
+                {$contribution_table} c ON u.id_user = c.id_user
+            WHERE
+                c.id_cadavre_exquis = :cadavre_id;";
+
+        $sth = DatabaseManager::query($sql, [":cadavre_id" => $cadavre_id]);
+        if ($sth && $sth->rowCount()) {
+            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+        }
+
+        return [];
+    }
+
     public function getCurrentCadavre(): CadavreExquisEntity|null
     {
         $contribution_table = ContributionModel::getTableName();

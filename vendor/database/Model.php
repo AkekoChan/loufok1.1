@@ -40,10 +40,16 @@ class Model
             $fields[] = "$f = ?";
             $values[] = $v;
         }
+
         $fields_list = implode(' AND ', $fields);
         $sql = "SELECT * FROM `{$this->table}` WHERE $fields_list";
 
-        return DatabaseManager::query($sql, $values)->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+        $sth = DatabaseManager::query($sql, $values);
+        if ($sth && $sth->rowCount()) {
+            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+        }
+
+        return null;
     }
 
     public function findAll(): ?array

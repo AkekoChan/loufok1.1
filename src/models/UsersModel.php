@@ -1,6 +1,7 @@
 <?php
     namespace App\Models;
 
+    use App\Models\Entities\CadavreExquisEntity;
     use App\Models\Entities\ContributionEntity;
     use App\Models\Entities\UserEntity;
     use App\Service\Database\DatabaseManager;
@@ -28,6 +29,34 @@
             }
 
             return null;
+        }
+
+        public function getContributionFromCadavre (int $user_id, int $cadavre_id) : ContributionEntity|null {
+            return ContributionModel::instance()->findBy([
+                "id_user" => $user_id,
+                "id_cadavre_exquis" => $cadavre_id
+            ]);
+        }
+
+        public function getAllCadavres (int $user_id) : array {
+            $contribution_table = ContributionModel::getTableName();
+            $cadavre_table = CadavreExquisModel::getTableName();
+
+            $sql = "SELECT DISTINCT
+                ce.*
+            FROM
+                {$cadavre_table} ce
+            JOIN
+                {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
+            WHERE
+                c.id_user = :user_id;";
+
+            $sth = DatabaseManager::query($sql, [":user_id" => $user_id]);
+            if ($sth && $sth->rowCount()) {
+                return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, CadavreExquisEntity::class);
+            }
+    
+            return [];
         }
 
         public function getAllContributions (int $user_id) : array {

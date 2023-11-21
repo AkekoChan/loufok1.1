@@ -26,13 +26,12 @@ class Index extends Controller
     {
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
-        $contribution_exist = array_filter(Models\UsersModel::instance()->getAllContributions($user->id),
-            fn($contribution) => $contribution->id_cadavre_exquis === $current_cadavre->id_cadavre_exquis)[0] ?? false;
+        if($current_cadavre !== null) $contribution = Models\UsersModel::instance()->getContributionFromCadavre($user->id, $current_cadavre->id_cadavre_exquis);
 
         // c'est une requete post omg
         if(!empty($this->request->post)) {
-            if ($current_cadavre !== null && empty($contribution_exist)) {
-                // traitement contribution creation
+            if ($current_cadavre !== null && $contribution === null) {
+                // traitement contribution creation (exist, length ok)
             }
 
             $this->response->redirect("/");
@@ -62,7 +61,7 @@ class Index extends Controller
             "remaining_days" => $current_cadavre->periode->getRemainingDays(),
             "cadavre" => $current_cadavre,
             "random_contribution" => $random_contrib,
-            "contribution" => $contribution_exist
+            "contribution" => $contribution
         ]);
     }
 
