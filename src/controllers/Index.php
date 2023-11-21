@@ -7,9 +7,8 @@ use App\Service\Routing\Response;
 use App\Templates\Views;
 
 use App\Helpers\Auth;
-use App\Models\Entities;
 use App\Models;
-use App\Models\CadavreExquisModel;
+use App\Models\Entities;
 
 // Ce controlleur pointe sur /
 class Index extends Controller
@@ -67,7 +66,13 @@ class Index extends Controller
 
     public function admin(Entities\UserEntity $user): Response
     {
-        $cadavres = CadavreExquisModel::instance()->getAllCadavre();
+        // c'est une requete post omg
+        if(!empty($this->request->post)) {
+            die("posted new cadavre");
+            $this->response->redirect("/");
+        }
+
+        $cadavres = Models\CadavreExquisModel::instance()->getAllCadavres();
         return $this->response->template(Views\Admin\Index::class, [
             "user" => $user,
             "cadavres" => $cadavres

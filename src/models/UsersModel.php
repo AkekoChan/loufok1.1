@@ -35,7 +35,7 @@
             return ContributionModel::instance()->findBy([
                 "id_user" => $user_id,
                 "id_cadavre_exquis" => $cadavre_id
-            ]);
+            ])[0] ?? null;
         }
 
         public function getAllCadavres (int $user_id) : array {

@@ -28,6 +28,11 @@
   box-shadow: var(--box-shadow);
   width: 100%;
 }
+
+.user-cadavers__item.owner {
+  border: 2px solid var(--dark-green);
+}
+
 .user-cadavers__item-content {
   display: flex;
   align-items: center;

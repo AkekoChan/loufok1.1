@@ -24,6 +24,6 @@ class CadavreExquisEntity
     public function __construct()
     {
         $this->periode = new Periode($this->date_start, $this->date_end);
-        $this->remaining_contributions = $this->nb_contribution - $this->contributions;
+        $this->remaining_contributions = $this->nb_contribution - ($this->contributions ?? 0);
     }
 }

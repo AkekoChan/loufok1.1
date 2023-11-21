@@ -36,6 +36,10 @@
   width: 100%;
 }
 
+.contributions__item.owner {
+  border: 2px solid var(--dark-green);
+}
+
 form.form {
   gap: 0;
 }

@@ -54,7 +54,7 @@ class Index extends Template
                         </li>';
                     } 
                     else if($this->contribution !== false && $this->contribution->submission_order == $i) {
-                        echo '<li class="contributions__item">
+                        echo '<li class="contributions__item owner">
                             <p>'. $this->contribution->text .'</p>
                         </li>';
                     }

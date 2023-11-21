@@ -5,6 +5,9 @@ use App\Controllers;
 Controllers\Index::bind(["/"], ["GET"]);
 Controllers\Index::bind(["/contribute"], ["POST"]); // USER + ADMIN MAIN PAGE
 
+Controllers\Collection::bind(["/collection"], ["GET"]);
+Controllers\Collection::bind(["/cadavre/{int:id}"], ["GET"], "cadavre");
+
 Controllers\Admin::bind(["/create"], ["GET", "POST"]);
 
 Controllers\Profile::bind(["/profile", "/profil"], ["GET"]);

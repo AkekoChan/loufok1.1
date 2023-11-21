@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Entities\CadavreExquisEntity;
+use App\Models\Entities\ContributionEntity;
+use App\Models\Entities\UserEntity;
 use App\Service\Database\DatabaseManager;
 use App\Service\Database\Model;
 
@@ -13,7 +15,7 @@ class CadavreExquisModel extends Model
 
     public string $admin_table = "admin";
 
-    public function getAllCadavre () : array {
+    public function getAllCadavres () : array {
         $contribution_table = ContributionModel::getTableName();
 
         $sql = "SELECT
@@ -39,22 +41,39 @@ class CadavreExquisModel extends Model
         return [];
     }
 
-    public function selectAllContributors (int $cadavre_id) : array {
+    public function getAllContributions (int $cadavre_id) : array {
+        $contribution_table = ContributionModel::getTableName();
+        $sql = "(SELECT *
+            FROM {$contribution_table} c
+            WHERE c.id_cadavre_exquis = :cadavre_id
+          ) 
+          ORDER BY submission_order";
+
+        $sth = DatabaseManager::query($sql, [":cadavre_id" => $cadavre_id]);
+        if ($sth && $sth->rowCount()) {
+            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, ContributionEntity::class);
+        }
+        return [];
+    }
+
+    public function getAllContributors (int $cadavre_id) : array {
         $contribution_table = ContributionModel::getTableName();
         $user_table = UsersModel::getTableName();
 
         $sql = "SELECT DISTINCT
-                u.*
-            FROM
-                {$user_table} u
-            JOIN
-                {$contribution_table} c ON u.id_user = c.id_user
-            WHERE
-                c.id_cadavre_exquis = :cadavre_id;";
+            0 AS is_admin,
+            u.id_user AS id,
+            u.nom
+        FROM
+            {$user_table} u
+        JOIN
+            {$contribution_table} c ON u.id_user = c.id_user
+        WHERE
+            c.id_cadavre_exquis = :cadavre_id;";
 
         $sth = DatabaseManager::query($sql, [":cadavre_id" => $cadavre_id]);
         if ($sth && $sth->rowCount()) {
-            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, UserEntity::class);
         }
 
         return [];
