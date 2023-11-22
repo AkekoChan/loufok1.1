@@ -1,3 +1,4 @@
 [+] Page Collections (Anciens Cadavres, SQL) @done(23-11-21)
 [ ] Request Post (Create Cadavre + Calendar, Create Contribution SQL + verifs)
 [ ] Change all profile pic + name with component
+[ ] Errors handle (SQL Catch, Forms...)
