@@ -19,6 +19,7 @@ class Head extends Component
         <link rel="shortcut icon" href="<?php $this->public("/assets/favicon.png") ?>" type="image/png">
         <link rel="stylesheet" href="<?php $this->public("/css/main-min.css", "/css/main.css") ?>">
         <script src="<?php $this->public("/js/utility.js") ?>" defer></script>
+        <script src="<?php $this->public("/js/gsap.min.js") ?>" defer></script>
         <script src="<?php $this->public("/js/main-min.js", "/js/main.js") ?>" defer></script>
         <?php echo $this->head ?>
         <title><?php echo $this->title ?? ENV->NAME ?></title>
