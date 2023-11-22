@@ -35,7 +35,7 @@ class Index extends Controller
                 if($text === null || strlen($text) < 50 || strlen($text) > 280) return $this->response->redirect("/?error=contribution");
                 Models\ContributionModel::instance()->create([
                     "id_user" => $user->id, 
-                    "text" => $text,
+                    "text" => htmlspecialchars(strip_tags($text)),
                     "id_cadavre_exquis" => $current_cadavre->id_cadavre_exquis,
                     "id_admin" => $current_cadavre->id_admin
                 ], false);
