@@ -79,7 +79,8 @@ class Index extends Controller
             $this->response->redirect("/");
         }
 
-        $cadavres = Models\CadavreExquisModel::instance()->getAllCadavres();
+        $cadavres = Models\CadavreExquisModel::instance()->getAllCadavresNotFinished();
+        // die(var_dump($cadavres));
         return $this->response->template(Views\Admin\Index::class, [
             "user" => $user,
             "cadavres" => $cadavres

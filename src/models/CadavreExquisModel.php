@@ -45,6 +45,32 @@ class CadavreExquisModel extends Model
         return $sthc ? true : false;
     }
 
+    public function getAllCadavresNotFinished () : array {
+        $contribution_table = ContributionModel::getTableName();
+
+        $sql = "SELECT
+            ce.*,
+            a.mail_admin AS admin_mail,
+            COUNT(c.id_contribution) AS contributions
+        FROM
+            {$this->table} ce
+        JOIN
+            {$this->admin_table} a ON ce.id_admin = a.id_admin
+        LEFT JOIN
+            {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
+        WHERE
+            ce.date_end > NOW() AND ce.nb_contribution > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
+        GROUP BY
+            ce.id_cadavre_exquis;";
+
+        $sth = DatabaseManager::query($sql);
+        if ($sth && $sth->rowCount()) {
+            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+        }
+
+        return [];
+    }
+
     public function getAllCadavres () : array {
         $contribution_table = ContributionModel::getTableName();
 
