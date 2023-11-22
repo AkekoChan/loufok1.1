@@ -16,7 +16,7 @@
             $end = date_create($this->end . "23:59:59");
             return max(1, date_diff($now, $end, true)->days);
         }
-
+        
         public function getConvertedPeriode () : array {
             return [
                 "start" => preg_replace('/(\d+)-(\d+)-(\d+)/', '$3/$2/$1', $this->start),

@@ -25,7 +25,7 @@
             $user = Auth::fromCookie();
             if($user === false) return $this->response->redirect("/login");
 
-            $cadavre = Models\CadavreExquisModel::instance()->find($id);
+            $cadavre = Models\CadavreExquisModel::instance()->findPastCadavre($id);
 
             if($cadavre === null) {
                 return $this->response->throw(404);

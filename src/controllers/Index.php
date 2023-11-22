@@ -39,7 +39,7 @@ class Index extends Controller
                     "id_cadavre_exquis" => $current_cadavre->id_cadavre_exquis,
                     "id_admin" => $current_cadavre->id_admin
                 ], false);
-                return $this->response->redirect("/cadavre/{$current_cadavre->id_cadavre_exquis}");
+                return $this->response->redirect("/");
             }
             return $this->response->redirect("/?error=alreadyContribute");
         }

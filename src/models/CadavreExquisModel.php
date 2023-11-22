@@ -85,7 +85,7 @@ class CadavreExquisModel extends Model
         LEFT JOIN
             {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
         WHERE
-            ce.date_end > NOW() AND ce.date_start <= NOW() AND ce.nb_contribution > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
+            ce.date_end > NOW() OR ce.nb_contribution > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
         GROUP BY
             ce.id_cadavre_exquis;";
 
@@ -151,6 +151,31 @@ class CadavreExquisModel extends Model
             return true;
         }
         return false;
+    }
+
+    public function findPastCadavre (int $id) : CadavreExquisEntity|null {
+        $contribution_table = ContributionModel::getTableName();
+        $sql = "SELECT
+            ce.*,
+            COUNT(c.id_contribution) AS contributions
+        FROM
+            {$this->table} ce
+        LEFT JOIN
+            {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
+        WHERE
+            ce.id_cadavre_exquis = :id
+        GROUP BY
+            ce.id_cadavre_exquis
+        HAVING
+            ce.date_end < NOW() OR COUNT(c.id_contribution) >= ce.nb_contribution;";
+
+        $sth = DatabaseManager::query($sql, [":id" => $id]);
+        if ($sth && $sth->rowCount()) {
+            $sth->setFetchMode(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+            return $sth->fetch();
+        }
+
+        return null;
     }
 
     public function getCurrentCadavre(): CadavreExquisEntity|null
