@@ -1,69 +1,73 @@
 <?php
-    namespace App\Components;
 
-    use App\Service\Interfaces\Component;
+namespace App\Components;
 
-    class TextArea extends Component {
-        public function render ()
-        {
-            ?>
-                <textarea id="textAreaInput" spellcheck="true" minlength="50" maxlength="280" required class="form__textarea" name="contribution" placeholder="Ecrivez votre contribution"></textarea>
-                <span class="word-counter">0/280</span>
-                <style>
-                    #textAreaInput {
-                        height: 100%;
-                        padding-bottom: 3rem;
-                        font-size: 1rem;
-                        max-height: 40vh;
-                        overflow-y: auto;
-                    }
-                    #textAreaInput:valid + .word-counter {
-                        border-color: #caecab;
-                    }
-                    .word-counter {
-                        background: var(--white);
-                        border: 2px solid #d85125;
-                        padding: .3rem;
-                        border-radius: 5px;
-                        transform: translate(-110%, -125%);
-                        position: relative;
-                        left: 100%;
-                        display: block;
-                        width: fit-content;
-                    }
-                </style>
-                <script defer>
-                    let timeout; // brouillon traitement
+use App\Service\Interfaces\Component;
 
-                    let cadavreId = document.querySelector('#currentCadavreId')?.value ?? "adminContrib";
+class TextArea extends Component
+{
+    public function render()
+    {
+?>
+        <textarea id="textAreaInput" spellcheck="true" minlength="50" maxlength="280" required class="form__textarea" name="contribution" placeholder="Ecrivez votre contribution"></textarea>
+        <span class="word-counter">0/280</span>
+        <style>
+            #textAreaInput {
+                height: 100%;
+                padding-bottom: 3rem;
+                font-size: 1rem;
+                max-height: 40vh;
+                overflow-y: auto;
+            }
 
-                    let wordCounter = document.querySelector('.word-counter');
-                    let textArea = document.querySelector('#textAreaInput');
+            #textAreaInput:valid+.word-counter {
+                border-color: #caecab;
+            }
 
-                    // textArea.setCustomValidity("Wrong");
-                    textArea.value = localStorage.getItem(cadavreId) ?? "";
-                    console.log("Storage Retrieved");
+            .word-counter {
+                background: var(--white);
+                border: 2px solid #d85125;
+                padding: .3rem;
+                border-radius: 5px;
+                transform: translate(-110%, -125%);
+                position: relative;
+                left: 100%;
+                display: block;
+                width: fit-content;
+            }
+        </style>
+        <script defer>
+            let timeout; // brouillon traitement
 
-                    function updateStorage () {
-                        localStorage.setItem(cadavreId, textArea.value);
-                        console.log(textArea.value);
-                        console.log("Storage Updated");
-                    }
+            let cadavreId = document.querySelector('#currentCadavreId')?.value ?? "adminContrib";
 
-                    wordCounter.innerText = `${textArea.value.length}/280`;
-                    textArea.addEventListener('keypress', (evt) => {
-                        wordCounter.innerText = `${evt.target.value.length}/280`;
-                        if(timeout) clearTimeout(timeout);
-                        timeout = setTimeout(updateStorage, 1800);
-                    });
+            let wordCounter = document.querySelector('.word-counter');
+            let textArea = document.querySelector('#textAreaInput');
 
-                    textArea.addEventListener('keyup', (evt) => {
-                        wordCounter.innerText = `${evt.target.value.length}/280`;
-                        if(timeout) clearTimeout(timeout);
-                        timeout = setTimeout(updateStorage, 1800);
-                    });
-                </script>
-            <?php
-        }
+            // textArea.setCustomValidity("Wrong");
+            textArea.value = localStorage.getItem(cadavreId) ?? "";
+            console.log("Storage Retrieved");
+
+            function updateStorage() {
+                localStorage.setItem(cadavreId, textArea.value);
+                console.log(textArea.value);
+                console.log("Storage Updated");
+            }
+
+            wordCounter.innerText = `${textArea.value.length}/280`;
+            textArea.addEventListener('keypress', (evt) => {
+                wordCounter.innerText = `${evt.target.value.length}/280`;
+                if (timeout) clearTimeout(timeout);
+                timeout = setTimeout(updateStorage, 1800);
+            });
+
+            textArea.addEventListener('keyup', (evt) => {
+                wordCounter.innerText = `${evt.target.value.length}/280`;
+                if (timeout) clearTimeout(timeout);
+                timeout = setTimeout(updateStorage, 1800);
+            });
+        </script>
+<?php
     }
+}
 ?>

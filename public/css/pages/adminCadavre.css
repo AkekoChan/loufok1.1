@@ -33,6 +33,10 @@
   font: bold var(--font-20px-1_25rem, 1.125rem) "Bodoni Moda", sans-serif;
 }
 
+.admin-cadavers__cadaver-creator {
+  font-size: var(--font-14px-0_875rem);
+}
+
 .admin-cadavers__svg {
   width: 3rem;
   height: 3rem;

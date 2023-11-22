@@ -41,7 +41,7 @@ class Login extends Template
                         </svg>
                     </div>
 
-                    <div class="app-info">
+                    <div class="app-info right-fade">
                         <h1 class="app-info__title bigger">Loufok</h1>
                         <p class="app-info__description center">Le cadavre exquis </br> dans toute
                             sa splendeur.
@@ -49,19 +49,19 @@ class Login extends Template
                     </div>
 
                     <form action='' method='POST' class="form">
-                        <h3 class="smaller">Se connecter à son profil</h3>
+                        <h3 class="smaller bottom-fade">Se connecter à son profil</h3>
                         <div class="form__box">
-                            <input class="form__input <?php echo $this->error === "mail" ? 'form__input-error' : ''; ?>" type='email' id="mail" name='mail' placeholder="Adresse Mail" required value="<?php echo $this->request["mail"] ?? ''; ?>" />
+                            <input class="form__input bottom-fade <?php echo $this->error === "mail" ? 'form__input-error' : ''; ?>" type='email' id="mail" name='mail' placeholder="Adresse Mail" required value="<?php echo $this->request["mail"] ?? ''; ?>" />
                             <?php if ($this->error === "mail") $this->component(Components\FormError::class, ["error_text" => "Mail incrorrect, veuillez recommencer !"]); ?>
                         </div>
 
                         <div class="form__box">
-                            <input class="form__input  <?php echo $this->error === "password" ? 'form__input-error' : ''; ?>" required type='password' id="password" name='password' placeholder="Mot de passe" />
+                            <input class="form__input bottom-fade <?php echo $this->error === "password" ? 'form__input-error' : ''; ?>" required type='password' id="password" name='password' placeholder="Mot de passe" />
 
                             <?php if ($this->error === "password") $this->component(Components\FormError::class, ["error_text" => "Mot de passe incrorrect, veuillez recommencer !"]); ?>
                         </div>
 
-                        <input class="submit__btn btn-primary " type='submit' value="Se connecter">
+                        <input class="submit__btn btn-primary btn pop-in" type='submit' value="Se connecter">
                     </form>
                 </section>
             </main>

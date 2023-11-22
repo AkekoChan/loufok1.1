@@ -18,6 +18,10 @@
   margin-bottom: 3rem;
 }
 
+.user-cadavers__wrapper h3 {
+  text-decoration: underline;
+}
+
 .user-cadavers__item {
   display: flex;
   flex-direction: column;

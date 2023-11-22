@@ -100,7 +100,7 @@
       const currentSize = parseFloat(
         window.getComputedStyle(App.DOM.htmlElement).fontSize
       );
-      const newSize = Math.min(currentSize * 1.1, 24); // Limite à 24px
+      const newSize = Math.min(currentSize * 1.1, 20); // Limite à 20px
       App.DOM.htmlElement.style.fontSize = `${newSize}px`;
       localStorage.setItem("fontSize", newSize);
     },
@@ -152,9 +152,14 @@
 
       const savedDyslexiaMode = localStorage.getItem("dyslexiaMode");
       if (savedDyslexiaMode !== null) {
-        App.DOM.switchDys.checked = savedDyslexiaMode === "true";
-        App.toggleDyslexiaMode();
+        if (!App.DOM.switchDys) {
+          return null;
+        } else {
+          App.DOM.switchDys.checked = savedDyslexiaMode === "true";
+          App.toggleDyslexiaMode();
+        }
       }
+
       const savedDaltonismMode = localStorage.getItem("daltonism");
       if (savedDaltonismMode) {
         App.DOM.htmlElement.classList.add(savedDaltonismMode);
@@ -187,7 +192,7 @@
       App.DOM.btns?.forEach((btn) => {
         btn.addEventListener("click", (e) => {
           gsap.fromTo(
-            ".btn",
+            btn,
             { scale: 1 },
             {
               scale: 0.85,
