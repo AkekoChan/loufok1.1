@@ -23,7 +23,7 @@ class Header extends Component
 
     <nav>
         <div class="header__accessibility">
-            <div class="header__accessibility-btn">
+            <div class="header__accessibility-btn" role="button" tabindex="0" aria-label="Bouton menu accessibilité">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     style="fill: rgb(0, 0, 0); --darkreader-inline-fill: #e8e6e3;" data-darkreader-inline-fill="">
                     <circle cx="12" cy="7.5" r="1.5"></circle>
@@ -33,22 +33,23 @@ class Header extends Component
                     </path>
                 </svg>
             </div>
-            <div class="accessibility-popup">
+            <div class="accessibility-popup" id="accessibilty">
                 <ul>
                     <li class="accessibility-font">
-                        <button class="increaseFontButton btn">A+</button>
-                        <button class="resetFontButton btn">A</button>
-                        <button class="decreaseFontButton btn">A-</button>
+                        <button class="increaseFontButton btn" aria-label="Augmenter la taille de la police">A+</button>
+                        <button class="resetFontButton btn" aria-label="Réinitialiser la taille de la police">A</button>
+                        <button class="decreaseFontButton btn" aria-label="Réduire la taille de la police">A-</button>
                     </li>
                     <li class="accessibility-dyslexic">
                         Mode dyslexie
-                        <label class="switch switch-dyslexic" tabindex="0">
-                            <input type="checkbox">
+                        <label class="switch switch-dyslexic" tabindex="0" role="switch" aria-checked="false"
+                            aria-label="Mode dislexie">
+                            <input type="checkbox" tabindex="1" aria-hidden="true">
                             <span class="slider round"></span>
                         </label>
                     </li>
                     <li class="accessibility-daltonism">
-                        <button data-value="normal" class="theme-button btn">Normal</button>
+                        <button data-value="normal" class="theme-button btn">Vision normale</button>
                         <button data-value="protanopia" class="theme-button btn">Daltonisme rouge</button>
                         <button data-value="tritanopia" class="theme-button btn">Daltonisme bleu</button>
                         <button data-value="deuteranopia" class="theme-button btn">Daltonisme vert</button>
@@ -60,7 +61,7 @@ class Header extends Component
         </div>
 
         <div class="header__notification">
-            <div class="header__bell">
+            <div class="header__bell" role="button" tabindex="0" aria-label="Bouton des notifications">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     style="fill: rgb(0, 0, 0); --darkreader-inline-fill: #e8e6e3;" data-darkreader-inline-fill="">
                     <path

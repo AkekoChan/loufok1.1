@@ -13,6 +13,7 @@
       htmlElement: $("html"),
       themeButtons: $$(".theme-button"),
       btns: $$(".btn"),
+      newCadaverForm: $(".new-cadaver__form"),
     },
     init: () => {
       App.event();
@@ -25,19 +26,42 @@
         App.closeOtherPopups(App.DOM.popUpNotif);
       });
 
+      App.DOM.bellBtn?.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          App.togglePopUp(App.DOM.popUpNotif);
+          App.closeOtherPopups(App.DOM.popUpNotif);
+        }
+      });
+
       App.DOM.accessibilityBtn?.addEventListener("click", () => {
         App.togglePopUp(App.DOM.popUpAccessibility);
         App.closeOtherPopups(App.DOM.popUpAccessibility);
       });
 
+      App.DOM.accessibilityBtn?.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          App.togglePopUp(App.DOM.popUpAccessibility);
+          App.closeOtherPopups(App.DOM.popUpAccessibility);
+        }
+      });
+
       App.DOM.switchDys?.parentElement.addEventListener("keypress", (event) => {
         App.DOM.switchDys.checked = !App.DOM.switchDys.checked;
         if (event.key === "Enter") {
+          event.preventDefault();
+          const currentAriaChecked = event.target.getAttribute("aria-checked");
+          const newAriaChecked =
+            currentAriaChecked === "true" ? "false" : "true";
+          event.target.setAttribute("aria-checked", newAriaChecked);
+
           App.toggleDyslexiaMode();
         }
       });
 
-      App.DOM.switchDys?.parentElement.addEventListener("click", () => {
+      App.DOM.switchDys?.parentElement.addEventListener("click", (event) => {
+        const currentAriaChecked = event.target.getAttribute("aria-checked");
+        const newAriaChecked = currentAriaChecked === "true" ? "false" : "true";
+        event.target.setAttribute("aria-checked", newAriaChecked);
         App.toggleDyslexiaMode();
       });
 
@@ -59,6 +83,11 @@
           App.changeDaltonism(value);
         });
       });
+
+      App.DOM.newCadaverForm?.addEventListener(
+        "submit",
+        App.checkFormNewCadaver
+      );
     },
 
     /**
@@ -166,44 +195,70 @@
       }
     },
 
+    /**
+     *  Ensemble des animations en GSAP
+     */
     runGSAPAnimation: () => {
-      gsap.set(".right-fade", { opacity: 0, x: 70 });
+      const rightFadeElements = document.querySelectorAll(".right-fade");
+      const bottomFadeElements = document.querySelectorAll(".bottom-fade");
+      const popInElements = document.querySelectorAll(".pop-in");
 
-      gsap.to(".right-fade", {
-        opacity: 1,
-        x: 0,
-        duration: 0.4,
-        ease: "power1.out",
-        stagger: 0.5,
-      });
+      if (rightFadeElements.length > 0) {
+        gsap.set(rightFadeElements, { opacity: 0, x: 70 });
 
-      gsap.set(".bottom-fade", { opacity: 0, y: 50 });
-
-      gsap.to(".bottom-fade", {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        stagger: 0.1,
-      });
-
-      gsap.from(".pop-in", { scale: 0, ease: "power1-out", duration: 0.4 });
-
-      App.DOM.btns?.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-          gsap.fromTo(
-            btn,
-            { scale: 1 },
-            {
-              scale: 0.85,
-              duration: 0.15,
-              yoyo: true,
-              repeat: 1,
-              overwrite: true,
-            }
-          );
+        gsap.to(rightFadeElements, {
+          opacity: 1,
+          x: 0,
+          duration: 0.4,
+          ease: "power1.out",
+          stagger: 0.5,
         });
-      });
+      }
+
+      if (bottomFadeElements.length > 0) {
+        gsap.set(bottomFadeElements, { opacity: 0, y: 50 });
+
+        gsap.to(bottomFadeElements, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.1,
+        });
+      }
+
+      if (popInElements.length > 0) {
+        gsap.from(popInElements, {
+          scale: 0,
+          ease: "power1-out",
+          duration: 0.4,
+        });
+      }
+
+      const btns = App.DOM.btns;
+
+      if (btns) {
+        btns.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            gsap.fromTo(
+              btn,
+              { scale: 1 },
+              {
+                scale: 0.85,
+                duration: 0.15,
+                yoyo: true,
+                repeat: 1,
+                overwrite: true,
+              }
+            );
+          });
+        });
+      }
+    },
+
+    checkFormNewCadaver: (event) => {
+      event.preventDefault();
+      console.log("Submit");
     },
   };
 
