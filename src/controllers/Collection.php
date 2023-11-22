@@ -13,7 +13,7 @@
             $user = Auth::fromCookie();
             if($user === false) return $this->response->redirect("/login");
 
-            $user_cadavres = Models\UsersModel::instance()->getAllCadavres($user->id);
+            $user_cadavres = Models\UsersModel::instance()->getAllCadavres($user->id, $user->is_admin);
 
             return $this->response->template(Views\Collection::class, [
                 "user" => $user,
@@ -28,12 +28,13 @@
             $cadavre = Models\CadavreExquisModel::instance()->find($id);
 
             if($cadavre === null) {
-                $this->response->throw(404);
+                return $this->response->throw(404);
             }
 
             $contributions = Models\CadavreExquisModel::instance()->getAllContributions($id);
+
             $contributors = Models\CadavreExquisModel::instance()->getAllContributors($id);
-            $user_contribution = Models\UsersModel::instance()->getContributionFromCadavre($user->id, $cadavre->id_cadavre_exquis);
+            $user_contribution = Models\UsersModel::instance()->getContributionFromCadavre($user->id, $cadavre->id_cadavre_exquis, $user->is_admin);
 
             return $this->response->template(Views\Cadavre::class, [
                 "user" => $user,

@@ -63,6 +63,8 @@ class Create extends Template
 
           <div class="new-cadaver__form-group">
             <h3 class="new-cadaver__title smaller">La période de jeu</h3>
+            <input type="date" name="date-start" id="dateStart">
+            <input type="date" name="date-end" id="dateEnd">
             <!-- Calendrier personnalisé (à ajouter selon vos besoins) -->
           </div>
 

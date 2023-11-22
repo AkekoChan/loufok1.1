@@ -14,11 +14,11 @@
             $user = Auth::fromCookie();
             if ($user === false) return $this->response->redirect("/login");
 
-            $contribution = UsersModel::instance()->getAllContributions($user->id);
+            $contributions = UsersModel::instance()->getAllContributions($user->id, $user->is_admin);
 
             return $this->response->template(Views\Profile::class, [
                 "user" => $user,
-                "contributions" => $contribution
+                "contributions" => $contributions
             ]);
         }
     }

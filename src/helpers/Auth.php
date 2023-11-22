@@ -24,7 +24,7 @@
 
             $user = Models\UsersModel::instance()->retrieveUser($cookie["mail"]);
 
-            if($user === false) return false;
+            if($user === null) return false;
 
             if($cookie["password"] === $user->password) {
                 return $user;
@@ -38,7 +38,7 @@
 
             $user = Models\UsersModel::instance()->retrieveUser($post["mail"]);
 
-            if($user === false) return [ "error" => "mail" ];
+            if($user === null) return [ "error" => "mail" ];
 
             if(Hashor::hash($post["password"], ENV->APP_KEY) === $user->password) {
                 return Store::setCookie(self::$cookie_name, JWTHelper::encode_token([

@@ -3,7 +3,7 @@
 use App\Controllers;
 
 Controllers\Index::bind(["/"], ["GET"]);
-Controllers\Index::bind(["/contribute"], ["POST"]); // USER + ADMIN MAIN PAGE
+Controllers\Index::bind(["/contribute"], ["POST"]); // USER ONLY
 
 Controllers\Collection::bind(["/collection"], ["GET"]);
 Controllers\Collection::bind(["/cadavre/{int:id}"], ["GET"], "cadavre");

@@ -25,15 +25,23 @@ class Index extends Controller
     {
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
-        if($current_cadavre !== null) $contribution = Models\UsersModel::instance()->getContributionFromCadavre($user->id, $current_cadavre->id_cadavre_exquis);
+        if($current_cadavre !== null) $user_contribution = Models\UsersModel::instance()->getContributionFromCadavre($user->id, $current_cadavre->id_cadavre_exquis);
 
         // c'est une requete post omg
         if(!empty($this->request->post)) {
-            if ($current_cadavre !== null && $contribution === null) {
+            if ($current_cadavre !== null && $user_contribution === null) {
                 // traitement contribution creation (exist, length ok)
+                $text = $this->request->post["contribution"] ?? null;
+                if($text === null || strlen($text) < 50 || strlen($text) > 280) return $this->response->redirect("/?error=contribution");
+                Models\ContributionModel::instance()->create([
+                    "id_user" => $user->id, 
+                    "text" => $text,
+                    "id_cadavre_exquis" => $current_cadavre->id_cadavre_exquis,
+                    "id_admin" => $current_cadavre->id_admin
+                ], false);
+                return $this->response->redirect("/cadavre/{$current_cadavre->id_cadavre_exquis}");
             }
-
-            $this->response->redirect("/");
+            return $this->response->redirect("/?error=alreadyContribute");
         }
 
         if ($current_cadavre === null) {
@@ -60,15 +68,14 @@ class Index extends Controller
             "remaining_days" => $current_cadavre->periode->getRemainingDays(),
             "cadavre" => $current_cadavre,
             "random_contribution" => $random_contrib,
-            "contribution" => $contribution
+            "contribution" => $user_contribution
         ]);
     }
 
     public function admin(Entities\UserEntity $user): Response
     {
-        // c'est une requete post omg
+        // c'est une requete post omg j'en veux pas
         if(!empty($this->request->post)) {
-            die("posted new cadavre");
             $this->response->redirect("/");
         }
 

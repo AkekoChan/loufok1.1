@@ -15,6 +15,36 @@ class CadavreExquisModel extends Model
 
     public string $admin_table = "admin";
 
+    public function createCadavre (string $title, string $ds, string $de,
+        string $text, int $max, int $id) : bool {
+            $sql = "INSERT INTO {$this->table} (title, date_start, date_end, nb_contribution, id_admin)
+                VALUES (:title, :ds, :de, :max, :id)";
+            
+        $sth = DatabaseManager::query($sql, [
+            ":title" => $title,
+            ":ds" => $ds,
+            ":de" => $de,
+            ":max" => $max,
+            ":id" => $id
+        ]);
+
+        if (!$sth) return false;
+
+        $id_cadavre = DatabaseManager::getInstance()->lastInsertId();
+        $contribution_table = ContributionModel::getTableName();
+
+        $sqlc = "INSERT INTO {$contribution_table} (text, id_cadavre_exquis, id_admin)
+            VALUES (:text, :id_cadavre, :id)";
+
+        $sthc = DatabaseManager::query($sqlc, [
+            ":text" => $text,
+            ":id_cadavre" => $id_cadavre,
+            ":id" => $id
+        ]);
+
+        return $sthc ? true : false;
+    }
+
     public function getAllCadavres () : array {
         $contribution_table = ContributionModel::getTableName();
 
@@ -29,7 +59,7 @@ class CadavreExquisModel extends Model
         LEFT JOIN
             {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
         WHERE
-            ce.date_end > NOW() AND ce.nb_contribution > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
+            ce.date_end > NOW() AND ce.date_start <= NOW() AND ce.nb_contribution > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
         GROUP BY
             ce.id_cadavre_exquis;";
 
@@ -77,6 +107,24 @@ class CadavreExquisModel extends Model
         }
 
         return [];
+    }
+
+    public function cadavrePeriodeOverlap (string $date_start, string $date_end) : bool {
+        $sql = "SELECT DISTINCT
+        ce.id_cadavre_exquis
+        FROM
+            {$this->table} ce
+        WHERE
+            NOT (
+                ce.date_start > :date_end OR
+                ce.date_end < :date_start
+            );";
+            
+        $sth = DatabaseManager::query($sql, [":date_start" => $date_start, ":date_end" => $date_end]);
+        if ($sth && $sth->rowCount()) {
+            return true;
+        }
+        return false;
     }
 
     public function getCurrentCadavre(): CadavreExquisEntity|null

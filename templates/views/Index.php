@@ -53,7 +53,7 @@ class Index extends Template
                             <p>'. $this->random_contribution->text .'</p>
                         </li>';
                     } 
-                    else if($this->contribution !== false && $this->contribution->submission_order == $i) {
+                    else if($this->contribution !== null && $this->contribution->submission_order == $i) {
                         echo '<li class="contributions__item owner">
                             <p>'. $this->contribution->text .'</p>
                         </li>';
