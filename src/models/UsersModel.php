@@ -66,17 +66,28 @@
             $contribution_table = ContributionModel::getTableName();
             $cadavre_table = CadavreExquisModel::getTableName();
 
-            $idfield = $is_admin ? "c.id_admin" : "c.id_user";
-            $sql = "SELECT
+            if($is_admin) {
+                $sql = "SELECT
                 c.*,
                 ce.title AS cadavre_name
-            FROM
-                {$contribution_table} c
-            JOIN
-                {$cadavre_table} ce ON c.id_cadavre_exquis = ce.id_cadavre_exquis
-            WHERE
-                $idfield = :id;";
-    
+                FROM
+                    {$contribution_table} c
+                JOIN
+                    {$cadavre_table} ce ON c.id_cadavre_exquis = ce.id_cadavre_exquis
+                WHERE
+                    c.id_user IS NULL AND c.id_admin = :id";
+            } else {
+                $sql = "SELECT
+                c.*,
+                ce.title AS cadavre_name
+                FROM
+                    {$contribution_table} c
+                JOIN
+                    {$cadavre_table} ce ON c.id_cadavre_exquis = ce.id_cadavre_exquis
+                WHERE
+                c.id_user = :id;";
+            }
+
             $sth = DatabaseManager::query($sql, [":id" => $user_id]);
             if ($sth && $sth->rowCount()) {
                 return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, ContributionEntity::class);
