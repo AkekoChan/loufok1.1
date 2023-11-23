@@ -16,7 +16,9 @@
             $last_cadavre = $user->getLastContributedCadavre();
 
             if($last_cadavre === null) {
-                return $this->response->throw(404);
+                return $this->response->template(Views\NoLastCadavre::class, [
+                    "user" => $user
+                ]);
             }
 
             $contributions = $last_cadavre->contributions;

@@ -59,6 +59,7 @@ class Profile extends Template
             </a>
           </div>
 
+          <?php if(count($this->contributions) > 0): ?>
           <!-- Deuxième div pour les anciens contributions -->
           <div class="profile__old-contributions">
             <h3 class="profile__old-contributions-title smaller bottom-fade">
@@ -83,6 +84,7 @@ class Profile extends Template
               <?php endforeach; ?>
             </ul>
           </div>
+          <?php endif; ?>
         </section>
       </main>
       <?php $this->component(Components\Footer::class, ["current_page" => "profile"]); ?>

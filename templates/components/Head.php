@@ -21,7 +21,7 @@ class Head extends Component
         <script src="<?php $this->public("/js/utility.js") ?>" defer></script>
         <script src="<?php $this->public("/js/gsap.min.js") ?>" defer></script>
         <script src="<?php $this->public("/js/main-min.js", "/js/main.js") ?>" defer></script>
-        <script src="<?php $this->public("/js/sw.js") ?>" defer></script>
+        <!-- <script src="<?php // $this->public("/js/sw.js") ?>" defer></script> -->
         <?php echo $this->head ?>
         <title><?php echo $this->title ?? ENV->NAME ?></title>
 <?php

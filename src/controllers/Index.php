@@ -25,7 +25,7 @@ class Index extends Controller
     {
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
-        if($current_cadavre !== null) $user_contribution = $user->getContributionsFromCadavre($current_cadavre->id_cadavre_exquis)[0] ?? null;
+        if($current_cadavre !== null) $user_contribution = $user->getContributionFromCadavre($current_cadavre->id_cadavre_exquis)[0] ?? null;
 
         // c'est une requete post omg
         if(!empty($this->request->post)) {

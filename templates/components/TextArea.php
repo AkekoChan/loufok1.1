@@ -57,6 +57,9 @@ function updateStorage() {
 }
 
 wordCounter.innerText = `${textArea.value.length}/280`;
+
+window.addEventListener('beforeunload', updateStorage);
+
 textArea.addEventListener('keypress', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
     if (timeout) clearTimeout(timeout);
