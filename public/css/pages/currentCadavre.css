@@ -41,9 +41,5 @@
 }
 
 form.form {
-  gap: 0;
-}
-
-form.form h3 {
-  margin-bottom: 1.5rem;
+  gap: 2rem;
 }

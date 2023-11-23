@@ -42,7 +42,7 @@ class Create extends Template
                 $error_text = [
                   "2004" => "Veuillez compléter tout les champs. (". ($_GET['field'] ?? '?') .")",
                   "3001" => "Le nombre de contributions doit être supérieur ou égal à 1.",
-                  "3002" => "Le texte de contribution doit faire en 50 et 280 caractères.",
+                  "3002" => "Le texte de contribution doit faire entre 50 et 280 caractères.",
                   "3003" => "La date de fin ne peut pas être plus petite que la date de début.",
                   "3004" => "La période chevauche une autre période.",
                   "3005" => "Une erreur est survenue lors de la création.",

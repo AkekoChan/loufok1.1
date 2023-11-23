@@ -32,7 +32,7 @@ class Index extends Controller
             if ($current_cadavre !== null && $user_contribution === null) {
                 // traitement contribution creation (exist, length ok)
                 $text = $this->request->post["contribution"] ?? null;
-                if($text === null || strlen($text) < 50 || strlen(trim($text)) > 280) return $this->response->redirect("/?error=Le texte de contribution doit faire en 50 et 280 caractères.");
+                if($text === null || strlen($text) < 50 || strlen(trim($text)) > 280) return $this->response->redirect("/?error=Le texte de contribution doit faire entre 50 et 280 caractères.");
                 
                 try {
                     Models\ContributionModel::instance()->create([
