@@ -17,7 +17,8 @@
 
             if($last_cadavre === null) {
                 return $this->response->template(Views\NoLastCadavre::class, [
-                    "user" => $user
+                    "user" => $user,
+                    "title" => "Loufok | Aucun dernier Cadavre Exquis"
                 ]);
             }
 
@@ -32,7 +33,8 @@
                 "cadavre" => $last_cadavre,
                 "contributions" => $contributions,
                 "contributors" => $contributors,
-                "user_contribution" => $user_contribution
+                "user_contribution" => $user_contribution,
+                "title" => "Loufok | Ancien Cadavre Exquis"
             ]);
         }
     }

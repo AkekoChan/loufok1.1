@@ -16,6 +16,7 @@ class Create extends Template
     <head>
       <?php $this->component(Components\Head::class); ?>
       <link rel="stylesheet" href="<?php $this->public("/css/pages/newCadavre.css"); ?>">
+      <script src="/loufok/js/admin.controls.js" defer></script>
     </head>
 
     <body>
@@ -24,7 +25,7 @@ class Create extends Template
         <section class="new-cadaver">
           <div class="new-cadaver__info right-fade">
             <h1 class="new-cadaver__title bigger">
-              Fabrication d’un cadavre exquis
+              Fabrication d’un Cadavre Exquis
             </h1>
             <p class="new-cadaver__description center">
               À vous de créer votre propre Cadavre Exquis et de partager le
@@ -52,7 +53,7 @@ class Create extends Template
               }
             ?>
 
-              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" placeholder="Titre du cadavre exquis" required />
+              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" placeholder="Titre du Cadavre Exquis" required />
 
               <input type="number" min="1" value="1" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" placeholder="Nombre de contributions maxiumum" required />
 

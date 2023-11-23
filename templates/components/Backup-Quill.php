@@ -67,7 +67,7 @@
                 <script>
                     const quill = new Quill('#editor', {
                         theme: 'snow',
-                        placeholder: "Ecrivez la suite de ce cadavre exquis",
+                        placeholder: "Ecrivez la suite de ce Cadavre Exquis",
                         modules: {
                             toolbar: [
                                 ['bold', 'italic', 'underline', 'strike'],

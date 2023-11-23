@@ -13,30 +13,31 @@ class TextArea extends Component
     name="contribution" placeholder="Ecrivez votre contribution" role="textarea"
     aria-label="Ecrivez votre contribution"></textarea>
 <span class="word-counter" role="count word">0/280</span>
+
 <style>
-#textAreaInput {
-    height: 100%;
-    padding-bottom: 3rem;
-    font-size: 1rem;
-    max-height: 40vh;
-    overflow-y: auto;
-}
+    #textAreaInput {
+        height: 100%;
+        padding-bottom: 3rem;
+        font-size: 1rem;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
 
-#textAreaInput:valid+.word-counter {
-    border-color: #caecab;
-}
+    #textAreaInput:valid+.word-counter {
+        border-color: #caecab;
+    }
 
-.word-counter {
-    background: var(--white);
-    border: 2px solid #d85125;
-    padding: .3rem;
-    border-radius: 5px;
-    transform: translate(-110%, -125%);
-    position: relative;
-    left: 100%;
-    display: block;
-    width: fit-content;
-}
+    .word-counter {
+        background: var(--white);
+        border: 2px solid #d85125;
+        padding: .3rem;
+        border-radius: 5px;
+        transform: translate(-110%, -125%);
+        position: relative;
+        left: 100%;
+        display: block;
+        width: fit-content;
+    }
 </style>
 <script defer>
 let timeout; // brouillon traitement
@@ -58,16 +59,28 @@ function updateStorage() {
 
 wordCounter.innerText = `${textArea.value.length}/280`;
 
+if(textArea.value.length < 50 || textArea.value.length > 280) textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
+
 window.addEventListener('beforeunload', updateStorage);
 
 textArea.addEventListener('keypress', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
+    if(textArea.value.length >= 50 && textArea.value.length < 280) {
+        textArea.setCustomValidity("");
+    } else {
+        textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
+    }
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(updateStorage, 1800);
 });
 
 textArea.addEventListener('keyup', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
+    if(textArea.value.length >= 50 && textArea.value.length < 280) {
+        textArea.setCustomValidity("");
+    } else {
+        textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
+    }
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(updateStorage, 1800);
 });

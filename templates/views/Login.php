@@ -43,7 +43,7 @@ class Login extends Template
 
                     <div class="app-info right-fade">
                         <h1 class="app-info__title bigger">Loufok</h1>
-                        <p class="app-info__description center">Le cadavre exquis </br> dans toute
+                        <p class="app-info__description center">Le Cadavre Exquis </br> dans toute
                             sa splendeur.
                         </p>
                     </div>

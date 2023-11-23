@@ -36,7 +36,7 @@ class Footer extends Component
                 </a>
             </li>
             <li class="footer__item <?php echo $this->current_page === "lastCadavre" ? "current" : ""; ?>">
-                <a href="/loufok/last" aria-label="Page du dernier cadavre exquis">
+                <a href="/loufok/last" aria-label="Page du dernier Cadavre Exquis">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         style="fill: rgb(0, 0, 0); --darkreader-inline-fill: #e8e6e3;" data-darkreader-inline-fill="">
                         <path

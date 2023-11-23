@@ -43,7 +43,8 @@
 
             return $this->response->template(Views\Admin\Create::class, [
                 "user" => $user,
-                "error" => $this->request->get["error"] ?? null
+                "error" => $this->request->get["error"] ?? null,
+                "title" => "Loufok | Créer votre Cadavre Exquis"
             ]);
         }
     }

@@ -25,7 +25,7 @@ class Index extends Template
                     <section class="currentCadavre-container">
 
                         <div class="currentCadavre__info right-fade">
-                            <h1 class="bigger">Contribuer à votre manière</h1>
+                            <h1 class="bigger">Contribuez à votre manière</h1>
                             <p class="center">Les petites <span class="bolder-green">moustaches</span> symbolisent les autres
                                 contributions. A vous d’ajouter
                                 votre petite pierre à l’édifice!
@@ -72,7 +72,7 @@ class Index extends Template
                                         $this->component(Components\FormError::class, ["error_text" => $this->error]); 
                                     }
                                 ?>
-                                <button class="btn-primary btn pop-in" type="submit">Soumettre votre cadavre exquis</button>
+                                <button class="btn-primary btn pop-in" type="submit">Soumettre votre contribution</button>
                             </form>
 
                         <?php endif; ?>

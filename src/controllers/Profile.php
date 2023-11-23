@@ -18,6 +18,7 @@
 
             return $this->response->template(Views\Profile::class, [
                 "user" => $user,
+                "title" => "Loufok | Votre profil",
                 "contributions" => $contributions ?? []
             ]);
         }

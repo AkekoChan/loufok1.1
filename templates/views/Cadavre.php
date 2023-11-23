@@ -24,7 +24,7 @@ class Cadavre extends Template
         <section class="user-cadavers">
           <div class="user-cadavers__info-bis right-fade">
             <h2 class="user-cadavers__info-title bigger">
-              Explorer cet ancien cadavre exquis
+              Explorer cet ancien Cadavre Exquis
             </h2>
             <p class="user-cadavers__info-description center">
               Découvrez les créations des autres participants de ce cadavre

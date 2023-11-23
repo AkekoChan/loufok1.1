@@ -25,7 +25,7 @@ class Index extends Controller
     {
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
-        if($current_cadavre !== null) $user_contribution = $user->getContributionFromCadavre($current_cadavre->id_cadavre_exquis)[0] ?? null;
+        if($current_cadavre !== null) $user_contribution = $user->getContributionFromCadavre($current_cadavre->id_cadavre_exquis);
 
         // c'est une requete post omg
         if(!empty($this->request->post)) {
@@ -53,7 +53,8 @@ class Index extends Controller
         if ($current_cadavre === null) {
             return $this->response->template(Views\Index::class, [
                 "user" => $user,
-                "cadavre" => null
+                "cadavre" => null,
+                "title" => "Loufok | Aucun Cadavre Exquis en cours"
             ]);
         }
 
@@ -75,7 +76,8 @@ class Index extends Controller
             "cadavre" => $current_cadavre,
             "random_contribution" => $random_contrib,
             "contribution" => $user_contribution,
-            "error" => $this->request->get["error"] ?? null
+            "error" => $this->request->get["error"] ?? null,
+            "title" => "Loufok | Contribuez au Cadavre Exquis en cours"
         ]);
     }
 
@@ -91,7 +93,8 @@ class Index extends Controller
         return $this->response->template(Views\Admin\Index::class, [
             "user" => $user,
             "cadavres" => $cadavres,
-            "error" => $this->request->get["error"] ?? null
+            "error" => $this->request->get["error"] ?? null,
+            "title" => "Loufok | Cadavres exquis"
         ]);
     }   
 }

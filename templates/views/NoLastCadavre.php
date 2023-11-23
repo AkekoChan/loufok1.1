@@ -27,7 +27,7 @@ class NoLastCadavre extends Template
               Aucun cadavre à afficher
             </h2>
             <p class="user-cadavers__info-description center">
-              Essayez de participer à un cadavre exquis !
+              Essayez de participer à un Cadavre Exquis !
             </p>
           </div>
       </main>

@@ -62,7 +62,7 @@ class Collection extends Template
                     </p>
                     <a href="/loufok/cadavre/<?php echo $cadavre->id_cadavre_exquis ?>"
                         class="user-cadavers__item-link btn-secondary pop-in btn">
-                        Voir ce cadavre exquis
+                        Voir ce Cadavre Exquis
                     </a>
                 </li>
                 <?php endforeach; ?>

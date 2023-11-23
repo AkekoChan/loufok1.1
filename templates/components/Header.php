@@ -72,8 +72,8 @@ class Header extends Component
             <div class="header__popup">
                 <!-- <p class="header__popupSubtitle">Notifications</p> -->
                 <ul>
-                    <li>Un cadavre exquis vient d'être ajouté !</li>
-                    <li>Le dernière cadavre exquis vient de se terminer</li>
+                    <li>Un Cadavre Exquis vient d'être ajouté !</li>
+                    <li>Le dernière Cadavre Exquis vient de se terminer</li>
                 </ul>
             </div>
         </div>
