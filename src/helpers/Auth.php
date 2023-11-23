@@ -6,7 +6,7 @@
     use App\Service\Plugins\JWTHelper;
 
     use App\Models;
-    use App\Models\Entities\UserEntity;
+    use App\Entities;
 
     class Auth {
         private static $cookie_name = "user_token";
@@ -15,14 +15,14 @@
             return Store::removeCookie(self::$cookie_name);
         }
 
-        public static function fromCookie () : UserEntity|bool {
+        public static function fromCookie () : Entities\UserEntity|bool {
             $cookie = Store::getCookie(self::$cookie_name);
             if($cookie === null) return false;
             $cookie = JWTHelper::decode_token($cookie, ENV->APP_KEY);
 
             if(!isset($cookie["mail"]) || !isset($cookie["password"])) return false;
 
-            $user = Models\UsersModel::instance()->retrieveUser($cookie["mail"]);
+            $user = Models\UsersModel::instance()->getUser($cookie["mail"]);
 
             if($user === null) return false;
 
@@ -36,7 +36,7 @@
         public static function fromPost (array $post) : array|bool {
             if(!isset($post["mail"])) return [ "error" => "mail" ];
 
-            $user = Models\UsersModel::instance()->retrieveUser($post["mail"]);
+            $user = Models\UsersModel::instance()->getUser($post["mail"]);
 
             if($user === null) return [ "error" => "mail" ];
 

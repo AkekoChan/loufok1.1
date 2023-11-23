@@ -16,6 +16,12 @@
             $end = date_create($this->end . "23:59:59");
             return max(1, date_diff($now, $end, true)->days);
         }
+
+        public function isPasted () : bool {
+            $now = date_create("now");
+            $end = date_create($this->end . "23:59:59");
+            return $now > $end;
+        }
         
         public function getConvertedPeriode () : array {
             return [

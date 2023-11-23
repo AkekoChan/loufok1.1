@@ -45,7 +45,7 @@ class Index extends Template
                   </svg>
                   <div class="admin-cadavers__item-details">
                     <p class="admin-cadavers__cadaver-title"><?php echo $cadavre->title ?></p>
-                    <p class="admin-cadavers__cadaver-creator">par <span class="bolder"><?php echo $cadavre->admin_mail ?></span></p>
+                    <p class="admin-cadavers__cadaver-creator">par <span class="bolder"><?php echo $cadavre->admin->mail ?></span></p>
                   </div>
                 </div>
                 <p class="admin-cadavers__cadaver-period">

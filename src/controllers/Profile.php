@@ -5,7 +5,7 @@
     use App\Service\Routing\Response;
     use App\Service\Interfaces\Controller;
     
-    use App\Models\UsersModel;
+    use App\Models;
     
     use App\Templates\Views;
 
@@ -14,11 +14,11 @@
             $user = Auth::fromCookie();
             if ($user === false) return $this->response->redirect("/login");
 
-            $contributions = UsersModel::instance()->getAllContributions($user->id, $user->is_admin);
+            $contributions = $user->getContributions();
 
             return $this->response->template(Views\Profile::class, [
                 "user" => $user,
-                "contributions" => $contributions
+                "contributions" => $contributions ?? []
             ]);
         }
     }

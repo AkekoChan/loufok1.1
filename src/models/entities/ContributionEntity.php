@@ -1,5 +1,7 @@
 <?php
-    namespace App\Models\Entities;
+    namespace App\Entities;
+
+    use App\Models;
 
     class ContributionEntity {
         public int $id_contribution;
@@ -10,6 +12,11 @@
         public int $id_cadavre_exquis;
         public int $id_admin;
 
-        public string|null $cadavre_name;
+        public string $cadavre_title;
+
+        public function __construct()
+        {
+            $this->cadavre_title = Models\CadavreExquisModel::instance()->getCadavreTitle($this->id_cadavre_exquis);
+        }
     }
 ?>

@@ -1,5 +1,5 @@
 <?php
-    namespace App\Models\Entities;
+    namespace App\Entities;
 
     class RandContributionEntity {
         public int $num_contribution;

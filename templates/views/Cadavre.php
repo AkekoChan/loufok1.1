@@ -43,7 +43,7 @@ class Cadavre extends Template
             <ul class="user-cadavers__list">
               <!-- Premier Contributions -->
               <?php foreach ($this->contributions as $contribution) : ?>
-                <li class="user-cadavers__item bottom-fade <?php if ($contribution->id_contribution === $this->user_contrib->id_contribution) echo "owner" ?>">
+                <li class="user-cadavers__item bottom-fade <?php if ($contribution->id_contribution === $this->user_contribution->id_contribution) echo "owner" ?>">
                   <p class="user-cadavers__text">
                     <?php echo $contribution->text ?>
                   </p>
@@ -68,7 +68,7 @@ class Cadavre extends Template
           </div>
         </section>
       </main>
-      <?php $this->component(Components\Footer::class, ["current_page" => "collection"]); ?>
+      <?php $this->component(Components\Footer::class, ["current_page" => "lastCadavre"]); ?>
     </body>
 
     </html>

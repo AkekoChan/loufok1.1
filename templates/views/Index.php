@@ -37,14 +37,14 @@ class Index extends Template
                             <!-- Gérer le s si 0/1 ou plus -->
                             <p class="contributions-remaining bottom-fade">Nombre de contributions restantes :
                                 <span class="bolder-green">
-                                    <?php echo $this->cadavre->remaining_contributions; ?>
+                                    <?php echo $this->cadavre->contributions_left; ?>
                                 </span>
                             </p>
                             <p class="periods bottom-fade">Vous pouvez participer du <span class="bolder"><?php echo $this->periode["start"]; ?></span> au <span class="bolder"><?php echo $this->periode["end"]; ?></span> (<span class="bolder-green"><?php echo $this->remaining_days; ?></span>
                                 <?php echo $this->remaining_days > 1 ? " jours restants" : " jour restant" ?>)</p>
                         </div>
                         <ul class="contributions__list">
-                            <?php for ($i = 1; $i < $this->cadavre->contributions + 1; $i++) {
+                            <?php for ($i = 1; $i < count($this->cadavre->contributions) + 1; $i++) {
                                 if ($this->random_contribution->submission_order == $i) {
                                     echo '<li class="contributions__item bottom-fade">
                             <p>' . $this->random_contribution->text . '</p>
