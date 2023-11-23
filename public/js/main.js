@@ -6,20 +6,22 @@
       popUpNotif: $(".header__popup"),
       accessibilityBtn: $(".header__accessibility-btn"),
       popUpAccessibility: $(".accessibility-popup"),
-      switchDys: $(".switch-dyslexic input"),
+      switchDys: $(".switch-dyslexic"),
+      switchAnimation: $(".switch-animation"),
       increaseBtn: $(".increaseFontButton"),
       decreaseBtn: $(".decreaseFontButton"),
       resetBtn: $(".resetFontButton"),
       htmlElement: $("html"),
-      themeButtons: $$(".theme-button"),
+      daltonismSelect: $("#daltonism-select"),
       btns: $$(".btn"),
       newCadaverForm: $(".new-cadaver__form"),
     },
+
     init: () => {
       App.event();
       App.restoreState();
-      App.runGSAPAnimation();
     },
+
     event: () => {
       App.DOM.bellBtn?.addEventListener("click", () => {
         App.togglePopUp(App.DOM.popUpNotif);
@@ -45,26 +47,6 @@
         }
       });
 
-      App.DOM.switchDys?.parentElement.addEventListener("keypress", (event) => {
-        App.DOM.switchDys.checked = !App.DOM.switchDys.checked;
-        if (event.key === "Enter") {
-          event.preventDefault();
-          const currentAriaChecked = event.target.getAttribute("aria-checked");
-          const newAriaChecked =
-            currentAriaChecked === "true" ? "false" : "true";
-          event.target.setAttribute("aria-checked", newAriaChecked);
-
-          App.toggleDyslexiaMode();
-        }
-      });
-
-      App.DOM.switchDys?.parentElement.addEventListener("click", (event) => {
-        const currentAriaChecked = event.target.getAttribute("aria-checked");
-        const newAriaChecked = currentAriaChecked === "true" ? "false" : "true";
-        event.target.setAttribute("aria-checked", newAriaChecked);
-        App.toggleDyslexiaMode();
-      });
-
       App.DOM.increaseBtn?.addEventListener("click", () => {
         App.increaseFontSize();
       });
@@ -77,19 +59,55 @@
         App.resetFontSize();
       });
 
-      App.DOM.themeButtons?.forEach((button) => {
-        button.addEventListener("click", () => {
-          const value = button.getAttribute("data-value");
-          App.changeDaltonism(value);
-        });
+      App.DOM.daltonismSelect?.addEventListener("change", () => {
+        const value = App.DOM.daltonismSelect.value;
+        App.changeDaltonism(value);
       });
 
-      // App.DOM.newCadaverForm?.addEventListener(
-      //   "submit",
-      //   App.checkFormNewCadaver
-      // );
+      App.DOM.switchDys?.addEventListener("keydown", (event) => {
+        if (event.key === " " || event.key === "Enter") {
+          event.preventDefault();
+
+          App.handleSwitch(App.DOM.switchDys, "dyslexiaMode");
+          App.toggleDyslexiaMode();
+        }
+      });
+
+      App.DOM.switchDys?.addEventListener("click", () => {
+        App.handleSwitch(App.DOM.switchDys, "dyslexiaMode");
+        App.toggleDyslexiaMode();
+      });
+
+      App.DOM.switchAnimation?.addEventListener("keydown", (event) => {
+        if (event.key === " " || event.key === "Enter") {
+          event.preventDefault();
+
+          App.handleSwitch(App.DOM.switchAnimation, "disableAnimations");
+        }
+      });
+
+      App.DOM.switchAnimation?.addEventListener("click", () => {
+        App.handleSwitch(App.DOM.switchAnimation, "disableAnimations");
+      });
     },
 
+    handleSwitch: (toggler, localStorageName) => {
+      toggler.classList.toggle("active");
+      // Modifies status contents
+
+      let switchIsActive = toggler.getAttribute("aria-checked");
+      console.log(typeof switchIsActive);
+
+      if (switchIsActive === "true") {
+        switchIsActive = "false";
+      } else {
+        switchIsActive = "true";
+      }
+
+      // Toggle aria-checked
+      toggler.setAttribute("aria-checked", switchIsActive);
+      localStorage.setItem(`${localStorageName}`, switchIsActive);
+    },
     /**
      * Ouvre ou ferme un popup en fonction de son état actuel
      * @param {*} target - L'élément du popup ciblé
@@ -115,11 +133,7 @@
      * Active ou désactive le mode dyslexique
      */
     toggleDyslexiaMode: () => {
-      App.DOM.htmlElement.classList.toggle(
-        "dyslexia-mode",
-        App.DOM.switchDys.checked
-      );
-      localStorage.setItem("dyslexiaMode", App.DOM.switchDys.checked);
+      App.DOM.htmlElement.classList.toggle("dyslexia-mode");
     },
 
     /**
@@ -179,19 +193,31 @@
         App.DOM.htmlElement.style.fontSize = `${savedFontSize}px`;
       }
 
-      const savedDyslexiaMode = localStorage.getItem("dyslexiaMode");
-      if (savedDyslexiaMode !== null) {
-        if (!App.DOM.switchDys) {
-          return null;
-        } else {
-          App.DOM.switchDys.checked = savedDyslexiaMode === "true";
-          App.toggleDyslexiaMode();
-        }
-      }
-
       const savedDaltonismMode = localStorage.getItem("daltonism");
       if (savedDaltonismMode) {
         App.DOM.htmlElement.classList.add(savedDaltonismMode);
+      }
+
+      const savedDyslexiaMode = localStorage.getItem("dyslexiaMode");
+      if (savedDyslexiaMode === "true") {
+        App.DOM.switchDys.classList.toggle("active");
+        App.DOM.switchDys.setAttribute("aria-checked", "true");
+        App.toggleDyslexiaMode();
+      }
+
+      const savedDisabledAnimation = localStorage.getItem("disableAnimations");
+      if (
+        savedDisabledAnimation === "false" ||
+        savedDisabledAnimation === null
+      ) {
+        console.log("load animation");
+        App.runGSAPAnimation();
+      }
+
+      if (savedDisabledAnimation === "true") {
+        console.log("disabled anim");
+        App.DOM.switchAnimation.classList.toggle("active");
+        App.DOM.switchAnimation.setAttribute("aria-checked", "true");
       }
     },
 
@@ -254,11 +280,6 @@
           });
         });
       }
-    },
-
-    checkFormNewCadaver: (event) => {
-      event.preventDefault();
-      console.log("Submit");
     },
   };
 
