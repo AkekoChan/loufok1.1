@@ -51,7 +51,7 @@
             JOIN
                 {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
             WHERE
-                ce.date_end < NOW() AND ce.nb_contribution <= (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
+                ce.date_end < NOW() OR ce.nb_contribution <= (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
                 AND $idfield = :user_id;";
 
             $sth = DatabaseManager::query($sql, [":user_id" => $user_id]);

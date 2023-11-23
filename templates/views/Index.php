@@ -67,6 +67,11 @@ class Index extends Template
                                 <div class="bottom-fade">
                                     <?php $this->component(Components\TextArea::class); ?>
                                 </div>
+                                <?php 
+                                    if($this->error !== null) {
+                                        $this->component(Components\FormError::class, ["error_text" => $this->error]); 
+                                    }
+                                ?>
                                 <button class="btn-primary btn pop-in" type="submit">Soumettre votre cadavre exquis</button>
                             </form>
 

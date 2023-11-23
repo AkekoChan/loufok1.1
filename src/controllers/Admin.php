@@ -19,23 +19,31 @@
                 $gpost = fn(string $key) => isset($this->request->post[$key]) ? $this->request->post[$key] : $this->response->redirect("/create?error=2004&field=$key");
                 $contributions_count = $gpost('contributions-count');
                 $title = $gpost("cadaver-title");
-                $contribution_text = $gpost('contribution'); 
+                $contribution_text =$gpost('contribution'); 
                 $date_start = $gpost('date-start');
                 $date_end = $gpost('date-end');
-                $contributions_count++; // FIX SOME TWIKS
+                $contributions_count++; // FIX SOME TWIKS (￣y▽,￣)╭ 
                 if($contributions_count < 1) return $this->response->redirect("/create?error=3001");
                 if(strlen($contribution_text) < 50 || strlen($contribution_text) > 280) return $this->response->redirect("/create?error=3002");
                 if($date_start >= $date_end) return $this->response->redirect("/create?error=3003");
                 if(Models\CadavreExquisModel::instance()->cadavrePeriodeOverlap($date_start, $date_end)) return $this->response->redirect("/create?error=3004");
 
-                if(!Models\CadavreExquisModel::instance()->createCadavre($title, $date_start, $date_end,
-                $contribution_text, $contributions_count, $user->id)) return $this->response->redirect("/create?error=3005");;
+                try {
+                    $created = Models\CadavreExquisModel::instance()->createCadavre($title, $date_start, $date_end,
+                        $contribution_text, $contributions_count, $user->id);
+                } catch (\Throwable $th) {
+                    // title is the same as other one
+                    return $this->response->redirect("/create?error={$th->getCode()}");
+                }
 
-                return $this->response->redirect("/?success=$title");
+                if(!$created) return $this->response->redirect("/create?error=3005");
+
+                return $this->response->redirect("/");
             }   
 
             return $this->response->template(Views\Admin\Create::class, [
-                "user" => $user
+                "user" => $user,
+                "error" => $this->request->get["error"] ?? null
             ]);
         }
     }

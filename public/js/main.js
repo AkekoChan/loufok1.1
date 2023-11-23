@@ -84,10 +84,10 @@
         });
       });
 
-      App.DOM.newCadaverForm?.addEventListener(
-        "submit",
-        App.checkFormNewCadaver
-      );
+      // App.DOM.newCadaverForm?.addEventListener(
+      //   "submit",
+      //   App.checkFormNewCadaver
+      // );
     },
 
     /**

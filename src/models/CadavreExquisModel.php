@@ -21,7 +21,7 @@ class CadavreExquisModel extends Model
                 VALUES (:title, :ds, :de, :max, :id)";
             
         $sth = DatabaseManager::query($sql, [
-            ":title" => htmlspecialchars(strip_tags($title)),
+            ":title" => htmlspecialchars(trim(strip_tags($title))),
             ":ds" => $ds,
             ":de" => $de,
             ":max" => $max,
@@ -37,7 +37,7 @@ class CadavreExquisModel extends Model
             VALUES (:text, :id_cadavre, :id)";
 
         $sthc = DatabaseManager::query($sqlc, [
-            ":text" => htmlspecialchars(strip_tags($text)),
+            ":text" => htmlspecialchars(trim(strip_tags($text))),
             ":id_cadavre" => $id_cadavre,
             ":id" => $id
         ]);
@@ -61,7 +61,9 @@ class CadavreExquisModel extends Model
         WHERE
             ce.date_end > NOW() AND ce.nb_contribution > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
         GROUP BY
-            ce.id_cadavre_exquis;";
+            ce.id_cadavre_exquis
+        ORDER BY
+            ce.date_start;";
 
         $sth = DatabaseManager::query($sql);
         if ($sth && $sth->rowCount()) {

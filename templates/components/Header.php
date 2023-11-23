@@ -49,7 +49,7 @@ class Header extends Component
                         </label>
                     </li>
                     <li class="accessibility-daltonism">
-                        <button data-value="normal" class="theme-button btn">Vision normale</button>
+                        <button data-value="normal" class="theme-button btn">Aucun Daltonisme</button>
                         <button data-value="protanopia" class="theme-button btn">Daltonisme rouge</button>
                         <button data-value="tritanopia" class="theme-button btn">Daltonisme bleu</button>
                         <button data-value="deuteranopia" class="theme-button btn">Daltonisme vert</button>

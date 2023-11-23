@@ -32,22 +32,29 @@ class Index extends Controller
             if ($current_cadavre !== null && $user_contribution === null) {
                 // traitement contribution creation (exist, length ok)
                 $text = $this->request->post["contribution"] ?? null;
-                if($text === null || strlen($text) < 50 || strlen($text) > 280) return $this->response->redirect("/?error=contribution");
-                Models\ContributionModel::instance()->create([
-                    "id_user" => $user->id, 
-                    "text" => htmlspecialchars(strip_tags($text)),
-                    "id_cadavre_exquis" => $current_cadavre->id_cadavre_exquis,
-                    "id_admin" => $current_cadavre->id_admin
-                ], false);
+                if($text === null || strlen($text) < 50 || strlen(trim($text)) > 280) return $this->response->redirect("/?error=Le texte de contribution doit faire en 50 et 280 caractères.");
+                
+                try {
+                    Models\ContributionModel::instance()->create([
+                        "id_user" => $user->id, 
+                        "text" => $text,
+                        "id_cadavre_exquis" => $current_cadavre->id_cadavre_exquis,
+                        "id_admin" => $current_cadavre->id_admin
+                    ], false);
+                } catch (\Throwable $th) {
+                    return $this->response->redirect("/?error={$th->getMessage()}");
+                }
+
                 return $this->response->redirect("/");
             }
-            return $this->response->redirect("/?error=alreadyContribute");
+            return $this->response->redirect("/"); // L'utilisateur a déjà contribué
         }
 
         if ($current_cadavre === null) {
             return $this->response->template(Views\Index::class, [
                 "user" => $user,
-                "cadavre" => null
+                "cadavre" => null,
+                "error" => $this->request->get["error"] ?? null
             ]);
         }
 
@@ -64,6 +71,7 @@ class Index extends Controller
 
         return $this->response->template(Views\Index::class, [
             "user" => $user,
+            "error" => $this->request->get["error"] ?? null,
             "periode" => $current_cadavre->periode->getConvertedPeriode(),
             "remaining_days" => $current_cadavre->periode->getRemainingDays(),
             "cadavre" => $current_cadavre,
@@ -83,7 +91,8 @@ class Index extends Controller
         // die(var_dump($cadavres));
         return $this->response->template(Views\Admin\Index::class, [
             "user" => $user,
-            "cadavres" => $cadavres
+            "cadavres" => $cadavres,
+            "error" => $this->request->get["error"] ?? null
         ]);
     }   
 }
