@@ -51,6 +51,7 @@ class Index extends Template
                 <p class="admin-cadavers__cadaver-period">
                   <?php $periode = $cadavre->periode->getConvertedPeriode() ?>
                   Période de Jeu : <span class="bolder"><?php echo $periode["start"] ?></span> au <span class="bolder"><?php echo $periode["end"] ?></span>
+                  <?php if($cadavre->isActualCadavre()) echo ' (en cours)' ?>
                 </p>
               </li>
             <?php endforeach; ?>

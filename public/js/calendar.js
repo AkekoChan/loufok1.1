@@ -40,6 +40,14 @@ const Calendar = {
                 Calendar.inputs.end.min = Calendar.inputs.start.value;
             });
             Calendar.body_container.addEventListener('click', Calendar.selectPeriode);
+
+            Calendar.body_container.addEventListener('dblclick', () => {
+                Calendar.inputs.start.value = '';
+                Calendar.inputs.end.value = '';
+                Calendar.offset = 0;
+                Calendar.init();
+            });
+
             Calendar.container.addEventListener('keypress', (evt) => {
                 if(evt.key === "Enter") {
                     evt.target.click();
@@ -72,7 +80,7 @@ const Calendar = {
         
         function draw (date, identifier) {
             let dao = (date.toISOString().split("T"))[0];
-            return `<i class="block__day ${identifier}" data-date="${dao}">${date.getDate()}</i>`;
+            return `<i class="block__day ${identifier}" tabindex="0" data-date="${dao}">${date.getDate()}</i>`;
         }
 
         walkdate.setDate(walkdate.getDate() - loffset);

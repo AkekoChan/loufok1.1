@@ -36,9 +36,9 @@ class Index extends Template
                             <h3 class="smaller bottom-fade"><?php echo $this->cadavre->title; ?></h3>
                             <!-- Gérer le s si 0/1 ou plus -->
                             <p class="contributions-remaining bottom-fade">Nombre de contributions restantes :
-                                <span class="bolder-green">
-                                    <?php echo $this->cadavre->contributions_left; ?>
-                                </span>
+                                <abbr class="bolder-green" title="(<?php echo $this->cadavre->contributions_left; ?> sur <?php echo $this->cadavre->max_contributions; ?> maximum)">
+                                    <?php echo $this->cadavre->contributions_left; ?> 
+                                </abbr>
                             </p>
                             <p class="periods bottom-fade">Vous pouvez participer du <span class="bolder"><?php echo $this->periode["start"]; ?></span> au <span class="bolder"><?php echo $this->periode["end"]; ?></span> (<span class="bolder-green"><?php echo $this->remaining_days; ?></span>
                                 <?php echo $this->remaining_days > 1 ? " jours restants" : " jour restant" ?>)</p>

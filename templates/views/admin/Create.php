@@ -55,9 +55,9 @@ class Create extends Template
               }
             ?>
 
-              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" placeholder="Titre du Cadavre Exquis" required />
+              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" tabindex="-1" placeholder="Titre du Cadavre Exquis" required />
 
-              <input type="number" min="1" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" placeholder="Nombre de contributions maxiumum" required />
+              <input type="number" min="1" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" tabindex="-1" placeholder="Nombre de contributions maxiumum" required />
 
               <div class="bottom-fade">
                 <?php $this->component(Components\TextArea::class); ?>
