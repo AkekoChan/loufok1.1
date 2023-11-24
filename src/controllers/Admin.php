@@ -38,7 +38,7 @@
 
                 if(!$created) return $this->response->redirect("/create?error=3005");
 
-                return $this->response->redirect("/");
+                return $this->response->redirect("/?success");
             }   
 
             return $this->response->template(Views\Admin\Create::class, [

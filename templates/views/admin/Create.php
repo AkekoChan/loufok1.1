@@ -55,9 +55,9 @@ class Create extends Template
               }
             ?>
 
-              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" tabindex="-1" placeholder="Titre du Cadavre Exquis" required />
+              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" placeholder="Titre du Cadavre Exquis" required />
 
-              <input type="number" min="1" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" tabindex="-1" placeholder="Nombre de contributions maxiumum" required />
+              <input type="number" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" min="1" placeholder="Nombre de contributions maxiumum" required />
 
               <div class="bottom-fade">
                 <?php $this->component(Components\TextArea::class); ?>
@@ -67,8 +67,8 @@ class Create extends Template
             <div class="new-cadaver__form-group">
               <h3 class="new-cadaver__title smaller">La période de jeu</h3>
               <div class="js-calendar calendar">
-                <input required type="date" name="date-start" id="dateStart">
-                <input required type="date" name="date-end" id="dateEnd">
+                <input required tabindex="-1" type="date" name="date-start" id="dateStart">
+                <input required tabindex="-1" type="date" name="date-end" id="dateEnd">
                 <div class="calendar__head">
                   <div class="calendar__head--container">
                     <i tabindex="0" role="button" class="calendar__head--switch switch__left" data-switch="1"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M18.6 11.2l-12-9A1 1 0 005 3v18a1 1 0 00.55.89 1 1 0 001-.09l12-9a1 1 0 000-1.6z"/></svg></i>
