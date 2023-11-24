@@ -26,6 +26,7 @@
                 if($contributions_count < 1) return $this->response->redirect("/create?error=3001");
                 if(strlen($contribution_text) < 50 || strlen($contribution_text) > 280) return $this->response->redirect("/create?error=3002");
                 if($date_start >= $date_end) return $this->response->redirect("/create?error=3003");
+                if($date_start < date("Y-m-d")) return $this->response->redirect("/create?error=3008");
                 if(Models\CadavreExquisModel::instance()->periodeOverlap($date_start, $date_end)) return $this->response->redirect("/create?error=3004");
 
                 try {
@@ -38,7 +39,7 @@
 
                 if(!$created) return $this->response->redirect("/create?error=3005");
 
-                return $this->response->redirect("/");
+                return $this->response->redirect("/?success=" . urlencode($title));
             }   
 
             return $this->response->template(Views\Admin\Create::class, [

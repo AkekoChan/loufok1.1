@@ -80,7 +80,9 @@ const Calendar = {
         
         function draw (date, identifier) {
             let dao = (date.toISOString().split("T"))[0];
-            return `<i class="block__day ${identifier}" tabindex="0" data-date="${dao}">${date.getDate()}</i>`;
+            let tabindex = identifier == "next" || identifier == "futur" ? 0 : -1;
+            let ariadate = `${Calendar.days[date.toString().substring(0, 3)]} ${date.getDate()} ${Calendar.months[date.toString().substring(4, 7)]} ${date.getFullYear()}`;
+            return `<i class="block__day ${identifier}" aria-label='${ariadate}' tabindex="${tabindex}" data-date="${dao}">${date.getDate()}</i>`;
         }
 
         walkdate.setDate(walkdate.getDate() - loffset);
@@ -147,6 +149,9 @@ const Calendar = {
 
                 pinstart?.classList.add(k === periodes.length - 1 && cursor ? 'cursorpinstart' : 'pinstart');
                 pinend?.classList.add(k === periodes.length - 1 && cursor ? 'cursorpinend' : 'pinend'); 
+
+                pinstart?.setAttribute("tabindex", "-1");
+                pinend?.setAttribute("tabindex", "-1");
                 
                 let i = 0;
                 let sibling = pinend.previousElementSibling;
@@ -154,6 +159,7 @@ const Calendar = {
                     if(sibling == null) break;
                     if(sibling.classList.contains(k === periodes.length - 1 && cursor ? 'cursorpinstart' : 'pinstart')) break;
                     sibling.classList.add(k === periodes.length - 1 && cursor ? 'cursorperiode' : 'periode');
+                    sibling.setAttribute("tabindex", "-1");
                     sibling = sibling.previousElementSibling;
                     i++;
                 };
