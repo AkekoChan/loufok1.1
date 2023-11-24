@@ -8,7 +8,7 @@ use App\Templates\Views;
 
 use App\Helpers\Auth;
 use App\Models;
-use App\Models\Entities;
+use App\Entities;
 
 // Ce controlleur pointe sur /
 class Index extends Controller
@@ -25,7 +25,7 @@ class Index extends Controller
     {
         $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
-        if($current_cadavre !== null) $user_contribution = Models\UsersModel::instance()->getContributionFromCadavre($user->id, $current_cadavre->id_cadavre_exquis);
+        if($current_cadavre !== null) $user_contribution = $user->getContributionFromCadavre($current_cadavre->id_cadavre_exquis);
 
         // c'est une requete post omg
         if(!empty($this->request->post)) {
@@ -54,7 +54,7 @@ class Index extends Controller
             return $this->response->template(Views\Index::class, [
                 "user" => $user,
                 "cadavre" => null,
-                "error" => $this->request->get["error"] ?? null
+                "title" => "Loufok | Aucun Cadavre Exquis en cours"
             ]);
         }
 
@@ -71,12 +71,13 @@ class Index extends Controller
 
         return $this->response->template(Views\Index::class, [
             "user" => $user,
-            "error" => $this->request->get["error"] ?? null,
             "periode" => $current_cadavre->periode->getConvertedPeriode(),
             "remaining_days" => $current_cadavre->periode->getRemainingDays(),
             "cadavre" => $current_cadavre,
             "random_contribution" => $random_contrib,
-            "contribution" => $user_contribution
+            "contribution" => $user_contribution,
+            "error" => $this->request->get["error"] ?? null,
+            "title" => "Loufok | Contribuez au Cadavre Exquis en cours"
         ]);
     }
 
@@ -88,11 +89,12 @@ class Index extends Controller
         }
 
         $cadavres = Models\CadavreExquisModel::instance()->getAllCadavresNotFinished();
-        // die(var_dump($cadavres));
+
         return $this->response->template(Views\Admin\Index::class, [
             "user" => $user,
             "cadavres" => $cadavres,
-            "error" => $this->request->get["error"] ?? null
+            "error" => $this->request->get["error"] ?? null,
+            "title" => "Loufok | Cadavres exquis"
         ]);
     }   
 }

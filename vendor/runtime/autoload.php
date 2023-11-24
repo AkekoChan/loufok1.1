@@ -10,6 +10,7 @@
         $destinations = [
             "Controllers" => "/src/controllers",
             "Models" => "/src/models",
+            "Entities" => "/src/models/entities",
             "Helpers" => "/src/helpers",
             "Templates" => "/templates",
             "Components" => "/templates/components",

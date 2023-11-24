@@ -27,7 +27,7 @@
         public function post () : Response {
             $auth = Auth::fromPost($this->request->post);
             if($auth === true) return $this->response->redirect("/");
-            return $this->template($auth["error"] ?? "mail");
+            return $this->template($auth["error"] ?? "mail"); // Goes to this template func not response
         }
 
         /**

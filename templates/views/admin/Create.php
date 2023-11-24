@@ -16,6 +16,9 @@ class Create extends Template
     <head>
       <?php $this->component(Components\Head::class); ?>
       <link rel="stylesheet" href="<?php $this->public("/css/pages/newCadavre.css"); ?>">
+      <link rel="stylesheet" href="<?php $this->public("/css/blocs/calendar-min.css", "/css/blocs/calendar.css"); ?>">
+      <script src="/loufok/js/admin.controls.js" defer></script>
+      <script src="<?php $this->public("/js/calendar-min.js", "/js/calendar.js"); ?>" defer></script>
     </head>
 
     <body>
@@ -24,7 +27,7 @@ class Create extends Template
         <section class="new-cadaver">
           <div class="new-cadaver__info right-fade">
             <h1 class="new-cadaver__title bigger">
-              Fabrication d’un cadavre exquis
+              Fabrication d’un Cadavre Exquis
             </h1>
             <p class="new-cadaver__description center">
               À vous de créer votre propre Cadavre Exquis et de partager le
@@ -47,14 +50,14 @@ class Create extends Template
                   "3004" => "La période chevauche une autre période.",
                   "3005" => "Une erreur est survenue lors de la création.",
                   "23000" => "Un cadavre avec ce même titre existe déjà.",
-                ][$this->error] ?? "Une erreur est survenue.";
+                ][$this->error] ?? $this->error ?? "Une erreur est survenue.";
                 $this->component(Components\FormError::class, ["error_text" => $error_text]); 
               }
             ?>
 
-              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" placeholder="Titre du cadavre exquis" required />
+              <input type="text" id="cadaver-title" class="new-cadaver__input form__input bottom-fade" name="cadaver-title" placeholder="Titre du Cadavre Exquis" required />
 
-              <input type="number" min="1" value="1" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" placeholder="Nombre de contributions maxiumum" required />
+              <input type="number" min="1" id="contributions-count" class="new-cadaver__input form__input bottom-fade" name="contributions-count" placeholder="Nombre de contributions maxiumum" required />
 
               <div class="bottom-fade">
                 <?php $this->component(Components\TextArea::class); ?>
@@ -63,9 +66,27 @@ class Create extends Template
 
             <div class="new-cadaver__form-group">
               <h3 class="new-cadaver__title smaller">La période de jeu</h3>
-              <input type="date" name="date-start" id="dateStart">
-              <input type="date" name="date-end" id="dateEnd">
-              <!-- Calendrier personnalisé (à ajouter selon vos besoins) -->
+              <div class="js-calendar calendar">
+                <input required type="date" name="date-start" id="dateStart">
+                <input required type="date" name="date-end" id="dateEnd">
+                <div class="calendar__head">
+                  <div class="calendar__head--container">
+                    <i tabindex="0" role="button" class="calendar__head--switch switch__left" data-switch="1"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M18.6 11.2l-12-9A1 1 0 005 3v18a1 1 0 00.55.89 1 1 0 001-.09l12-9a1 1 0 000-1.6z"/></svg></i>
+                    <span class="calendar__head--date">Janvier 1970</span>
+                    <i tabindex="0" role="button" class="calendar__head--switch switch__right" data-switch="-1"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M18.6 11.2l-12-9A1 1 0 005 3v18a1 1 0 00.55.89 1 1 0 001-.09l12-9a1 1 0 000-1.6z"/></svg></i>
+                  </div>
+                  <div class="calendar__head--days">
+                    <span>Lun</span>
+                    <span>Mar</span>
+                    <span>Mer</span>
+                    <span>Jeu</span>
+                    <span>Ven</span>
+                    <span>Sam</span>
+                    <span>Dim</span>
+                  </div>
+                </div>
+                <div class="calendar__body"></div>
+              </div>
             </div>
 
             <button type="submit" class="new-cadaver__submit-button btn-primary btn pop-in">

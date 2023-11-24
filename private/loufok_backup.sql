@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 23 nov. 2023 à 11:23
+-- Généré le : mer. 15 nov. 2023 à 10:35
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -52,7 +52,7 @@ CREATE TABLE `cadavre_exquis` (
   `title` varchar(50) DEFAULT NULL,
   `date_start` date DEFAULT NULL,
   `date_end` date DEFAULT NULL,
-  `max_contributions` int(11) DEFAULT NULL,
+  `nb_contribution` int(11) DEFAULT NULL,
   `nb_like` int(11) DEFAULT 0,
   `id_admin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -61,10 +61,8 @@ CREATE TABLE `cadavre_exquis` (
 -- Déchargement des données de la table `cadavre_exquis`
 --
 
-INSERT INTO `cadavre_exquis` (`id_cadavre_exquis`, `title`, `date_start`, `date_end`, `max_contributions`, `nb_like`, `id_admin`) VALUES
-(4, 'Super titre de cadavre', '2023-11-18', '2023-11-22', 6, 0, 1),
-(5, 'Deuxieme cadave de fou', '2023-11-23', '2023-11-28', 12, 0, 1),
-(12, 'Super titre de cadavre?', '2023-12-08', '2023-12-22', 4, 0, 1);
+INSERT INTO `cadavre_exquis` (`id_cadavre_exquis`, `title`, `date_start`, `date_end`, `nb_contribution`, `nb_like`, `id_admin`) VALUES
+(1, 'Super Cadavre', '2023-11-09', '2023-11-25', 3, 0, 1);
 
 --
 -- Déclencheurs `cadavre_exquis`
@@ -102,18 +100,6 @@ CREATE TABLE `contribution` (
   `id_cadavre_exquis` int(11) DEFAULT NULL,
   `id_admin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `contribution`
---
-
-INSERT INTO `contribution` (`id_contribution`, `id_user`, `text`, `created_at`, `submission_order`, `id_cadavre_exquis`, `id_admin`) VALUES
-(7, NULL, 'Il était une fois un ours polaire qui mangeait des freezbies', '2023-11-22 00:10:06', 1, 4, 1),
-(9, 1, 'Je contribue à ce cadavre que je trouve génial ! J\'adore !', '2023-11-22 00:17:27', 2, 4, 1),
-(11, 2, 'Il préférait les freezbies jaunes et rouges tout spécialement.', '2023-11-22 00:23:03', 3, 4, 1),
-(12, NULL, 'Il était une fois un ours polaire qui mangeait des freezbies 2 LOL', '2023-11-22 00:44:05', 1, 5, 1),
-(13, 3, 'Moi aussi j\'adore ce cadavre ! Nous sommes si pareils et pourtant si différents.', '2023-11-22 21:24:20', 4, 4, 1),
-(15, NULL, 'Super contribution pas vrai ? étoile étoile &#039;&quot;alert(&quot;wallah&quot;)', '2023-11-23 00:09:08', 1, 12, 1);
 
 --
 -- Déclencheurs `contribution`
@@ -157,16 +143,6 @@ CREATE TABLE `randcontribution` (
   `id_cadavre_exquis` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `randcontribution`
---
-
-INSERT INTO `randcontribution` (`num_contribution`, `id_user`, `id_cadavre_exquis`) VALUES
-(7, 1, 4),
-(7, 2, 4),
-(9, 3, 4),
-(12, 2, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -188,8 +164,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nom`, `mail`, `sexe`, `bdate`, `password`) VALUES
 (1, 'Jose Garcia', 'jose.garcia@gmail.com', 'M', '1988-08-11', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(2, 'Alphonse Maital', 'alph.maital@full.com', 'M', '1995-03-23', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(3, 'David Mieux', 'david.mieu@mail.com', 'M', '1995-03-24', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129');
+(2, 'Alphonse Maital', 'alph.maital@full.com', 'M', '1995-03-23', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129');
 
 --
 -- Index pour les tables déchargées
@@ -249,19 +224,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT pour la table `cadavre_exquis`
 --
 ALTER TABLE `cadavre_exquis`
-  MODIFY `id_cadavre_exquis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_cadavre_exquis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `contribution`
 --
 ALTER TABLE `contribution`
-  MODIFY `id_contribution` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_contribution` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
