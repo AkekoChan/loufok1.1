@@ -24,7 +24,7 @@ class Index extends Template
         <section class="admin-cadavers">
           <div class="admin-cadavers__info right-fade">
             <h2 class="admin-cadavers__title bigger">
-              Consulter les Cadavres exquis
+              Consultez les Cadavres exquis
             </h2>
             <p class="admin-cadavers__description center">
               Consultez tous les cadavres exquis que vous avez créés, ceux qui
@@ -34,7 +34,7 @@ class Index extends Template
 
           <ul class="admin-cadavers__list">
             <?php foreach ($this->cadavres as $cadavre) : ?>
-              <li class="admin-cadavers__item bottom-fade">
+              <li class="admin-cadavers__item bottom-fade" <?php if($cadavre->isActualCadavre()) echo 'data-active="true"' ?>>
                 <div class="admin-cadavers__item-content">
                   <svg class="admin-cadavers__svg" width="27" height="24" viewBox="0 0 27 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 2C7.486 2 3 6.486 3 12C3 17.514 7.486 22 13 22C18.514 22 23 17.514 23 12C23 6.486 18.514 2 13 2ZM13 20C8.589 20 5 16.411 5 12C5 7.589 8.589 4 13 4C17.411 4 21 7.589 21 12C21 16.411 17.411 20 13 20Z" fill="#28292D" />
@@ -57,7 +57,7 @@ class Index extends Template
           </ul>
 
           <a class="admin-cadavers__create-button btn-primary btn pop-in" href="/loufok/create">
-            Créer son Cadavre
+            Créer un Cadavre Exquis
           </a>
         </section>
       </main>

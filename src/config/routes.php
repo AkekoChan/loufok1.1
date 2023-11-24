@@ -17,4 +17,6 @@ Controllers\Login::bind(["/login"], ["GET"], "template");
 Controllers\Login::bind(["/login"], ["POST"], "post");
 Controllers\Login::bind(["/logout"], ["GET"], "logout");
 
+Controllers\Controls::bind(["/internal/controls/json"], ["GET"], "index");
+
 // Controllers\Notifications::bind(["/subscribe"], ["POST"], "subscribe");

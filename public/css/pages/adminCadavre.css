@@ -18,6 +18,12 @@
   width: 100%;
   /* margin-bottom: 2rem; */
 }
+
+.admin-cadavers__item[data-active="true"] {
+  background: var(--light-green-2);
+  border: 2px solid var(--dark-green);
+}
+
 .admin-cadavers__item-content {
   display: flex;
   align-items: center;

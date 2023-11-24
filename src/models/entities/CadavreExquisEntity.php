@@ -33,6 +33,10 @@ class CadavreExquisEntity
         $this->contributions_left = $this->max_contributions - (count($this->contributions) ?? 0);
     }
 
+    public function isActualCadavre () : bool {
+        return $this->periode->isActive() && $this->contributions_left > 0;
+    }
+
     public function getContributors () : array {
         return Models\CadavreExquisModel::instance()->getAllContributors($this->id_cadavre_exquis);
     }
