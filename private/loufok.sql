@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 23 nov. 2023 à 11:23
+-- Généré le : ven. 24 nov. 2023 à 10:59
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -64,7 +64,11 @@ CREATE TABLE `cadavre_exquis` (
 INSERT INTO `cadavre_exquis` (`id_cadavre_exquis`, `title`, `date_start`, `date_end`, `max_contributions`, `nb_like`, `id_admin`) VALUES
 (4, 'Super titre de cadavre', '2023-11-18', '2023-11-22', 6, 0, 1),
 (5, 'Deuxieme cadave de fou', '2023-11-23', '2023-11-28', 12, 0, 1),
-(12, 'Super titre de cadavre?', '2023-12-08', '2023-12-22', 4, 0, 1);
+(12, 'Super titre de cadavre?', '2023-12-08', '2023-12-22', 4, 0, 1),
+(14, 'Super cadavre wow !', '2024-03-29', '2024-05-31', 2, 0, 2),
+(15, 'Super periode !', '2023-12-01', '2023-12-07', 4, 0, 1),
+(16, 'Super periode 2 !', '2023-12-23', '2023-12-31', 7, 0, 1),
+(17, 'Super titre de cadavre? 2 jours', '2023-11-29', '2023-11-30', 5, 0, 1);
 
 --
 -- Déclencheurs `cadavre_exquis`
@@ -113,7 +117,13 @@ INSERT INTO `contribution` (`id_contribution`, `id_user`, `text`, `created_at`, 
 (11, 2, 'Il préférait les freezbies jaunes et rouges tout spécialement.', '2023-11-22 00:23:03', 3, 4, 1),
 (12, NULL, 'Il était une fois un ours polaire qui mangeait des freezbies 2 LOL', '2023-11-22 00:44:05', 1, 5, 1),
 (13, 3, 'Moi aussi j\'adore ce cadavre ! Nous sommes si pareils et pourtant si différents.', '2023-11-22 21:24:20', 4, 4, 1),
-(15, NULL, 'Super contribution pas vrai ? étoile étoile &#039;&quot;alert(&quot;wallah&quot;)', '2023-11-23 00:09:08', 1, 12, 1);
+(15, NULL, 'Super contribution pas vrai ? étoile étoile &#039;&quot;alert(&quot;wallah&quot;)', '2023-11-23 00:09:08', 1, 12, 1),
+(16, 1, 'Salut les amis ça va moi je pleure la sa mere comment je chiale', '2023-11-23 15:13:20', 2, 5, 1),
+(17, NULL, 'Lorem ispum solor damet\r\nLorem ispum solor damet\r\nLorem ispum solor damet', '2023-11-23 16:46:05', 1, 14, 2),
+(18, 2, 'Wsh les gars c michou !!! J\'adore mes ptits potes !!!', '2023-11-23 20:29:26', 3, 5, 1),
+(19, NULL, 'SUper contribution de teste de periode ça marche ou pas ???', '2023-11-24 03:21:49', 1, 15, 1),
+(20, NULL, 'Super contribution de test de période ça marche ou pas ???', '2023-11-24 03:22:35', 1, 16, 1),
+(21, NULL, 'Super contribution de test de période ça marche ou pas ???', '2023-11-24 12:38:38', 1, 17, 1);
 
 --
 -- Déclencheurs `contribution`
@@ -129,7 +139,7 @@ CREATE TRIGGER `auto_suborder` BEFORE INSERT ON `contribution` FOR EACH ROW BEGI
     WHERE id_cadavre_exquis = NEW.id_cadavre_exquis;
 
     -- Vérifier si le nombre de contributions est inférieur à nb_max_contributions de l'objet cadavre_exquis
-    IF contribution_count >= (SELECT nb_contribution FROM Cadavre_Exquis WHERE id_cadavre_exquis = NEW.id_cadavre_exquis) THEN
+    IF contribution_count >= (SELECT max_contributions FROM Cadavre_Exquis WHERE id_cadavre_exquis = NEW.id_cadavre_exquis) THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Le nombre maximum de contributions pour ce cadavre exquis est atteint.';
     END IF;
@@ -165,7 +175,9 @@ INSERT INTO `randcontribution` (`num_contribution`, `id_user`, `id_cadavre_exqui
 (7, 1, 4),
 (7, 2, 4),
 (9, 3, 4),
-(12, 2, 5);
+(12, 2, 5),
+(12, 1, 5),
+(16, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -189,7 +201,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nom`, `mail`, `sexe`, `bdate`, `password`) VALUES
 (1, 'Jose Garcia', 'jose.garcia@gmail.com', 'M', '1988-08-11', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
 (2, 'Alphonse Maital', 'alph.maital@full.com', 'M', '1995-03-23', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(3, 'David Mieux', 'david.mieu@mail.com', 'M', '1995-03-24', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129');
+(3, 'David Mieux', 'david.mieu@mail.com', 'M', '1995-03-24', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
+(4, 'Adrien Bot', 'bot.adrien@gmail.com', 'M', '1995-05-11', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129');
 
 --
 -- Index pour les tables déchargées
@@ -249,19 +262,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT pour la table `cadavre_exquis`
 --
 ALTER TABLE `cadavre_exquis`
-  MODIFY `id_cadavre_exquis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_cadavre_exquis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `contribution`
 --
 ALTER TABLE `contribution`
-  MODIFY `id_contribution` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_contribution` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées

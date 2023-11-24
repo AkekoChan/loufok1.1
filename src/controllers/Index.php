@@ -77,7 +77,7 @@ class Index extends Controller
             "random_contribution" => $random_contrib,
             "contribution" => $user_contribution,
             "error" => $this->request->get["error"] ?? null,
-            "success" => $this->request->get["success"] ?? null,
+            "success" => $this->request->get["success"] ? "Contribution ajouté" : null,
             "title" => "Loufok | Contribuez au Cadavre Exquis en cours"
         ]);
     }
@@ -95,7 +95,7 @@ class Index extends Controller
             "user" => $user,
             "cadavres" => $cadavres,
             "error" => $this->request->get["error"] ?? null,
-            "success" => $this->request->get["success"] ?? null,
+            "success" => $this->request->get["success"] ? "Cadavre Exquis (".$this->request->get["success"].") crée" : null,
             "title" => "Loufok | Cadavres exquis"
         ]);
     }   

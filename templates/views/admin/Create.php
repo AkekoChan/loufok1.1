@@ -49,6 +49,7 @@ class Create extends Template
                   "3003" => "La date de fin ne peut pas être plus petite que la date de début.",
                   "3004" => "La période chevauche une autre période.",
                   "3005" => "Une erreur est survenue lors de la création.",
+                  "3008" => "La date de début ne peut pas être inférieur à la date d'aujourd'hui.",
                   "23000" => "Un cadavre avec ce même titre existe déjà.",
                 ][$this->error] ?? $this->error ?? "Une erreur est survenue.";
                 $this->component(Components\FormError::class, ["error_text" => $error_text]); 
