@@ -40,6 +40,10 @@
   border: 2px solid var(--dark-green);
 }
 
+/* .contributions__item p {
+  white-space: pre-line;
+} */
+
 form.form {
   gap: 2rem;
 }

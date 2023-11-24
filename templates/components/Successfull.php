@@ -15,7 +15,7 @@ class Successfull extends Component
         <style>
             #notifications {
                 position: fixed;
-                z-index: 250;
+                z-index: 960;
                 top: 5%;
                 left: 50%;
                 transform: translateX(-50%);

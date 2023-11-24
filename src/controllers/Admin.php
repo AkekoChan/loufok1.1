@@ -24,7 +24,10 @@
                 $date_end = $gpost('date-end');
                 $contributions_count++; // FIX SOME TWIKS (￣y▽,￣)╭ 
                 if($contributions_count < 1) return $this->response->redirect("/create?error=3001");
-                if(strlen($contribution_text) < 50 || strlen($contribution_text) > 280) return $this->response->redirect("/create?error=3002");
+
+                $textlen = mb_strlen(str_replace(["\n", "\r", "\t"], "", $contribution_text ?? ""));     
+                if($textlen < 50 || $textlen > 280) return $this->response->redirect("/create?error=3002");
+
                 if($date_start >= $date_end) return $this->response->redirect("/create?error=3003");
                 if($date_start < date("Y-m-d")) return $this->response->redirect("/create?error=3008");
                 if(Models\CadavreExquisModel::instance()->periodeOverlap($date_start, $date_end)) return $this->response->redirect("/create?error=3004");

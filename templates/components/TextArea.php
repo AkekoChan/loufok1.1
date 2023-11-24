@@ -65,7 +65,7 @@ window.addEventListener('beforeunload', updateStorage);
 
 textArea.addEventListener('keypress', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
-    if(textArea.value.length >= 50 && textArea.value.length < 280) {
+    if(textArea.value.length >= 50 && textArea.value.length <= 280) {
         textArea.setCustomValidity("");
     } else {
         textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
@@ -76,7 +76,7 @@ textArea.addEventListener('keypress', (evt) => {
 
 textArea.addEventListener('keyup', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
-    if(textArea.value.length >= 50 && textArea.value.length < 280) {
+    if(textArea.value.length >= 50 && textArea.value.length <= 280) {
         textArea.setCustomValidity("");
     } else {
         textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");

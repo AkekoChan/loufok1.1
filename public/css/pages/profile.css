@@ -71,3 +71,7 @@
   box-shadow: var(--box-shadow);
   width: 100%;
 }
+
+/* .profile__contributions-text {
+  white-space: pre-line;
+} */

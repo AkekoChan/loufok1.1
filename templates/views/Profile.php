@@ -43,7 +43,7 @@ class Profile extends Template
               </p>
               <p class="profile__stat">
                 <span class="bolder-green">
-                  <?php echo round(array_sum(array_map(fn ($r) => strlen($r), array_column($this->contributions, "text"))) / max(1, count($this->contributions))) ?>
+                  <?php echo round(array_sum(array_map(fn ($r) => mb_strlen($r), array_column($this->contributions, "text"))) / max(1, count($this->contributions))) ?>
                 </span>Nombre moyen <br />de caractères
               </p>
             </div>

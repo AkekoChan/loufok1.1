@@ -100,10 +100,10 @@
     opacity: 1 !important;
 }
 
-/* .calendar .block__day.cursorpinstart + .cursorperiode::after {
+.calendar .block__day.cursorpinstart + .cursorperiode::before {
     width: 175%;
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-} */
+    position: absolute; top: 50%; right: 50%; transform: translate(0%, -50%);
+}
 
 .calendar .block__day.pinstart::after,
 .calendar .block__day.cursorpinstart:nth-child(7n):after,

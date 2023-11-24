@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 24 nov. 2023 à 10:59
+-- Généré le : ven. 24 nov. 2023 à 12:37
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -38,8 +38,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `mail_admin`, `password`) VALUES
-(1, 'fred@loufok.com', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(2, 'zoe@loufok.com', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129');
+(1, 'admin@loufok', '89806ffc12e12254d69c670d35dc2156a0c824a856ab6880e1adab481758087c'),
+(2, 'bernadette.chaulet@univ-poitiers.fr', '0fcf421e94000bb74b085c415ee86173210ccb365b24fa1fd850afab1a3e93a8'),
+(3, 'stephanie.delayre@univ-poitiers.fr', 'b139006892267bef8f936f75499e7d8b6439bc3006f851303a95b0aa2abd5d88');
 
 -- --------------------------------------------------------
 
@@ -58,19 +59,6 @@ CREATE TABLE `cadavre_exquis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `cadavre_exquis`
---
-
-INSERT INTO `cadavre_exquis` (`id_cadavre_exquis`, `title`, `date_start`, `date_end`, `max_contributions`, `nb_like`, `id_admin`) VALUES
-(4, 'Super titre de cadavre', '2023-11-18', '2023-11-22', 6, 0, 1),
-(5, 'Deuxieme cadave de fou', '2023-11-23', '2023-11-28', 12, 0, 1),
-(12, 'Super titre de cadavre?', '2023-12-08', '2023-12-22', 4, 0, 1),
-(14, 'Super cadavre wow !', '2024-03-29', '2024-05-31', 2, 0, 2),
-(15, 'Super periode !', '2023-12-01', '2023-12-07', 4, 0, 1),
-(16, 'Super periode 2 !', '2023-12-23', '2023-12-31', 7, 0, 1),
-(17, 'Super titre de cadavre? 2 jours', '2023-11-29', '2023-11-30', 5, 0, 1);
-
---
 -- Déclencheurs `cadavre_exquis`
 --
 DELIMITER $$
@@ -79,7 +67,7 @@ CREATE TRIGGER `periode_overlap` BEFORE INSERT ON `cadavre_exquis` FOR EACH ROW 
 
     -- Vérifier s'il y a des cadavres exquis avec des périodes qui se chevauchent
     SELECT COUNT(*) INTO overlapping_count
-    FROM Cadavre_Exquis
+    FROM cadavre_exquis
     WHERE NEW.date_start <= date_end AND NEW.date_end >= date_start;
 
     -- Si le nombre de cadavres exquis avec des périodes qui se chevauchent est supérieur à 0, signaler une erreur
@@ -108,24 +96,6 @@ CREATE TABLE `contribution` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `contribution`
---
-
-INSERT INTO `contribution` (`id_contribution`, `id_user`, `text`, `created_at`, `submission_order`, `id_cadavre_exquis`, `id_admin`) VALUES
-(7, NULL, 'Il était une fois un ours polaire qui mangeait des freezbies', '2023-11-22 00:10:06', 1, 4, 1),
-(9, 1, 'Je contribue à ce cadavre que je trouve génial ! J\'adore !', '2023-11-22 00:17:27', 2, 4, 1),
-(11, 2, 'Il préférait les freezbies jaunes et rouges tout spécialement.', '2023-11-22 00:23:03', 3, 4, 1),
-(12, NULL, 'Il était une fois un ours polaire qui mangeait des freezbies 2 LOL', '2023-11-22 00:44:05', 1, 5, 1),
-(13, 3, 'Moi aussi j\'adore ce cadavre ! Nous sommes si pareils et pourtant si différents.', '2023-11-22 21:24:20', 4, 4, 1),
-(15, NULL, 'Super contribution pas vrai ? étoile étoile &#039;&quot;alert(&quot;wallah&quot;)', '2023-11-23 00:09:08', 1, 12, 1),
-(16, 1, 'Salut les amis ça va moi je pleure la sa mere comment je chiale', '2023-11-23 15:13:20', 2, 5, 1),
-(17, NULL, 'Lorem ispum solor damet\r\nLorem ispum solor damet\r\nLorem ispum solor damet', '2023-11-23 16:46:05', 1, 14, 2),
-(18, 2, 'Wsh les gars c michou !!! J\'adore mes ptits potes !!!', '2023-11-23 20:29:26', 3, 5, 1),
-(19, NULL, 'SUper contribution de teste de periode ça marche ou pas ???', '2023-11-24 03:21:49', 1, 15, 1),
-(20, NULL, 'Super contribution de test de période ça marche ou pas ???', '2023-11-24 03:22:35', 1, 16, 1),
-(21, NULL, 'Super contribution de test de période ça marche ou pas ???', '2023-11-24 12:38:38', 1, 17, 1);
-
---
 -- Déclencheurs `contribution`
 --
 DELIMITER $$
@@ -135,18 +105,18 @@ CREATE TRIGGER `auto_suborder` BEFORE INSERT ON `contribution` FOR EACH ROW BEGI
 
     -- Compter le nombre de contributions pour l'id_cadavre_exquis de la nouvelle contribution
     SELECT COUNT(*) INTO contribution_count
-    FROM Contribution
+    FROM contribution
     WHERE id_cadavre_exquis = NEW.id_cadavre_exquis;
 
     -- Vérifier si le nombre de contributions est inférieur à nb_max_contributions de l'objet cadavre_exquis
-    IF contribution_count >= (SELECT max_contributions FROM Cadavre_Exquis WHERE id_cadavre_exquis = NEW.id_cadavre_exquis) THEN
+    IF contribution_count >= (SELECT max_contributions FROM cadavre_exquis WHERE id_cadavre_exquis = NEW.id_cadavre_exquis) THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Le nombre maximum de contributions pour ce cadavre exquis est atteint.';
     END IF;
 
     -- Trouver le plus grand submission_order pour le même id_cadavre_exquis
     SELECT MAX(submission_order) INTO max_submission_order
-    FROM Contribution
+    FROM contribution
     WHERE id_cadavre_exquis = NEW.id_cadavre_exquis;
 
     -- Mettre à jour submission_order dans la nouvelle contribution
@@ -166,18 +136,6 @@ CREATE TABLE `randcontribution` (
   `id_user` int(11) DEFAULT NULL,
   `id_cadavre_exquis` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `randcontribution`
---
-
-INSERT INTO `randcontribution` (`num_contribution`, `id_user`, `id_cadavre_exquis`) VALUES
-(7, 1, 4),
-(7, 2, 4),
-(9, 3, 4),
-(12, 2, 5),
-(12, 1, 5),
-(16, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -199,10 +157,25 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nom`, `mail`, `sexe`, `bdate`, `password`) VALUES
-(1, 'Jose Garcia', 'jose.garcia@gmail.com', 'M', '1988-08-11', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(2, 'Alphonse Maital', 'alph.maital@full.com', 'M', '1995-03-23', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(3, 'David Mieux', 'david.mieu@mail.com', 'M', '1995-03-24', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129'),
-(4, 'Adrien Bot', 'bot.adrien@gmail.com', 'M', '1995-05-11', '9312dc1a088ec8771ed65c7b7d66fa94de23dfdc7ccb3b003bfd716cf104b129');
+(1, 'Leo BARRE', 'leo.barre@etu.univ-poitiers.fr', NULL, NULL, 'a3810b3480734feaa82241264c694264d6ddfaec8dc77c0682b151dadb09bebe'),
+(2, 'Victor BEAU', 'victor.beau@etu.univ-poitiers.fr', NULL, NULL, '354280349efb7fc0cb52172e2ee04fd9006094c6b300701141e3d428a806311d'),
+(3, 'Mathéo BEGUIER', 'matheo.beguier@etu.univ-poitiers.fr', NULL, NULL, 'd886bf96c443c0c09c3cdfdf3ae75c2cf85caf4b738a39ddbca42719a12496e0'),
+(4, 'Arthur BURGAUD', 'arthur.burgaud@etu.univ-poitiers.fr', NULL, NULL, '76aa1cda2132f56ddd37c9ac94bb2acfd13fd8c7c1e1c282d0404dd5ccf9d8ba'),
+(5, 'Melvyn CHAHAURY', 'melvyn.chahaury@etu.univ-poitiers.fr', NULL, NULL, '10a7a9a1968f5dfe6196ed3fa22edfc785658aa7b9fd79562ff107adbdb4b82a'),
+(6, 'Remi CHAMPEAU', 'remi.champeau@etu.univ-poitiers.fr', NULL, NULL, '4c1e20ecbb3271bbeddf47573169ea3283d6040f728bb71e3dfade153aa4b678'),
+(7, 'Rayan CHANNA', 'rayan.channa@etu.univ-poitiers.fr', NULL, NULL, '7d283d9efcbd773438544d9584956317e2fa542884c68ded0a22fc208d2bf710'),
+(8, 'Antonin COURVOISIER', 'antonin.courvoisier@etu.univ-poitiers.fr', NULL, NULL, '7f05f825bd1df3df76f71fc0eb4d48db8a014b59d014c408a9ca00045740616e'),
+(9, 'Braiane DA SILVA CORREIA', 'braiane.da.silva.correia@etu.univ-poitiers.fr', NULL, NULL, '2c098327536efba0c5fff59a1ab5bda1564b48c7022f7c914248018182245b0c'),
+(10, 'Ana DA SILVA SANTOS', 'ana.da.silva.santos@etu.univ-poitiers.fr', NULL, NULL, '428c1dadab5719de73c9255238fd48bad448de7ca916067b6e817acb9a1fb140'),
+(11, 'Mathieu DALMAS', 'mathieu.dalmas@etu.univ-poitiers.fr', NULL, NULL, '16e4ef2e6a00cb42dfa8a510bca8d1a5b331e5f58f483efe060d389bc54bb965'),
+(12, 'Thomas DESBROSSE', 'thomas.desbrosse@etu.univ-poitiers.fr', NULL, NULL, '8db21b9df978ef394a2d438aaf4d84cb2d2b5173649d62997105907e9fc1bd2a'),
+(13, 'Tristan DUPORT', 'tristan.duport@etu.univ-poitiers.fr', NULL, NULL, '1db093ba2d75b0b2dd4bbda3bde61c53a31c491d90052f721bb849bd7c10e753'),
+(14, 'Killian GOMEZ', 'killian.gomez@etu.univ-poitiers.fr', NULL, NULL, '019b6b383d7381346210b22796ca345bc9d154af6489071bd967b836b3e6fafa'),
+(15, 'Leonie GOURICHON', 'leonie.gourichon@etu.univ-poitiers.fr', NULL, NULL, '2675ba263f83d74cc19d07ddecdd7b78e57caabeff0cb6e8910960711f3d64b6'),
+(16, 'Claire MATHIEU', 'claire.mathieu@etu.univ-poitiers.fr', NULL, NULL, '07520e92ea8cd60304aa394f9bc6cb10638318d2e6631c91d48382de5d873595'),
+(17, 'Clementine MORISSEAU', 'clementine.morisseau@etu.univ-poitiers.fr', NULL, NULL, 'a8d6feb19aab547cd8b8958e3d42e3d04b397a9aa8c70d5a9dd809b928d6142b'),
+(18, 'Théo MARTIN', 'tmartin@gmail.com', 'M', NULL, '89806ffc12e12254d69c670d35dc2156a0c824a856ab6880e1adab481758087c'),
+(19, 'Maxence GUIVIER', 'maxence.gvr@gmail.com', NULL, NULL, '89806ffc12e12254d69c670d35dc2156a0c824a856ab6880e1adab481758087c');
 
 --
 -- Index pour les tables déchargées
@@ -256,25 +229,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `cadavre_exquis`
 --
 ALTER TABLE `cadavre_exquis`
-  MODIFY `id_cadavre_exquis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_cadavre_exquis` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `contribution`
 --
 ALTER TABLE `contribution`
-  MODIFY `id_contribution` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_contribution` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Contraintes pour les tables déchargées

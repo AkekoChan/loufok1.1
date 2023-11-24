@@ -59,6 +59,10 @@
   text-align: center;
 }
 
+/* .user-cadavers__text {
+  white-space: pre-line;
+} */
+
 .user-cadavers__thanks {
   display: flex;
   flex-direction: column;

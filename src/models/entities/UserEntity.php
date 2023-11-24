@@ -17,6 +17,16 @@
         public string $mail;
         public int $id;
 
+        public int|null $id_user;
+        public int|null $id_admin;
+
+        public function __construct()
+        {
+            if(!isset($this->id)) {
+                $this->id = $this->id_user ?? $this->id_admin;
+            }
+        }
+
         public function getContributions () : array|null {
             if($this->is_admin) return Models\ContributionModel::instance()->findBy([
                 "id_admin" => $this->id,
