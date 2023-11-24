@@ -80,7 +80,6 @@ class Login extends Template
             </form>
         </section>
     </main>
-    <?php $this->component(Components\Successfull::class); ?>
 </body>
 
 </html>

@@ -104,6 +104,7 @@ class Index extends Template
                     </section>
                 <?php endif; ?>
             </main>
+            <?php if($this->success !== null) $this->component(Components\Successfull::class); ?>
             <?php $this->component(Components\Footer::class, ["current_page" => "home"]); ?>
         </body>
 

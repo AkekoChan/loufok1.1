@@ -136,7 +136,7 @@
 }
 
 .calendar .block__day.past {
-    color: #33333332;
+    color: #3333335b;
 }
 
 .calendar .block__day.past,
@@ -149,7 +149,7 @@
 
 .calendar .block__day.before,
 .calendar .block__day.next {
-    color: #33333381;
+    color: #333333a5;
 }
 
 .calendar .block__day.current {

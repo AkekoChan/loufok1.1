@@ -16,7 +16,7 @@ class Successfull extends Component
             #notifications {
                 position: fixed;
                 z-index: 250;
-                top: 3%;
+                top: 5%;
                 left: 50%;
                 transform: translateX(-50%);
             }
@@ -27,7 +27,7 @@ class Successfull extends Component
                 box-shadow: var(--box-shadow);
                 width: 100%;
                 position: relative;
-                padding: 30px 20px;
+                padding: 1rem 1.4rem;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -107,7 +107,7 @@ class Successfull extends Component
 </svg>
 `;
 
-            create__notification(`${svgSuccess} <?php echo $this->sucess ?>`, true, 4000, undefined, '#notifications');
+            create__notification(`${svgSuccess} <?php echo $this->success ?>`, true, 4000, undefined, '#notifications');
 
 
             // Notifications
