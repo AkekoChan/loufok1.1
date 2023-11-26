@@ -44,7 +44,7 @@
                 return Store::setCookie(self::$cookie_name, JWTHelper::encode_token([
                     "mail" => $user->mail,
                     "password" => $user->password
-                ], ENV->APP_KEY), 0);
+                ], ENV->APP_KEY), 3600 * 60 * 60);
             } else {
                 return [ "error" => "password" ];
             }
