@@ -18,9 +18,9 @@ class Index extends Controller
         $user = Auth::fromCookie();
         if ($user === false) return $this->response->redirect("/login");
 
-        // $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
+        $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
 
-        // return $user->is_admin ? $this->admin($user, $current_cadavre) : $this->user($user, $current_cadavre);
+        return $user->is_admin ? $this->admin($user, $current_cadavre) : $this->user($user, $current_cadavre);
     }
 
     public function user(Entities\UserEntity $user, Entities\CadavreExquisEntity|bool $cadavre_exquis): Response
