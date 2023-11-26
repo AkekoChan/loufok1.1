@@ -1,0 +1,193 @@
+.error {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100dvh;
+  gap: 1.25rem;
+}
+
+.error-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min-content;
+}
+
+.error-logo::after,
+.error-logo::before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  background-color: var(--light-green-1);
+  border-radius: 50%;
+  z-index: -15;
+  animation: moveBalls 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+.error-logo::after {
+  height: 80px;
+  width: 80px;
+  right: 16%;
+  top: 0;
+  animation-delay: 4s;
+}
+
+.error-logo::before {
+  height: 120px;
+  width: 120px;
+  left: -15%;
+  bottom: 0;
+  animation-delay: 2s;
+}
+
+.error-logo__svg {
+  width: 240px;
+  height: 240px;
+}
+
+.error-message {
+  font-weight: bold;
+  font-size: var(--font-20px-1_25rem, 1.125rem);
+  text-align: center;
+}
+
+.error-link {
+  color: var(--black-1);
+  text-align: center;
+}
+@keyframes face_nod {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+
+  7.5% {
+    transform: translateY(auto) translateX(0);
+  }
+
+  10% {
+    transform: translateY(5%) translateX(2.5%);
+  }
+
+  20% {
+    transform: translateY(5%) translateX(-2.5%);
+  }
+
+  30% {
+    transform: translateY(5%) translateX(2.5%);
+  }
+
+  40% {
+    transform: translateY(5%) translateX(-2.5%);
+  }
+
+  50% {
+    transform: translateY(5%) translateX(2.5%);
+  }
+
+  60% {
+    transform: translateY(5%) translateX(-2.5%);
+  }
+
+  70% {
+    transform: translateY(5%) translateX(0);
+  }
+
+  80% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes mustache {
+  0% {
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(1.5%);
+  }
+
+  20% {
+    transform: translateX(-1.5%);
+  }
+
+  30% {
+    transform: translateX(1.5%);
+  }
+
+  40% {
+    transform: translateX(-1.5%);
+  }
+
+  50% {
+    transform: translateX(1.5%);
+  }
+
+  60% {
+    transform: translateX(-1.5%);
+  }
+
+  70% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes eyes_disapointed {
+  0% {
+    clip-path: polygon(0% 15%, 100% 15%, 100% 100%, 0% 100%);
+  }
+
+  15% {
+    clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+  }
+
+  60% {
+    clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+  }
+
+  80% {
+    clip-path: polygon(0% 15%, 100% 15%, 100% 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0% 15%, 100% 15%, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes moveBalls {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30px, 15px);
+  }
+  50% {
+    transform: translate(-15px, 25px);
+  }
+  75% {
+    transform: translate(10px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.face {
+  animation: 6s ease-in-out infinite face_nod;
+}
+
+.eyes {
+  animation: 6s ease-in-out infinite eyes_disapointed;
+}
+
+.mustache {
+  animation: 6s ease-in-out infinite mustache;
+}

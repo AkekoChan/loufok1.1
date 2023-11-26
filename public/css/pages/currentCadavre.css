@@ -11,18 +11,21 @@
 
 .currentCadavre__info {
   gap: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .currentCadavre__details {
   gap: 0.75rem;
 }
 
+.currentCadavre__details h3 {
+  text-decoration: underline;
+}
 .contributions__list {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-block: 1.25rem 4rem;
+  margin-block: 1.25rem 3rem;
 }
 
 .contributions__item {
@@ -31,4 +34,12 @@
   background: var(--light-green-1);
   box-shadow: var(--box-shadow);
   width: 100%;
+}
+
+.contributions__item.owner {
+  border: 2px solid var(--dark-green);
+}
+
+form.form {
+  gap: 2rem;
 }

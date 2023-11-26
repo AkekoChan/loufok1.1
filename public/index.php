@@ -9,6 +9,8 @@
     // * Mosaic PHP Framework | Created with ♡ (at least)
     // * https://maksance.dev/mosaic
 
+    date_default_timezone_set("Europe/Paris");
+
     require_once realpath(dirname(__DIR__) . "/vendor/runtime/application.php");
     return new ApplicationRunTime(dirname(__DIR__));
 ?>

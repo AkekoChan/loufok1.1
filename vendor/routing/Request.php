@@ -43,7 +43,7 @@
         protected function __construct()
         {
             $this->get = $_GET;
-            $this->post = array_merge($_POST, json_decode(trim(file_get_contents("php://input")), true) ?? []);
+            $this->post = array_merge($_POST, json_decode(trim(file_get_contents("php://input") ?? ""), true) ?? []);
             $this->method = $_SERVER["REQUEST_METHOD"];
             $this->cookie = $_COOKIE;
             $this->session = $_SESSION ?? null;

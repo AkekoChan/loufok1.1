@@ -6,6 +6,9 @@
   border: none;
   font-weight: bold;
   width: 100%;
+  display: block;
+  text-align: center;
+  color: var(--black-1);
   transition: all ease 0.4s;
   cursor: pointer;
 }

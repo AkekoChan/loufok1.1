@@ -15,6 +15,7 @@
             return $response->file($path)
                 ->header("X-Content-Type-Options", "nosniff")
                 ->type($mime)
+                ->cache("-public")
                 ->status(200);
         }
     }

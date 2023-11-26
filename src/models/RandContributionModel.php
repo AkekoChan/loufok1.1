@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+    use App\Service\Database\Model;
+    use App\Service\Database\DatabaseManager;
+    
+    use App\Entities;
+
+    class RandContributionModel extends Model {
+        public string $table = "randcontribution";
+        public string $entity = Entities\RandContributionEntity::class;
 use App\Models\Entities\RandContributionEntity;
 use App\Service\Database\Model;
 
@@ -11,10 +19,10 @@ class RandContributionModel extends Model
     public string $entity = RandContributionEntity::class;
 
     // Cette fonction récupère la contribution aléatoire correspondant à l'utilisateur et au cadavre actuel ou la créer
-    public function getRandomContribution(int $user_id, int $current_cadavre_id): ContributionEntity
+    public function getRandomContribution(int $user_id, int $current_cadavre_id): Entities\ContributionEntity
     {
         $contribution_table = ContributionModel::getTableName();
-        $contribution_entity = ContributionEntity::class;
+        $contribution_entity = Entities\ContributionEntity::class;
 
         $sql = "INSERT INTO {$this->table} (id_user, id_cadavre_exquis, num_contribution)
             SELECT
@@ -46,7 +54,7 @@ class RandContributionModel extends Model
             ":cadavre_exquis_id" => $current_cadavre_id
         ]);
 
-        if (!$sth || $sth->rowCount() === 0) return false; // TODO HANDLE ERROR
+        if (!$sth || $sth->rowCount() === 0) return false; // THIS CAUSE AN ERROR : CAN'T GET A RANDOM CONTRIBUTION FROM A CADAVRE WITHOUT CONTRIBUTIONS (THIS WOULD NEVER APPEND, ONLY IF YOU CREATE A CADAVRE WITH PHPMYADMIN)
 
         $sth->setFetchMode(DatabaseManager::getInstance()::FETCH_CLASS, $contribution_entity);
         return $sth->fetch();
