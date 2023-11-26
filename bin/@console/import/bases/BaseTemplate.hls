@@ -1,0 +1,25 @@
+<?php
+    namespace App\Templates;
+
+    use App\Service\Interfaces\Template;
+    use App\Components;
+
+    class %template% extends Template {
+        public function render ()
+        {
+            ?>
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <?php $this->component(Components\Head::class) ?>
+                </head>
+                <body>
+                    <main>
+                        Hello %template% template !
+                    </main>
+                </body>
+                </html>
+            <?php
+        }
+    }
+?>

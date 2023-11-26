@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin cadavre</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/pages/newCadavre.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__profile">
+        <img
+          width="100px"
+          src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=Théo&scale=200&radius=8&glassesProbability=60"
+          alt="Photo de profil"
+        />
+        <p>
+          Bienvenue, <br />
+          <span class="bolder">Théo</span>
+        </p>
+      </div>
+
+      <div class="header__notification">
+        <div class="header__bell">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            style="fill: rgb(0, 0, 0); --darkreader-inline-fill: #e8e6e3"
+            data-darkreader-inline-fill=""
+          >
+            <path
+              d="M19 13.586V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v3.586l-1.707 1.707A.996.996 0 0 0 3 16v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a.996.996 0 0 0-.293-.707L19 13.586zM19 17H5v-.586l1.707-1.707A.996.996 0 0 0 7 14v-4c0-2.757 2.243-5 5-5s5 2.243 5 5v4c0 .266.105.52.293.707L19 16.414V17zm-7 5a2.98 2.98 0 0 0 2.818-2H9.182A2.98 2.98 0 0 0 12 22z"
+            ></path>
+          </svg>
+        </div>
+        <div class="header__popup">
+          <!-- <p class="header__popupSubtitle">Notifications</p> -->
+          <ul>
+            <li>Un cadavre exquis vient d'être ajouté !</li>
+            <li>Le dernière cadavre exquis vient de se terminer</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="new-cadaver">
+        <div class="new-cadaver__info">
+          <h1 class="new-cadaver__title bigger">
+            Fabrication d’un cadavre exquis
+          </h1>
+          <p class="new-cadaver__description center">
+            À vous de créer votre propre Cadavre Exquis et de partager le
+            plaisir avec tout le monde !
+          </p>
+        </div>
+        <form class="new-cadaver__form form">
+          <div class="new-cadaver__form-group">
+            <h3 class="new-cadaver__title smaller">
+              Remplissez les informations
+            </h3>
+            <input
+              type="text"
+              id="cadaver-title"
+              class="new-cadaver__input form__input"
+              name="cadaver-title"
+              placeholder="Titre du cadavre exquis"
+              required
+            />
+
+            <input
+              type="number"
+              id="contributions-count"
+              class="new-cadaver__input form__input"
+              name="contributions-count"
+              placeholder="Nombre de contributions maxiumum"
+              required
+            />
+
+            <textarea
+              spellcheck=""
+              id="first-contribution"
+              class="new-cadaver__textarea form__textarea"
+              name="first-contribution"
+              placeholder="Texte du cadavre exquis"
+              required
+            ></textarea>
+          </div>
+
+          <div class="new-cadaver__form-group">
+            <h3 class="new-cadaver__title smaller">La période de jeu</h3>
+            <!-- Calendrier personnalisé (à ajouter selon vos besoins) -->
+          </div>
+
+          <button type="submit" class="new-cadaver__submit-button btn-primary">
+            Enregistrer le Cadavre Exquis
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <nav>
+        <ul class="footer__list">
+          <li class="footer__item">
+            <!-- Mettre la class current au lien + span pour faire l'active de la page en cours -->
+            <a href="" class="current">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: rgb(0, 0, 0)"
+              >
+                <path
+                  d="M12.71 2.29a1 1 0 0 0-1.42 0l-9 9a1 1 0 0 0 0 1.42A1 1 0 0 0 3 13h1v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7h1a1 1 0 0 0 1-1 1 1 0 0 0-.29-.71zM6 20v-9.59l6-6 6 6V20z"
+                ></path>
+              </svg>
+              <span class="current">Accueil</span>
+            </a>
+          </li>
+          <li class="footer__item">
+            <a href="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: rgb(0, 0, 0); --darkreader-inline-fill: #e8e6e3"
+                data-darkreader-inline-fill=""
+              >
+                <path
+                  d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"
+                ></path>
+              </svg>
+              <span>Profil</span>
+            </a>
+          </li>
+          <li class="footer__item">
+            <a href="">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                style="fill: rgb(0, 0, 0); --darkreader-inline-fill: #e8e6e3"
+                data-darkreader-inline-fill=""
+              >
+                <path
+                  d="M19 2.01H6c-1.206 0-3 .799-3 3v14c0 2.201 1.794 3 3 3h15v-2H6.012C5.55 19.998 5 19.815 5 19.01c0-.101.009-.191.024-.273.112-.575.583-.717.987-.727H20c.018 0 .031-.009.049-.01H21V4.01c0-1.103-.897-2-2-2zm0 14H5v-11c0-.806.55-.988 1-1h7v7l2-1 2 1v-7h2v12z"
+                ></path>
+              </svg>
+              <span
+                >Ancien <br />
+                cadavre</span
+              >
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+.bigger {
+  font-size: var(--font-32px-2rem);
+  text-align: center;
+}
+
+.smaller {
+  font-size: var(--font-24px-1_5rem);
+}
+
+.bolder {
+  font-weight: bold;
+}
+
+.bolder-green {
+  font-weight: bold;
+  color: var(--dark-green);
+}
+.center {
+  text-align: center;
+}

@@ -1,0 +1,128 @@
+.toggle-switch,
+.toggle-switch .toggle-knob {
+  transition: all 0.2s ease-in;
+}
+
+.toggle-switch {
+  width: 40px;
+  height: 22px;
+  filter: drop-shadow(0px 2px 8px rgba(99, 99, 99, 0.2));
+  display: inline-block;
+  background-color: #ccc;
+  border-radius: 90px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.toggle-switch .toggle-knob {
+  height: 14px;
+  width: 14px;
+  display: inline-block;
+  background-color: var(--white);
+  border-radius: 50%;
+  margin: 4px;
+}
+
+.switch-dyslexic.active,
+.switch-animation.active {
+  background-color: var(--light-green-1);
+}
+
+.switch-dyslexic.active .toggle-knob,
+.switch-animation.active .toggle-knob {
+  margin-left: 22px;
+}
+
+.accessibility-dyslexic {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.accessibility-font {
+  display: flex;
+  gap: 1rem;
+}
+
+.increaseFontButton,
+.decreaseFontButton,
+.resetFontButton {
+  background: var(--light-green-1);
+  border: none;
+  padding: 0.4rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 8px 0px var(--box-shadow);
+}
+
+.dyslexia-mode * {
+  font-family: "OpenDyslexic", cursive;
+  letter-spacing: 0.35ch;
+  word-spacing: 1.225ch;
+  font-variant-ligatures: none;
+  line-height: 2;
+}
+
+.dyslexia-mode button,
+.dyslexia-mode .toggle-switch {
+  line-height: 1;
+}
+
+.accessibility-dyslexic,
+.accessibility-disabledGSAPAnimation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.accessibility-daltonism {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+}
+
+#daltonism-select {
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--light-green-1);
+  font-family: "Sen", sans-serif;
+  padding: 0.4rem;
+}
+
+#daltonism-select option:checked {
+  background: var(--black-1);
+  color: var(--white);
+}
+
+.disabled-button {
+  padding: 1rem 1.4rem;
+  border-radius: 2.5rem;
+  border: none;
+  background: #caecab;
+  box-shadow: 0px 2px 8px 0px var(--box-shadow);
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+}
+
+.protanopia {
+  filter: url("../../assets/filters.svg#protanopia");
+}
+
+.deuteranopia {
+  filter: url("../../assets/filters.svg#deuteranopia");
+}
+
+.tritanopia {
+  filter: url("../../assets/filters.svg#tritanopia");
+}
+
+.normal {
+  filter: none;
+}
