@@ -86,6 +86,10 @@ a {
   text-decoration: none;
 }
 
+p {
+  word-break: break-word;
+}
+
 main {
   overflow-y: auto;
   flex-grow: 1;
