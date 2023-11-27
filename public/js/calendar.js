@@ -96,10 +96,11 @@ const Calendar = {
                 past = false;
             } else {
                 let identifier = "futur";
-                if(Calendar.offset < 0) identifier = "futur";
-                if(i - loffset + 1 > maxdays) identifier = "next";
                 if(i < loffset) identifier = "before";
                 if(past) identifier = "past";
+                if(Calendar.offset < 0) identifier = "futur";
+                if(Calendar.offset < 0 && i < loffset) identifier = "before";
+                if(i - loffset + 1 > maxdays) identifier = "next";
                 Calendar.body_container.innerHTML += draw(walkdate, identifier);
             }
             walkdate.setDate(walkdate.getDate() + 1);
