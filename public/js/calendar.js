@@ -80,7 +80,7 @@ const Calendar = {
         
         function draw (date, identifier) {
             let dao = (date.toISOString().split("T"))[0];
-            let tabindex = identifier == "next" || identifier == "futur" ? 0 : -1;
+            let tabindex = identifier == "next" || identifier == "before" || identifier == "futur" ? 0 : -1;
             let ariadate = `${Calendar.days[date.toString().substring(0, 3)]} ${date.getDate()} ${Calendar.months[date.toString().substring(4, 7)]} ${date.getFullYear()}`;
             return `<i class="block__day ${identifier}" aria-label='${ariadate}' tabindex="${tabindex}" data-date="${dao}">${date.getDate()}</i>`;
         }
@@ -96,10 +96,10 @@ const Calendar = {
                 past = false;
             } else {
                 let identifier = "futur";
-                if(past) identifier = "past";
                 if(Calendar.offset < 0) identifier = "futur";
                 if(i - loffset + 1 > maxdays) identifier = "next";
                 if(i < loffset) identifier = "before";
+                if(past) identifier = "past";
                 Calendar.body_container.innerHTML += draw(walkdate, identifier);
             }
             walkdate.setDate(walkdate.getDate() + 1);
@@ -150,7 +150,7 @@ const Calendar = {
                 pinstart?.classList.add(k === periodes.length - 1 && cursor ? 'cursorpinstart' : 'pinstart');
                 pinend?.classList.add(k === periodes.length - 1 && cursor ? 'cursorpinend' : 'pinend'); 
 
-                pinstart?.setAttribute("tabindex", "-1");
+                pinstart?.setAttribute("tabindex", "0");
                 pinend?.setAttribute("tabindex", "-1");
                 
                 let i = 0;
