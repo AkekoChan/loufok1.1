@@ -176,6 +176,7 @@
     changeDaltonism: (value) => {
       App.DOM.htmlElement.classList.remove(
         "normal",
+        "achromatopsia",
         "protanopia",
         "tritanopia",
         "deuteranopia"

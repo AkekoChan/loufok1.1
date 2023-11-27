@@ -51,6 +51,7 @@ class Header extends Component
                                 <label for="daltonism-select">Mode daltonisme</label>
                                 <select name="normal" id="daltonism-select">
                                     <option value="normal">Aucun</option>
+                                    <option value="achromatopsia">Achromatopsie</option>
                                     <option value="protanopia">Protanopie</option>
                                     <option value="tritanopia">Tritanopie</option>
                                     <option value="deuteranopia">Deuteranopie</option>

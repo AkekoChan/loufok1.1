@@ -124,6 +124,10 @@
   filter: url("../../assets/filters.svg#tritanopia");
 }
 
+.achromatopsia {
+  filter: url("../../assets/filters.svg#achromatopsia");
+}
+
 .normal {
   filter: none;
 }
