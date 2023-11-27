@@ -76,6 +76,9 @@
   margin-bottom: 1rem;
 }
 
+.login__form {
+  margin-bottom: 1.5rem;
+}
 /* Animation Css */
 
 @keyframes face_yes {

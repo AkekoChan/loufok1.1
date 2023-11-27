@@ -97,6 +97,7 @@ class Create extends Template
             <button type="submit" class="new-cadaver__submit-button btn-primary btn pop-in">
               Enregistrer le Cadavre Exquis
             </button>
+            <button class="btn-third btn pop-in">Enregistrer votre brouillon</button>
           </form>
         </section>
       </main>
