@@ -34,6 +34,7 @@
                 } else {
                     Control.$.title.setCustomValidity("")
                 }
+
                 if(isNaN(Control.$.maxcount.value) || Control.$.maxcount.value < 1) {
                     throw({
                         title: "Le nombre de contributions doit être supérieur ou égal à 1.",
@@ -42,6 +43,7 @@
                 } else {
                     Control.$.maxcount.setCustomValidity("")
                 }
+
                 if(Control.$.periode.end.value < Control.$.periode.start.value) {
                     throw({
                         title: "La date de fin ne peut pas être inférieur à la date de début.",
@@ -50,6 +52,7 @@
                 } else {
                     Control.$.calendar.setCustomValidity("")
                 }
+
                 if(Control.$.periode.start.value < new Date().toISOString().split("T")[0]) {
                     throw({
                         title: "La date de début ne peut pas être inférieur à la date d'aujourd'hui.",
@@ -70,6 +73,8 @@
                         title: "La période chevauche une autre période.",
                         input: Control.$.calendar
                     });
+                } else {
+                    Control.$.calendar.setCustomValidity("")
                 }
                 
                 evt.target.submit();
