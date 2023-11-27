@@ -169,7 +169,7 @@ const Calendar = {
     selectPeriode: (evt) => {
         let target = evt.target.closest(".block__day");
         if(target && target.dataset.date) {
-            if(target.classList.contains("past") || target.classList.contains("before")) return;
+            if(target.classList.contains("past")) return;
             if(target.classList.contains("pinstart") || target.classList.contains("pinend")
                 || target.classList.contains("periode")) return;
 

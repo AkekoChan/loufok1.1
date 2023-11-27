@@ -106,12 +106,12 @@
 .calendar .block__day.periode::after {
     display: block;
     content: "";
-    width: 130%;
+    width: 150%;
     height: 100%;
     position: absolute;
     top: 50%;
-    left: 85%;
-    transform: translate(0, -50%);
+    left: 100%;
+    transform: translate(-10%, -50%);
     background-color: var(--light-green-1);
     z-index: -1;
 }
@@ -126,12 +126,12 @@
 .calendar .block__day.periode::before {
     display: block;
     content: "";
-    width: 130%;
+    width: 150%;
     height: 100%;
     position: absolute;
     top: 50%;
-    right: 85%;
-    transform: translate(0%, -50%);
+    right: 100%;
+    transform: translate(10%, -50%);
     background-color: var(--light-green-1);
     z-index: -1;
 }
@@ -141,7 +141,7 @@
 }
 
 .calendar .block__day.past,
-.calendar .block__day.before,
+/* .calendar .block__day.before, */
 .calendar .block__day.periode,
 .calendar .block__day.pinstart,
 .calendar .block__day.pinend {
