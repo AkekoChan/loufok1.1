@@ -42,16 +42,16 @@ class Header extends Component
                         <button class="decreaseFontButton btn" aria-label="Réduire la taille de la police">A-</button>
                     </li>
                     <li class="accessibility-dyslexic">
-                        Mode dyslexie
+                        <label for="switch-dys">Mode dyslexie</label>
                         <span tabindex="0" class="toggle-switch switch-dyslexic" role="switch"
-                            aria-label="Mode dyslexie" aria-checked="false">
+                            aria-label="Mode dyslexie" aria-checked="false" id="switch-dys">
                             <span class="toggle-knob"></span>
                         </span>
                     </li>
                     <li class="accessibility-disabledGSAPAnimation">
-                        Désactiver les animations
+                        <label for="switch-anim">Désactiver les animations</label>
                         <span tabindex="0" class="toggle-switch switch-animation" role="switch"
-                            aria-label="Désactiver les animations" aria-checked="false">
+                            aria-label="Désactiver les animations" aria-checked="false" id="switch-anim">
                             <span class="toggle-knob"></span>
                         </span>
                     </li>
