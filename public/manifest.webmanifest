@@ -1,11 +1,11 @@
 {
-  "name": "<Application Name>",
-  "short_name": "<Application Short Name>",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Loufok",
+  "short_name": "Loufok",
+  "theme_color": "#caecab",
+  "background_color": "#fff",
   "display": "standalone",
-  "scope": "./",
-  "start_url": "./",
+  "start_url": "/loufok",
+  "id": "/loufok",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
