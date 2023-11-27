@@ -115,7 +115,7 @@ class Index extends Template
                 </svg>
             </div>
             <p class="error-message bottom-fade">
-                Aucun cadavre en cours de fabrication !
+                Aucun Cadavre Exquis en cours de fabrication !
             </p>
         </section>
         <?php endif; ?>
