@@ -28,7 +28,7 @@ class Index extends Template
             </h2>
             <p class="admin-cadavers__description center">
               Consultez tous les cadavres exquis que vous avez créés, ceux qui
-              sont en cours, ainsi que ceux des autres administraurs.
+              sont en cours, ainsi que ceux des autres administrateurs.
             </p>
           </div>
 
