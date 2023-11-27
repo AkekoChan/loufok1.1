@@ -66,7 +66,8 @@ class CadavreExquisModel extends Model
         GROUP BY
             ce.id_cadavre_exquis
         ORDER BY
-            ce.date_start;";
+            ce.date_start
+        LIMIT 3;";
 
         $sth = DatabaseManager::query($sql);
         if ($sth && $sth->rowCount()) {
