@@ -37,21 +37,21 @@ class Auth
         return false;
     }
 
-    public static function fromPost(array $post): array|bool
-    {
-        if (!isset($post["mail"])) return ["error" => "mail"];
+    public static function fromPost (array $post) : array|bool {
+        if(!isset($post["mail"])) return [ "error" => "mail" ];
 
         $user = Models\UsersModel::instance()->getUser($post["mail"]);
 
-        if ($user === null) return ["error" => "mail"];
+        if($user === null) return [ "error" => "mail" ];
 
-        if (Hashor::hash($post["password"], ENV->APP_KEY) === $user->password) {
-            return Store::setCookie(self::$cookie_name, JWTHelper::encode_token([
-                "mail" => $user->mail,
-                "password" => $user->password
-            ], ENV->APP_KEY), 0);
-        } else {
-            return ["error" => "password"];
+            if(Hashor::hash($post["password"], ENV->APP_KEY) === $user->password) {
+                return Store::setCookie(self::$cookie_name, JWTHelper::encode_token([
+                    "mail" => $user->mail,
+                    "password" => $user->password
+                ], ENV->APP_KEY), (3600 * 60 * 60));
+            } else {
+                return [ "error" => "password" ];
+            }
         }
     }
-}
+?>
