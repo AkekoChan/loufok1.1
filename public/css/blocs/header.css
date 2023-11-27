@@ -72,7 +72,7 @@
   background: var(--white);
   border: 2px solid var(--light-gray);
   border-radius: 1rem;
-  padding: 0.875rem;
+  padding: 1rem;
   z-index: 100;
   transform: translateX(40%);
   transform-origin: right;
@@ -101,6 +101,10 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.accessibility-popup {
+  min-width: 300px;
 }
 
 .toggle.header__popup,
