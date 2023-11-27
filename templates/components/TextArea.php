@@ -63,12 +63,18 @@ if(textArea.value.length < 50 || textArea.value.length > 280) textArea.setCustom
 
 window.addEventListener('beforeunload', updateStorage);
 
+textArea.addEventListener('change', (evt) => {
+    if(textArea.value.length < 50 || textArea.value.length > 280) {
+        textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
+    } else {
+        textArea.setCustomValidity("");
+    }
+});
+
 textArea.addEventListener('keypress', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
     if(textArea.value.length >= 50 && textArea.value.length <= 280) {
         textArea.setCustomValidity("");
-    } else {
-        textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
     }
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(updateStorage, 1800);
@@ -78,8 +84,6 @@ textArea.addEventListener('keyup', (evt) => {
     wordCounter.innerText = `${evt.target.value.length}/280`;
     if(textArea.value.length >= 50 && textArea.value.length <= 280) {
         textArea.setCustomValidity("");
-    } else {
-        textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
     }
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(updateStorage, 1800);
