@@ -47,19 +47,19 @@
                 if(Control.$.periode.end.value < Control.$.periode.start.value) {
                     throw({
                         title: "La date de fin ne peut pas être inférieur à la date de début.",
-                        input: Control.$.calendar
+                        input: Control.$.periode.start
                     });
                 } else {
-                    Control.$.calendar.setCustomValidity("")
+                    Control.$.periode.start.setCustomValidity("")
                 }
 
                 if(Control.$.periode.start.value < new Date().toISOString().split("T")[0]) {
                     throw({
                         title: "La date de début ne peut pas être inférieur à la date d'aujourd'hui.",
-                        input: Control.$.calendar
+                        input: Control.$.periode.start
                     });
                 } else {
-                    Control.$.calendar.setCustomValidity("")
+                    Control.$.periode.start.setCustomValidity("")
                 }
 
                 let start = Control.$.periode.start.value;
@@ -71,14 +71,15 @@
                 if(controlOverlap.length > 0) {
                     throw({
                         title: "La période chevauche une autre période.",
-                        input: Control.$.calendar
+                        input: Control.$.periode.start
                     });
                 } else {
-                    Control.$.calendar.setCustomValidity("")
+                    Control.$.periode.start.setCustomValidity("")
                 }
                 
                 evt.target.submit();
             } catch (error) {
+                console.error(error);
                 error.input.setCustomValidity(error.title);
                 error.input.reportValidity();
             }
