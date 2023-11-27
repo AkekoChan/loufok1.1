@@ -58,7 +58,7 @@ class Login extends Template
                 </p>
             </div>
 
-            <form action='' method='POST' class="form">
+            <form action='' method='POST' class="form login__form">
                 <h3 class="smaller bottom-fade">Se connecter à son profil</h3>
                 <div class="form__box">
                     <input
@@ -78,6 +78,8 @@ class Login extends Template
 
                 <input class="submit__btn btn-primary btn pop-in" type='submit' value="Se connecter">
             </form>
+
+            <button class="btn-third btn pop-in">Télécharger l'application</button>
         </section>
     </main>
 </body>
