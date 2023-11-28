@@ -34,7 +34,8 @@
                 "contributions" => $contributions,
                 "contributors" => $contributors,
                 "user_contribution" => $user_contribution,
-                "title" => "Loufok | Ancien Cadavre Exquis"
+                "title" => "Loufok | Ancien Cadavre Exquis",
+                "success" => isset($this->request->get["success"]) ? "Contribution ajouté !" : null,
             ]);
         }
     }
