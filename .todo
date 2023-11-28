@@ -8,3 +8,5 @@
 [+] 2 requests getAllPeriodes & getAllTitles pour tests front admin @started(23-11-23 01:43) @done(23-11-24 15:40) @lasted(1d13h57m45s)
 [+] Titres pages @started(23-11-23 01:43) @done(23-11-24 15:40) @lasted(1d13h57m46s)
 [+] Calendrier admin periode @started(23-11-23 01:43) @done(23-11-24 15:40) @lasted(1d13h57m47s)
+[ ] Notifications isolé autre site (webpush - subscribers)
+[ ] Affichage page cadavre après dernière contribution
