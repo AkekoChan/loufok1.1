@@ -14,16 +14,16 @@
     },
 
     event: () => {
+      App.DOM.pwaInstallButton.addEventListener("click", App.installPwa);
+      
       window.addEventListener("beforeinstallprompt", (event) => {
         event.preventDefault();
         App.CONST.installPrompt = event;
-
-        App.DOM.pwaInstallButton.addEventListener("click", App.installPwa);
       });
     },
 
     installPwa: async () => {
-      if (!App.CONST.installPrompt) return;
+      if (!App.CONST.installPrompt) return alert("Votre navigateur ne support pas l'installation d'application PWA");
 
       try {
         await App.CONST.installPrompt.prompt();
