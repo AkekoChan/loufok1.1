@@ -105,13 +105,13 @@
                 } else {
                     Control.$.periode.start.setCustomValidity("")
                 }
-                
-                localStorage.removeItem(Control.storeID);
-                evt.target.submit();
             } catch (error) {
                 console.error(error);
                 error.input.setCustomValidity(error.title);
                 error.input.reportValidity();
+            } finally {
+                localStorage.removeItem(Control.storeID);
+                evt.target.submit();
             }
         }
     }
