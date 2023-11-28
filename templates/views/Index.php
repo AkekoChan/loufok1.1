@@ -49,36 +49,40 @@ class Index extends Template
             </div>
             <ul class="contributions__list">
                 <?php for ($i = 1; $i < count($this->cadavre->contributions) + 1; $i++) {
-                                if ($this->random_contribution->submission_order == $i) {
-                                    echo '<li class="contributions__item bottom-fade">
+                    if ($this->random_contribution->submission_order == $i) {
+                        echo '<li class="contributions__item bottom-fade">
                             <p>' . $this->random_contribution->text . '</p>
                         </li>';
-                                } else if ($this->contribution !== null && $this->contribution->submission_order == $i) {
-                                    echo '<li class="contributions__item owner bottom-fade">
+                    } else if ($this->contribution !== null && $this->contribution->submission_order == $i) {
+                        echo '<li class="contributions__item owner bottom-fade">
                             <p>' . $this->contribution->text . '</p>
                         </li>';
-                                } else {
-                                    $this->component(Components\MoustacheContribution::class);
-                                }
-                            } ?>
+                    } else {
+                        $this->component(Components\MoustacheContribution::class);
+                    }
+                } ?>
             </ul>
-
             <?php if ($this->contribution === null) : ?>
 
             <form class="form" method="POST" action="/loufok/contribute">
                 <h3 class="smaller center bottom-fade">A votre tour de jouer !</h3>
-                <input id="currentCadavreId" name="cadavre_id" type="hidden"
-                    value="<?php echo $this->cadavre->id_cadavre_exquis; ?>">
+                
+                <input id="storeID" type="hidden"
+                    value="user\<?= $this->user->id; ?>\entity\<?= $this->cadavre->id_cadavre_exquis; ?>">
+
+                <!-- <input id="currentCadavreId" name="cadavre_id" type="hidden" -->
+                <!-- value="echo $this->cadavre->id_cadavre_exquis;"> -->
+
                 <div class="bottom-fade">
                     <?php $this->component(Components\TextArea::class); ?>
                 </div>
                 <?php 
-                                    if($this->error !== null) {
-                                        $this->component(Components\FormError::class, ["error_text" => $this->error]); 
-                                    }
-                                ?>
+                    if($this->error !== null) {
+                        $this->component(Components\FormError::class, ["error_text" => $this->error]); 
+                    }
+                ?>
                 <button class="btn-primary btn pop-in" type="submit">Soumettre votre contribution</button>
-                <button class="btn-third btn pop-in">Enregistrer votre brouillon</button>
+                <span tabindex="0" class="btn-third btn pop-in" id="keepData">Enregistrer votre brouillon</span>
             </form>
 
             <?php endif; ?>

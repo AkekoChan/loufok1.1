@@ -72,6 +72,12 @@
     user-select: none;
 }
 
+.calendar .block__day.current {
+    background-color: var(--black-2);
+    color: var(--white);
+    border-radius: 100% !important;
+}
+
 .calendar .block__day.cursorpinstart,
 .calendar .block__day.cursorpinend,
 .calendar .block__day.cursorpinstart::after,
@@ -90,6 +96,7 @@
     background-color: var(--light-green-1);
     border-radius: 0.375rem;
     position: relative;
+    color: var(--black-2) !important;
     opacity: 1 !important;
 }
 
@@ -97,6 +104,7 @@
 .calendar .block__day.cursorperiode {
     background-color: var(--light-green-1);
     position: relative;
+    color: var(--black-2) !important;
     opacity: 1 !important;
 }
 
@@ -151,10 +159,4 @@
 .calendar .block__day.before,
 .calendar .block__day.next {
     color: #333333a5;
-}
-
-.calendar .block__day.current {
-    background-color: var(--black-2);
-    color: var(--white);
-    border-radius: 100%;
 }

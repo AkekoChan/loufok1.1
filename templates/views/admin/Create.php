@@ -17,8 +17,8 @@ class Create extends Template
       <?php $this->component(Components\Head::class); ?>
       <link rel="stylesheet" href="<?php $this->public("/css/pages/newCadavre.css"); ?>">
       <link rel="stylesheet" href="<?php $this->public("/css/blocs/calendar-min.css", "/css/blocs/calendar.css"); ?>">
-      <script src="/loufok/js/admin.controls.js" defer></script>
       <script src="<?php $this->public("/js/calendar-min.js", "/js/calendar.js"); ?>" defer></script>
+      <script src="/loufok/js/admin.controls.js" defer></script>
     </head>
 
     <body>
@@ -39,6 +39,9 @@ class Create extends Template
               <h3 class="new-cadaver__title smaller bottom-fade">
                 Remplissez les informations
               </h3>
+
+              <input id="storeID" type="hidden"
+                    value="admin\<?= $this->user->id; ?>\create">
 
               <?php
               if ($this->error !== null) {
@@ -97,7 +100,7 @@ class Create extends Template
             <button type="submit" class="new-cadaver__submit-button btn-primary btn pop-in">
               Enregistrer le Cadavre Exquis
             </button>
-            <button class="btn-third btn pop-in">Enregistrer votre brouillon</button>
+            <span tabindex="0" class="btn-third btn pop-in" role="button" id="keepData">Enregistrer votre brouillon</span>
           </form>
         </section>
       </main>

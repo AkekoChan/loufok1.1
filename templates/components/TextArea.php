@@ -40,28 +40,27 @@ class TextArea extends Component
     }
 </style>
 <script defer>
-let timeout; // brouillon traitement
-
-let cadavreId = document.querySelector('#currentCadavreId')?.value ?? "adminContrib";
 
 let wordCounter = document.querySelector('.word-counter');
 let textArea = document.querySelector('#textAreaInput');
 
-// textArea.setCustomValidity("Wrong");
-textArea.value = localStorage.getItem(cadavreId) ?? "";
+let storeID = document.getElementById('storeID')?.value;
+
+textArea.value = localStorage.getItem(storeID+"\\text") ?? "";
 console.log("Storage Retrieved");
 
 function updateStorage() {
-    localStorage.setItem(cadavreId, textArea.value);
-    console.log(textArea.value);
+    if(!storeID) return;
+    localStorage.setItem(storeID+"\\text", textArea.value);
+    // console.log(textArea.value);
     console.log("Storage Updated");
 }
+
+// window.addEventListener('beforeunload', updateStorage);
 
 wordCounter.innerText = `${textArea.value.length}/280`;
 
 if(textArea.value.length < 50 || textArea.value.length > 280) textArea.setCustomValidity("Le texte de contribution doit faire entre 50 et 280 caractères.");
-
-window.addEventListener('beforeunload', updateStorage);
 
 textArea.addEventListener('change', (evt) => {
     if(textArea.value.length < 50 || textArea.value.length > 280) {
@@ -76,8 +75,6 @@ textArea.addEventListener('keypress', (evt) => {
     if(textArea.value.length >= 50 && textArea.value.length <= 280) {
         textArea.setCustomValidity("");
     }
-    if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(updateStorage, 1800);
 });
 
 textArea.addEventListener('keyup', (evt) => {
@@ -85,9 +82,15 @@ textArea.addEventListener('keyup', (evt) => {
     if(textArea.value.length >= 50 && textArea.value.length <= 280) {
         textArea.setCustomValidity("");
     }
-    if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(updateStorage, 1800);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('keepData')?.addEventListener('click', updateStorage);
+    document.querySelector('.form').addEventListener('submit', () => {
+        localStorage.removeItem(storeID+"\\text");
+    });
+})
+
 </script>
 <?php
     }
