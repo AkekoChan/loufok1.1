@@ -60,7 +60,7 @@
   clip-path: polygon(0% 5%, 100% 5%, 100% 100%, 0% 100%);
 }
 .mustache {
-  animation: 8 ease-in-out infinite mustache;
+  animation: 8s ease-in-out infinite mustache;
   animation-delay: 2s;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .app-info {
-  margin-block: 2rem;
+  margin-block: 1rem;
 }
 
 .app-info__title {
