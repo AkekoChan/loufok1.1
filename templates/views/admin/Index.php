@@ -24,11 +24,11 @@ class Index extends Template
         <section class="admin-cadavers">
           <div class="admin-cadavers__info right-fade">
             <h2 class="admin-cadavers__title bigger">
-              Consultez les Cadavres exquis
+              Consultez les Cadavres Exquis
             </h2>
             <p class="admin-cadavers__description center">
               Consultez tous les cadavres exquis que vous avez créés, ceux qui
-              sont en cours, ainsi que ceux des autres administraurs.
+              sont en cours, ainsi que ceux des autres administrateurs.
             </p>
           </div>
 

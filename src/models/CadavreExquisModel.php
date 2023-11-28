@@ -16,7 +16,7 @@ class CadavreExquisModel extends Model
     {
         $contribution_table = ContributionModel::getTableName();
         $sql = "SELECT * FROM {$this->table} ce WHERE
-                (CURRENT_DATE BETWEEN ce.date_start AND ce.date_end)
+                (CURRENT_DATE() >= ce.date_start AND CURRENT_DATE() <= ce.date_end)
                 AND ce.max_contributions > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
             GROUP BY id_cadavre_exquis
             LIMIT 1;";
@@ -34,19 +34,13 @@ class CadavreExquisModel extends Model
 
     public function getUserLastCadavre (int $user_id, bool $is_admin = false) : Entities\CadavreExquisEntity|null {
         $contribution_table = ContributionModel::getTableName();
-        $admin_clause = $is_admin ? "c.id_admin = :user_id AND c.id_user IS NULL" : "c.id_user = :user_id";
+        $admin_clause = $is_admin ? "co.id_admin = :user_id AND co.id_user IS NULL" : "co.id_user = :user_id";
 
-        $sql = "SELECT ce.* FROM {$this->table} ce
-        JOIN
-            {$contribution_table} c ON ce.id_cadavre_exquis = c.id_cadavre_exquis
-        WHERE
-            {$admin_clause}
-        GROUP BY
-            ce.id_cadavre_exquis
-        HAVING
-            ce.date_end < NOW() OR COUNT(c.id_contribution) >= ce.max_contributions
-        ORDER BY
-            ce.date_end DESC
+        $sql = "SELECT c.* FROM {$this->table} c
+        JOIN {$contribution_table} co ON c.id_cadavre_exquis = co.id_cadavre_exquis
+        WHERE (c.date_end < CURRENT_DATE() OR c.max_contributions <= (SELECT COUNT(submission_order) FROM {$contribution_table} WHERE id_cadavre_exquis = c.id_cadavre_exquis))
+        AND {$admin_clause}
+        ORDER BY c.date_end DESC
         LIMIT 1;";
 
         $sth = DatabaseManager::query($sql, [ "user_id" => $user_id ]);
@@ -62,11 +56,12 @@ class CadavreExquisModel extends Model
         $contribution_table = ContributionModel::getTableName();
         $sql = "SELECT * FROM {$this->table} ce
         WHERE
-            ce.date_end >= NOW() AND ce.max_contributions > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
+            ce.date_end >= CURRENT_DATE() AND ce.max_contributions > (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
         GROUP BY
             ce.id_cadavre_exquis
         ORDER BY
-            ce.date_start;";
+            ce.date_start
+        LIMIT 3;";
 
         $sth = DatabaseManager::query($sql);
         if ($sth && $sth->rowCount()) {

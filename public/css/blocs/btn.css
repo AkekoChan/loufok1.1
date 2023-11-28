@@ -38,3 +38,12 @@
 .btn-secondary:focus-within {
   background-color: var(--black-2);
 }
+
+.btn-third {
+  color: var(--gray);
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  text-align: center;
+}

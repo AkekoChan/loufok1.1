@@ -17,8 +17,8 @@ class Create extends Template
       <?php $this->component(Components\Head::class); ?>
       <link rel="stylesheet" href="<?php $this->public("/css/pages/newCadavre.css"); ?>">
       <link rel="stylesheet" href="<?php $this->public("/css/blocs/calendar-min.css", "/css/blocs/calendar.css"); ?>">
-      <script src="/loufok/js/admin.controls.js" defer></script>
       <script src="<?php $this->public("/js/calendar-min.js", "/js/calendar.js"); ?>" defer></script>
+      <script src="/loufok/js/admin.controls.js" defer></script>
     </head>
 
     <body>
@@ -40,6 +40,9 @@ class Create extends Template
                 Remplissez les informations
               </h3>
 
+              <input id="storeID" type="hidden"
+                    value="admin\<?= $this->user->id; ?>\create">
+
               <?php
               if ($this->error !== null) {
                 $error_text = [
@@ -50,7 +53,7 @@ class Create extends Template
                   "3004" => "La période chevauche une autre période.",
                   "3005" => "Une erreur est survenue lors de la création.",
                   "3008" => "La date de début ne peut pas être inférieur à la date d'aujourd'hui.",
-                  "23000" => "Un cadavre avec ce même titre existe déjà.",
+                  "23000" => "Un Cadavre Exquis avec ce même titre existe déjà.",
                 ][$this->error] ?? $this->error ?? "Une erreur est survenue.";
                 $this->component(Components\FormError::class, ["error_text" => $error_text]);
               }
@@ -97,6 +100,7 @@ class Create extends Template
             <button type="submit" class="new-cadaver__submit-button btn-primary btn pop-in">
               Enregistrer le Cadavre Exquis
             </button>
+            <span tabindex="0" class="btn-third btn pop-in" role="button" id="keepData">Enregistrer votre brouillon</span>
           </form>
         </section>
       </main>

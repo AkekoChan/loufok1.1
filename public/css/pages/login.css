@@ -26,24 +26,24 @@
   animation: moveBalls 10s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 .logo::after {
-  height: 80px;
-  width: 80px;
-  left: -8%;
-  bottom: -5%;
+  height: 60px;
+  width: 60px;
+  left: -6%;
+  bottom: -3%;
   animation-delay: 4s;
 }
 
 .logo::before {
-  height: 120px;
-  width: 120px;
+  height: 90px;
+  width: 90px;
   right: -19%;
   top: -12%;
   animation-delay: 2s;
 }
 
 .logo__svg {
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
 }
 
 .face {
@@ -60,7 +60,7 @@
   clip-path: polygon(0% 5%, 100% 5%, 100% 100%, 0% 100%);
 }
 .mustache {
-  animation: 8 ease-in-out infinite mustache;
+  animation: 8s ease-in-out infinite mustache;
   animation-delay: 2s;
 }
 
@@ -69,13 +69,16 @@
 }
 
 .app-info {
-  margin-block: 2rem;
+  margin-block: 1rem;
 }
 
 .app-info__title {
   margin-bottom: 1rem;
 }
 
+.login__form {
+  margin-bottom: 1.5rem;
+}
 /* Animation Css */
 
 @keyframes face_yes {
@@ -192,7 +195,7 @@
     transform: translate(30px, 15px);
   }
   50% {
-    transform: translate(-15px, 25px);
+    transform: translate(-10px, 25px);
   }
   75% {
     transform: translate(10px, -5px);

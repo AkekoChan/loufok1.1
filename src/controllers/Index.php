@@ -47,6 +47,11 @@ class Index extends Controller
                     return $this->response->redirect("/?error={$th->getMessage()}");
                 }
 
+                $user_cadavre = $user->getLastContributedCadavre();
+                if($user_cadavre !== null && $user_cadavre->id_cadavre_exquis === $current_cadavre->id_cadavre_exquis) {
+                    return $this->response->redirect("/last/?success");
+                }
+
                 return $this->response->redirect("/?success");
             }
             return $this->response->redirect("/"); // L'utilisateur a déjà contribué

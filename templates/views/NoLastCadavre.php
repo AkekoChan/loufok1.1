@@ -24,7 +24,7 @@ class NoLastCadavre extends Template
         <section class="user-cadavers">
           <div class="user-cadavers__info-bis right-fade">
             <h2 class="user-cadavers__info-title bigger">
-              Aucun cadavre à afficher
+              Aucun Cadavre Exquis à afficher
             </h2>
             <p class="user-cadavers__info-description center">
               Essayez de participer à un Cadavre Exquis !

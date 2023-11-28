@@ -22,6 +22,10 @@
   flex: 1 1 33.33%;
 }
 
+.footer__item svg {
+  fill: var(--black-1);
+}
+
 .footer__item a {
   display: flex;
   flex-direction: column;

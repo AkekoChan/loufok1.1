@@ -3,7 +3,7 @@
 
     class Store {
         public static function setCookie (string $name, mixed $value, int $expire = 0) : bool {
-            return setcookie($name, $value, $expire, "/" . ENV->PATH_EXCLUDE);
+            return setcookie($name, $value, time() + $expire, "/" . ENV->PATH_EXCLUDE);
         }
 
         public static function removeCookie (string $name) : bool {
