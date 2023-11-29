@@ -42,7 +42,7 @@ class Header extends Component
                                 </span>
                             </li>
                             <li class="accessibility-disabledGSAPAnimation">
-                                <label for="switch-anim">Désactiver les <br> animations</label>
+                                <label for="switch-anim">Désactiver <br> les animations</label>
                                 <span tabindex="0" class="toggle-switch switch-animation" role="switch" aria-label="Désactiver les animations" aria-checked="false" id="switch-anim">
                                     <span class="toggle-knob"></span>
                                 </span>

@@ -89,6 +89,12 @@
       App.DOM.switchAnimation?.addEventListener("click", () => {
         App.handleSwitch(App.DOM.switchAnimation, "disableAnimations");
       });
+
+      window.addEventListener("click", function (e) {
+        if (!$(".header__accessibility").contains(e.target)) {
+          App.DOM.popUpAccessibility.classList.remove("toggle");
+        }
+      });
     },
 
     handleSwitch: (toggler, localStorageName) => {
