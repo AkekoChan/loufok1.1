@@ -37,6 +37,10 @@ class CadavreExquisEntity
         return $this->periode->isActive() && $this->contributions_left > 0;
     }
 
+    public function isEnded () : bool {
+        return date('Y-m-d') > $this->date_end || $this->contributions_left <= 0;
+    }
+
     public function getContributors () : array {
         return Models\CadavreExquisModel::instance()->getAllContributors($this->id_cadavre_exquis);
     }

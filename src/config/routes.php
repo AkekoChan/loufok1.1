@@ -21,4 +21,8 @@ Controllers\Admin::bind(["/current"], ["GET"], "current");
 
 Controllers\Controls::bind(["/internal/controls/json"], ["GET"], "index");
 
+Controllers\Api::bind(["/api/cadavres"], ["GET"], "cadavres");
+Controllers\Api::bind(["/api/cadavre/{int:id}"], ["GET"], "cadavre");
+Controllers\Api::bind(["/api/cadavre/like"], ["POST"], "like");
+
 // Controllers\Notifications::bind(["/subscribe"], ["POST"], "subscribe");
