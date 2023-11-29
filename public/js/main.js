@@ -91,8 +91,8 @@
       });
 
       window.addEventListener("click", function (e) {
-        if (!$(".header__accessibility").contains(e.target)) {
-          App.DOM.popUpAccessibility.classList.remove("toggle");
+        if (!$(".header__accessibility")?.contains(e.target)) {
+          App.DOM.popUpAccessibility?.classList.remove("toggle");
         }
       });
     },

@@ -61,11 +61,12 @@ class Login extends Template
 
                             <?php if ($this->error === "password") $this->component(Components\FormError::class, ["error_text" => "Mot de passe incrorrect, veuillez recommencer !"]); ?>
                         </div>
-
-                        <input class="submit__btn btn-primary btn pop-in" type='submit' value="Se connecter">
+                        <div class="form__box">
+                            <input class="submit__btn btn-primary btn pop-in" type='submit' value="Se connecter">
+                            <button class="btn-third btn pop-in">Télécharger l'application</button>
+                        </div>
                     </form>
 
-                    <button class="btn-third btn pop-in">Télécharger l'application</button>
                 </section>
             </main>
         </body>

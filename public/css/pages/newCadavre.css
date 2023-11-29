@@ -14,3 +14,7 @@
   flex-direction: column;
   gap: 1.25rem;
 }
+
+.new-cadaver .calendar {
+  margin-bottom: 2rem;
+}
