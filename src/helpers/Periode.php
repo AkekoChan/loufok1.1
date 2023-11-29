@@ -17,6 +17,12 @@
             return max(1, date_diff($now, $end, true)->days);
         }
 
+        public function getDiff () : int {
+            $start = date_create($this->start . "00:00:01");
+            $end = date_create($this->end . "23:59:59");
+            return max(1, date_diff($start, $end, true)->days);
+        }
+
         public function isActive () : bool {
             $now = date_create("now");
             $start = date_create($this->start . "00:00:01");
