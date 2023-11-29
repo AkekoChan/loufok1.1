@@ -44,19 +44,38 @@ class Index extends Template
                                 <?php echo $this->remaining_days > 1 ? " jours restants" : " jour restant" ?>)</p>
                         </div>
                         <ul class="contributions__list">
-                            <?php for ($i = 1; $i < count($this->cadavre->contributions) + 1; $i++) {
-                                if ($this->random_contribution->submission_order == $i) {
-                                    echo '<li class="contributions__item bottom-fade">
-                            <p>' . $this->random_contribution->text . '</p>
-                        </li>';
-                                } else if ($this->contribution !== null && $this->contribution->submission_order == $i) {
-                                    echo '<li class="contributions__item owner bottom-fade">
-                            <p>' . $this->contribution->text . '</p>
-                        </li>';
-                                } else {
-                                    $this->component(Components\MoustacheContribution::class);
-                                }
-                            } ?>
+                            <?php 
+                                $mbefore = $this->random_contribution->submission_order - 1;
+                                $mbetween = $this->contribution === null ? count($this->cadavre->contributions) - $this->random_contribution->submission_order : 
+                                    $this->contribution->submission_order - $this->random_contribution->submission_order;
+                                $mafter = $this->contribution === null ? 0 : count($this->cadavre->contributions) - $this->contribution->submission_order;
+
+                                if($mbefore > 0) $this->component(Components\MoustacheContribution::class, [
+                                    "times" => $mbefore
+                                ]);
+
+                                ?>
+                                    <li class="contributions__item bottom-fade">
+                                        <p><?= $this->random_contribution->text ?></p>
+                                    </li>
+                                <?php
+
+                                if($mbetween > 0) $this->component(Components\MoustacheContribution::class, [
+                                    "times" => $mbetween
+                                ]);
+
+                                if($this->contribution !== null):
+                                ?>
+                                    <li class="contributions__item owner bottom-fade">
+                                        <p><?= $this->contribution->text ?></p>
+                                    </li>
+                                <?php
+                                endif;
+
+                                if($mafter > 0) $this->component(Components\MoustacheContribution::class, [
+                                    "times" => $mafter
+                                ]);
+                            ?>
                         </ul>
                         <?php if ($this->contribution === null) : ?>
 

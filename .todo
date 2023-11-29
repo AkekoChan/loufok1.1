@@ -8,8 +8,9 @@
 [+] Calendrier admin periode @started(23-11-23 01:43) @done(23-11-24 15:40) @lasted(1d13h57m47s)
 [+] Affichage page cadavre après dernière contribution @done(23-11-29 15:57)
 
-[ ] Page cadavre en cours info admin
+[+] Page cadavre en cours info admin @done(23-11-29 17:28)
 [ ] Notifications isolé autre site (webpush - subscribers)
-[ ] Moustaches xTIMES when repeats
+[ ] Moustaches xTIMES when repeats @started(23-11-29 17:49) TO TEST !
 [ ] API & Documentation
 [ ] Tests
+[ ] Mdps eleves a refaire

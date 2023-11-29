@@ -23,13 +23,16 @@
 .btn-secondary {
   padding: 1.25rem;
   border-radius: 2.5rem;
+  display: block;
   background-color: var(--black-1);
+  color: var(--white);
   box-shadow: var(--box-shadow);
   border: none;
   font-weight: bold;
   width: 100%;
   transition: all ease 0.4s;
   cursor: pointer;
+  text-align: center;
 }
 
 .btn-secondary:hover,

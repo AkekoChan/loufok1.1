@@ -18,5 +18,12 @@
         {
             $this->cadavre_title = Models\CadavreExquisModel::instance()->getCadavreTitle($this->id_cadavre_exquis);
         }
+
+        public function getUser () : UserEntity {
+            if($this->id_user === null) {
+                return Models\UsersModel::instance()->getUserById($this->id_admin, true);
+            }
+            return Models\UsersModel::instance()->getUserById($this->id_user, false);
+        }
     }
 ?>

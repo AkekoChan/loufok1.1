@@ -41,12 +41,12 @@ const Calendar = {
             });
             Calendar.body_container.addEventListener('click', Calendar.selectPeriode);
 
-            Calendar.body_container.addEventListener('dblclick', () => {
-                Calendar.inputs.start.value = '';
-                Calendar.inputs.end.value = '';
-                Calendar.offset = 0;
-                Calendar.init();
-            });
+            // Calendar.body_container.addEventListener('dblclick', () => {
+            //     Calendar.inputs.start.value = '';
+            //     Calendar.inputs.end.value = '';
+            //     Calendar.offset = 0;
+            //     Calendar.init();
+            // });
 
             Calendar.container.addEventListener('keypress', (evt) => {
                 if(evt.key === "Enter") {
@@ -79,10 +79,10 @@ const Calendar = {
         let loffset = Object.keys(Calendar.days).indexOf(walkdate.toString().substring(0, 3));
         
         function draw (date, identifier) {
-            let dao = (date.toISOString().split("T"))[0];
+            let currdate = (date.toISOString().split("T"))[0];
             let tabindex = identifier == "next" || identifier == "before" || identifier == "futur" ? 0 : -1;
             let ariadate = `${Calendar.days[date.toString().substring(0, 3)]} ${date.getDate()} ${Calendar.months[date.toString().substring(4, 7)]} ${date.getFullYear()}`;
-            return `<i class="block__day ${identifier}" aria-label='${ariadate}' tabindex="${tabindex}" data-date="${dao}">${date.getDate()}</i>`;
+            return `<i class="block__day ${identifier}" aria-label='${ariadate}' tabindex="${tabindex}" data-date="${currdate}">${date.getDate()}</i>`;
         }
 
         walkdate.setDate(walkdate.getDate() - loffset);
@@ -134,13 +134,15 @@ const Calendar = {
                     && periode.end > $(`.block__day:last-child`).dataset.date 
                     && periode.start < $(`.block__day:last-child`).dataset.date) {
                         pinend = $(`.block__day:last-child`);
+                        pinend.setAttribute("tabindex", "-1");
                         pinend.classList.add(k === periodes.length - 1 && cursor ? 'cursorperiode' : 'periode')
                     }
 
                 if(pinstart === null
                     && periode.end > $(`.block__day:first-child`).dataset.date 
                     && periode.start < $(`.block__day:first-child`).dataset.date) {
-                        pinstart = $(`.block__day:first-child`);
+                        pinstart = $(`.block__day:first-child`); 
+                        pinstart.setAttribute("tabindex", "-1");
                         pinstart.classList.add(k === periodes.length - 1 && cursor ? 'cursorperiode' : 'periode');
                     }
 
@@ -151,8 +153,7 @@ const Calendar = {
                 pinstart?.classList.add(k === periodes.length - 1 && cursor ? 'cursorpinstart' : 'pinstart');
                 pinend?.classList.add(k === periodes.length - 1 && cursor ? 'cursorpinend' : 'pinend'); 
 
-                pinstart?.setAttribute("tabindex", "0");
-                pinend?.setAttribute("tabindex", "-1");
+                if(cursor) pinstart?.setAttribute("tabindex", "0");
                 
                 let i = 0;
                 let sibling = pinend.previousElementSibling;
