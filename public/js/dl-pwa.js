@@ -31,13 +31,13 @@
 
         console.log("Install prompt result", result);
 
-        // Notification.requestPermission().then((result) => {
-        //   if (result === "granted") {
-        //     console.log("Notifications granted");
-        //   } else {
-        //     console.log("Notifications refusées");
-        //   }
-        // });
+        Notification.requestPermission().then((result) => {
+          if (result === "granted") {
+            console.log("Notifications granted");
+          } else {
+            console.log("Notifications refusées");
+          }
+        });
       } catch (error) {
         console.error("Erreur lors de l'installation de PWA", error);
       } finally {

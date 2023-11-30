@@ -9,6 +9,7 @@ use App\Templates\Views;
 use App\Helpers\Auth;
 use App\Models;
 use App\Entities;
+use App\Service\Managers\Store;
 
 // Ce controlleur pointe sur /
 class Index extends Controller
@@ -57,7 +58,7 @@ class Index extends Controller
             return $this->response->redirect("/"); // L'utilisateur a déjà contribué
         }
 
-        if ($current_cadavre === null) {
+        if ($current_cadavre === null || Store::getCookie("locked")) {
             return $this->response->template(Views\Index::class, [
                 "user" => $user,
                 "cadavre" => null,

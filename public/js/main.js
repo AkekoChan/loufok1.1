@@ -17,9 +17,46 @@
       newCadaverForm: $(".new-cadaver__form"),
     },
 
-    init: () => {
+    init: async () => {
       App.event();
       App.restoreState();
+
+      let subscription = await navigator.serviceWorker.getRegistration();
+
+      if(Notification.permission === "granted" && !subscription) {
+        await App.registerServiceWorker();
+      }
+
+      if(Notification.permission !== "granted") {
+        document.addEventListener('click', App.requestNotifications);
+      }
+    },
+
+    requestNotifications: async () => {
+      Notification.requestPermission().then(async (result) => {
+        if(result === "granted") {
+          console.log("Notifications Accepted - Registrating ServiceWorker");
+          document.removeEventListener('click', App.requestNotifications);
+          await App.registerServiceWorker();
+        } else {
+          alert("Vous n'avez pas authorisé les notifications");
+        }
+      });
+    },
+
+    registerServiceWorker: async () => {
+      if ("serviceWorker" in navigator) {
+        const registration = await navigator.serviceWorker.register("/loufok/js/sw.js");
+        console.log(registration);
+
+        let subscription = await registration.pushManager.getSubscription();
+        if (subscription) return;
+
+        subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: 'BHpS58XK5JwhUXEXEnQxknmS8SMDnuI9oz5Ow0WrBsXTjFIMA3SwVlI3OEz953K6c36VCAeF7zjWZ-sayn2Whmg'
+        }); await $post("/loufok/subscribe", subscription);
+      }
     },
 
     event: () => {
