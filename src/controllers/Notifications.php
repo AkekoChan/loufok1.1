@@ -12,14 +12,15 @@
 
             date_default_timezone_set("GMT");
 
-            $rand = rand(15, 18);
+            // $rand = rand(15, 18);
 
-            $date = date_create("2023-12-01 14:$rand");
+            // $date = date_create("2023-12-01 14:$rand");
 
-            // Pour la prod
-            // $rand = rand(07, 13);
+            // ? Pour la prod
+            $rand = rand(7, 13);
+            $rand = $rand < 10 ? "0$rand" : $rand;
 
-            // $date = date_create("2023-12-$rand 12:50");
+            $date = date_create("2023-12-$rand 12:50");
 
             $timestamp = date_timestamp_get($date);
 
