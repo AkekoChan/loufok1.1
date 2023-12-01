@@ -87,7 +87,7 @@ class Index extends Template
                                 <!-- <input id="currentCadavreId" name="cadavre_id" type="hidden" -->
                                 <!-- value="echo $this->cadavre->id_cadavre_exquis;"> -->
 
-                                <div class="bottom-fade">
+                                <div class="bottom-fade" style="margin-bottom: 1.5rem;">
                                     <?php $this->component(Components\TextArea::class); ?>
                                 </div>
                                 <?php

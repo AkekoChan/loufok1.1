@@ -61,7 +61,7 @@ class Cadavre extends Template
               <!-- Premier user -->
               <?php foreach ($this->contributors as $contributor) : ?>
                 <li class="user-cadavers__tanks-item bottom-fade">
-                  <img width="100px" src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=<?php echo $contributor->is_admin ? strtok($contributor->mail, "@") : $contributor->nom ?>&scale=200&radius=8&glassesProbability=60" alt="Photo de profil" />
+                  <img loading="lazy" width="100px" src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=<?php echo $contributor->is_admin ? strtok($contributor->mail, "@") : $contributor->nom ?>&scale=200&radius=8&glassesProbability=60" alt="Photo de profil" />
                   <span><?php echo $contributor->is_admin ? ucwords(strtok($contributor->mail, "@")) : $contributor->nom ?></span>
                 </li>
               <?php endforeach ?>

@@ -64,7 +64,7 @@ class Create extends Template
                     <input type="number" id="contributions-count" class="new-cadaver__input form__input bottom-fade"
                         name="contributions-count" min="1" placeholder="Nombre de contributions maxiumum" required />
 
-                    <div class="bottom-fade">
+                    <div class="bottom-fade" style="margin-bottom: 1.5rem;">
                         <?php $this->component(Components\TextArea::class); ?>
                     </div>
                 </div>

@@ -47,7 +47,7 @@ class CurrentCadavre extends Template
               <?php $user = $contribution->getUser() ?>
                 <li class="user-cadavers__item bottom-fade <?php if ($this->user_contribution !== null && $contribution->id_contribution === $this->user_contribution->id_contribution) echo "owner" ?>">
                   <div style="margin: 0; gap: 1rem" class="user-cadavers__tanks-item bottom-fade">
-                    <img width="100px" src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=<?php echo $user->is_admin ? strtok($user->mail, "@") : $user->nom ?>&scale=200&radius=8&glassesProbability=60" alt="Photo de profil" />
+                    <img loading="lazy" width="100px" src="https://api.dicebear.com/7.x/notionists-neutral/svg?seed=<?php echo $user->is_admin ? strtok($user->mail, "@") : $user->nom ?>&scale=200&radius=8&glassesProbability=60" alt="Photo de profil" />
                     <span><?php echo $user->is_admin ? ucwords(strtok($user->mail, "@")) : $user->nom ?></span>
                   </div>
                   <p class="user-cadavers__text">
