@@ -26,7 +26,7 @@ class Api extends Controller
             ];
         }
 
-        $this->response->header("origin", "*");
+        $this->response->header("Access-Control-Allow-Origin", "*");
 
         return $this->response->content($data);
     }
@@ -35,7 +35,7 @@ class Api extends Controller
     {
         $cadavre = Models\CadavreExquisModel::instance()->find($id);
 
-        $this->response->header("origin", "*");
+        $this->response->header("Access-Control-Allow-Origin", "*");
 
         if($cadavre === null || !$cadavre->isEnded()) return $this->response->content([ "error" => "Not Found" ])->status(404);
 
@@ -55,7 +55,7 @@ class Api extends Controller
         // TODO: localstorage or cookie store likes
         $id = $this->request->post['id'] ?? null;
 
-        $this->response->header("origin", "*");
+        $this->response->header("Access-Control-Allow-Origin", "*");
 
         if($id === null) return $this->response->content([])->status(400);
         
