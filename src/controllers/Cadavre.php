@@ -31,7 +31,6 @@
             return $this->response->template(Views\Cadavre::class, [
                 "user" => $user,
                 "cadavre" => $last_cadavre,
-                "contributions" => $contributions,
                 "contributors" => $contributors,
                 "user_contribution" => $user_contribution,
                 "title" => "Loufok | Ancien Cadavre Exquis",

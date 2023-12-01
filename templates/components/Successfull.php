@@ -160,9 +160,6 @@ class Successfull extends Component
                 function clear__notifications(parent) {
                     parent ? parent.innerHTML = '' : null;
                 }
-
-
-
             }
         </script>
 <?php

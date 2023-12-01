@@ -9,6 +9,37 @@
     use App\Models;
 
     class Admin extends Controller {
+        public function current () : Response {
+            $user = Auth::fromCookie();
+            if($user === false) return $this->response->redirect("/login");
+            if($user->is_admin === false) return $this->response->throw(404);
+
+            $current_cadavre = Models\CadavreExquisModel::instance()->getCurrentCadavre();
+
+            if($current_cadavre === null) {
+                return $this->response->template(Views\Index::class, [
+                    "user" => $user,
+                    "cadavre" => null,
+                    "title" => "Loufok | Aucun Cadavre Exquis en cours"
+                ]);
+            }
+
+            $user_contribution = $user->getContributionFromCadavre($current_cadavre->id_cadavre_exquis);
+
+            // return $this->response->content([
+            //     "cadavre" => $current_cadavre,
+            //     "user" => $user,
+            //     "user_contribution" => $user_contribution,
+            //     "title" => "Loufok | Cadavre Exquis en cours",
+            // ]);
+            return $this->response->template(Views\Admin\CurrentCadavre::class, [
+                "cadavre" => $current_cadavre,
+                "user" => $user,
+                "user_contribution" => $user_contribution,
+                "title" => "Loufok | Cadavre Exquis en cours",
+            ]);
+        }
+
         public function index () : Response {
             $user = Auth::fromCookie();
             if($user === false) return $this->response->redirect("/login");

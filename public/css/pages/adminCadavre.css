@@ -50,5 +50,10 @@
 }
 
 .admin-cadavers__cadaver-period {
-  margin-top: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.admin-cadavers__consult-button {
+  padding: 1rem;
+  /* border-radius: 0.225rem; */
 }

@@ -27,8 +27,8 @@ class Index extends Template
               Consultez les Cadavres Exquis
             </h2>
             <p class="admin-cadavers__description center">
-              Consultez tous les cadavres exquis que vous avez créés, ceux qui
-              sont en cours, ainsi que ceux des autres administrateurs.
+              Consultez tous les Cadavres Exquis que vous avez créés, ceux qui
+              sont en cours, ainsi que ceux des autres administrateurs. (affichage par date, 3 maximum)
             </p>
           </div>
 
@@ -53,6 +53,11 @@ class Index extends Template
                   Période de Jeu : <span class="bolder"><?php echo $periode["start"] ?></span> au <span class="bolder"><?php echo $periode["end"] ?></span>
                   <?php if($cadavre->isActualCadavre()) echo ' (en cours)' ?>
                 </p>
+                <?php if($cadavre->isActualCadavre()): ?>
+                  <a class="admin-cadavers__consult-button btn-secondary btn pop-in" href="/loufok/current">
+                    Consulter l'avancement
+                  </a>
+                <?php endif; ?>
               </li>
             <?php endforeach; ?>
           </ul>

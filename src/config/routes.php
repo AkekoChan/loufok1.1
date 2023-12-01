@@ -17,6 +17,12 @@ Controllers\Login::bind(["/login"], ["GET"], "template");
 Controllers\Login::bind(["/login"], ["POST"], "post");
 Controllers\Login::bind(["/logout"], ["GET"], "logout");
 
+Controllers\Admin::bind(["/current"], ["GET"], "current");
+
 Controllers\Controls::bind(["/internal/controls/json"], ["GET"], "index");
 
-// Controllers\Notifications::bind(["/subscribe"], ["POST"], "subscribe");
+Controllers\Api::bind(["/api/cadavres"], ["GET"], "cadavres");
+Controllers\Api::bind(["/api/cadavre/{int:id}"], ["GET"], "cadavre");
+Controllers\Api::bind(["/api/cadavre/like"], ["POST"], "like");
+
+Controllers\Notifications::bind(["/subscribe"], ["POST"], "subscribe");

@@ -71,6 +71,24 @@ class CadavreExquisModel extends Model
         return [];
     }
 
+    public function getAllCadavresFinished () : array {
+        $contribution_table = ContributionModel::getTableName();
+        $sql = "SELECT * FROM {$this->table} ce
+        WHERE
+            CURRENT_DATE() > ce.date_end OR ce.max_contributions <= (SELECT COUNT(*) FROM {$contribution_table} WHERE id_cadavre_exquis = ce.id_cadavre_exquis)
+        GROUP BY
+            ce.id_cadavre_exquis
+        ORDER BY
+            ce.date_start";
+
+        $sth = DatabaseManager::query($sql);
+        if ($sth && $sth->rowCount()) {
+            return $sth->fetchAll(DatabaseManager::getInstance()::FETCH_CLASS, $this->entity);
+        }
+
+        return [];
+    }
+
     public function getCadavreTitle (int $cadavre_id) : string|null {
         $sql = "SELECT title FROM {$this->table} WHERE id_cadavre_exquis = :cadavre_id";
 

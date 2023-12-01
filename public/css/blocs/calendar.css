@@ -78,6 +78,12 @@
     border-radius: 100% !important;
 }
 
+.calendar .block__day.current.cursorpinstart,
+.calendar .block__day.current.pinstart {
+    border: 1px solid var(--black-1);
+    line-height: 2.49em !important;
+}
+
 .calendar .block__day.cursorpinstart,
 .calendar .block__day.cursorpinend,
 .calendar .block__day.cursorpinstart::after,
