@@ -6,7 +6,10 @@
 
     class Error {
         public static function throw (Response $response, int $status = 404) : Response {
-            $response->status($status);
+            $response->status($status)
+            ->header("x-robots-tag", "noindex")
+            ->cache("-disable");
+            
             $responseDetails = $response->getDetails();
 
             if(str_contains(Request::instance()->accept, "text/html")) {

@@ -93,7 +93,7 @@ class CadavreExquisModel extends Model
         $sql = "SELECT title FROM {$this->table} WHERE id_cadavre_exquis = :cadavre_id";
 
         $sth = DatabaseManager::query($sql, [ ":cadavre_id" => $cadavre_id ]);
-        return $sth ? $sth->fetch()["title"] : null;
+        return $sth ? $sth->fetch()["title"] ?? null : null;
     }
 
     public function getAllContributors (int $cadavre_id) : array {

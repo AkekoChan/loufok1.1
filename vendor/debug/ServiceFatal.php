@@ -13,6 +13,8 @@
             $response->header("x-robots-tag", "noindex")
             ->cache("-disable")->status(500);
 
+            if(ENV->MODE === "PROD") return $response->throw(500);
+
             if(str_contains($request->accept, "application/json")) {
                 $error["error"] = "Internal Server Error";
                 return $response->content($error);

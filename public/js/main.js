@@ -28,7 +28,7 @@
       }
 
       if(Notification.permission !== "granted") {
-        document.addEventListener('click', App.requestNotifications);
+        if(!localStorage.getItem("notifications")) document.addEventListener('click', App.requestNotifications);
       }
     },
 
@@ -36,11 +36,13 @@
       Notification.requestPermission().then(async (result) => {
         if(result === "granted") {
           console.log("Notifications Accepted - Registrating ServiceWorker");
-          document.removeEventListener('click', App.requestNotifications);
           await App.registerServiceWorker();
         } else {
-          alert("Vous n'avez pas authorisé les notifications");
+          alert("Vous n'avez pas authorisé les notifications, pour une meilleure expérience, changez vos paramètres de notifications pour les accepter !");
         }
+
+        localStorage.setItem("notifications", result);
+        document.removeEventListener('click', App.requestNotifications);
       });
     },
 
