@@ -16,17 +16,22 @@ class Api extends Controller
         $data = [];
 
         foreach ($cadavres as $cadavre) {
+            $contributeurs = array_column($cadavre->getContributors(), "nom");
+            sort($contributeurs, SORT_STRING);
+
             $data['cadavres'][] = [
                 "id_cadavre" => $cadavre->id_cadavre_exquis,
                 'titre' => $cadavre->title,
-                'likes' => $cadavre->nb_like,
+                'nb_likes' => $cadavre->nb_like,
                 "auteur" => $cadavre->admin->mail,
-                "contributeurs" => array_column($cadavre->getContributors(), "nom"),
+                "contributeurs" => $contributeurs,
                 "premiere_contribution" => $cadavre->contributions[0]->text
             ];
         }
 
-        $this->response->header("Access-Control-Allow-Origin", "*");
+        $this->response->header("Access-Control-Allow-Origin", "*")
+        ->header("Access-Control-Allow-Methods", "GET, POST")
+        ->header("Access-Control-Allow-Headers", "Content-Type, Accept, x-requested-with");
 
         return $this->response->content($data);
     }
@@ -35,18 +40,24 @@ class Api extends Controller
     {
         $cadavre = Models\CadavreExquisModel::instance()->find($id);
 
-        $this->response->header("Access-Control-Allow-Origin", "*");
+        $this->response->header("Access-Control-Allow-Origin", "*")
+        ->header("Access-Control-Allow-Methods", "GET, POST")
+        ->header("Access-Control-Allow-Headers", "Content-Type, Accept, x-requested-with");
 
         if($cadavre === null || !$cadavre->isEnded()) return $this->response->content([ "error" => "Not Found" ])->status(404);
 
+        $contributeurs = array_column($cadavre->getContributors(), "nom");
+        sort($contributeurs, SORT_STRING);
+
         return $this->response->content([
+            'titre' => $cadavre->title,
             "total_contributions" => count($cadavre->contributions),
             "nb_jours" => $cadavre->periode->getDiff(),
             "nb_likes" => $cadavre->nb_like,
             "auteur" => $cadavre->admin->mail,
             // "contributions_max" => $cadavre->max_contributions,
             "contributions" => array_column($cadavre->contributions, "text"),
-            "contributeurs" => array_column($cadavre->getContributors(), "nom"),
+            "contributeurs" => $contributeurs,
         ]);
     }
 
@@ -55,7 +66,9 @@ class Api extends Controller
         // TODO: localstorage or cookie store likes
         $id = $this->request->post['id'] ?? null;
 
-        $this->response->header("Access-Control-Allow-Origin", "*");
+        $this->response->header("Access-Control-Allow-Origin", "*")
+        ->header("Access-Control-Allow-Methods", "GET, POST")
+        ->header("Access-Control-Allow-Headers", "Content-Type, Accept, x-requested-with");
 
         if($id === null) return $this->response->content([])->status(400);
         
