@@ -1,8 +1,8 @@
 {
   "name": "Loufok",
   "short_name": "Loufok",
-  "theme_color": "#caecab",
-  "background_color": "#fff",
+  "theme_color": "#d2c7f0",
+  "background_color": "#0d0a14",
   "display": "standalone",
   "start_url": "/loufok",
   "scope": "/loufok",
