@@ -6,6 +6,7 @@ use App\Models;
 
 use App\Service\Routing\Response;
 use App\Service\Interfaces\Controller;
+use App\Service\Managers\Store;
 
 class Api extends Controller
 {
@@ -63,23 +64,32 @@ class Api extends Controller
 
     public function like () : Response
     {
-        // TODO: localstorage or cookie store likes
         $id = $this->request->post['id'] ?? null;
-
+        
         $this->response->header("Access-Control-Allow-Origin", "*")
         ->header("Access-Control-Allow-Methods", "GET, POST")
         ->header("Access-Control-Allow-Headers", "Content-Type, Accept, x-requested-with");
-
+        
         if($id === null) return $this->response->content([])->status(400);
         
+        $liked = Store::getCookie("like/$id");
+
         $cadavreModel = Models\CadavreExquisModel::instance();
         $cadavre = $cadavreModel->find($id);
 
         if($cadavre === null || !$cadavre->isEnded()) return $this->response->content([])->status(404);
 
-        $success = $cadavreModel->update($id, [
-            "nb_like" => $cadavre->nb_like + 1
-        ]) ? 200 : 400;
+        if($liked !== null) {
+            Store::removeCookie("like/$id");
+            $success = $cadavreModel->update($id, [
+                "nb_like" => $cadavre->nb_like - 1
+            ]) ? 202 : 400;
+        } else {
+            Store::setCookie("like/$id", true, (3600 * 24 * 60 * 60));
+            $success = $cadavreModel->update($id, [
+                "nb_like" => $cadavre->nb_like + 1
+            ]) ? 200 : 400;
+        }
 
         return $this->response->content([])->status($success);
     }
