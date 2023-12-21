@@ -17,7 +17,7 @@
             if(!isset($this->content)) return;
             if(headers_sent()) die(); // CASE OF FATALS OMG
             ob_end_clean();
-            header("HTTP/1.0 {$this->status} {$this->responses[$this->status]}", true, $this->status);
+            header("HTTP/2.0 {$this->status} {$this->responses[$this->status]}", true, $this->status);
             header("Content-Type: text/plain", true); // DEFAULT
             header('Strict-Transport-Security:max-age=31536000;includeSubDomains', true);
             header('X-XSS-Protection:1;mode=block', true);

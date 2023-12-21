@@ -91,6 +91,8 @@ class Api extends Controller
             ]) ? 200 : 400;
         }
 
-        return $this->response->content([])->status($success);
+        return $this->response->content([
+            "likes" => $liked !== null ? $cadavre->nb_like - 1 : $cadavre->nb_like + 1
+        ])->status($success);
     }
 }
